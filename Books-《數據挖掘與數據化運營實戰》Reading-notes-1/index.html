@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  <meta name="google-site-verification" content="QtWrbgsVhTqsMNvB8LxTME9k09O6AborIvkCH2tzglc">
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="一直對數據分析很感興趣，但在學校學習的都比較簡單，又礙於自己的懶惰，一直沒有深入了解。暑假藉著報名參加了一個數據分析的比賽（雖然在初賽就折戟了😂其實一點也不意外）讓自己比較有動力繼續更深入的學習一些數據處理的方法，當然還有如何用機器學習的方式去實現進一步的預測，以及決策。    也是在圖書館閒逛的時候，意外發現的這本《數據挖掘與數據化運營實戰》，相較於其他的一些數據挖掘和機器學習的書籍，這">
+<meta name="keywords" content="Books,Data science,Reading notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Books |《數據挖掘與數據化運營實戰》Reading notes (1)">
+<meta property="og:url" content="https://skyexx.github.io/Books-《數據挖掘與數據化運營實戰》Reading-notes-1/index.html">
+<meta property="og:site_name" content="Cactus Garden">
+<meta property="og:description" content="一直對數據分析很感興趣，但在學校學習的都比較簡單，又礙於自己的懶惰，一直沒有深入了解。暑假藉著報名參加了一個數據分析的比賽（雖然在初賽就折戟了😂其實一點也不意外）讓自己比較有動力繼續更深入的學習一些數據處理的方法，當然還有如何用機器學習的方式去實現進一步的預測，以及決策。    也是在圖書館閒逛的時候，意外發現的這本《數據挖掘與數據化運營實戰》，相較於其他的一些數據挖掘和機器學習的書籍，這">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-30T11:45:41.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Books |《數據挖掘與數據化運營實戰》Reading notes (1)">
+<meta name="twitter:description" content="一直對數據分析很感興趣，但在學校學習的都比較簡單，又礙於自己的懶惰，一直沒有深入了解。暑假藉著報名參加了一個數據分析的比賽（雖然在初賽就折戟了😂其實一點也不意外）讓自己比較有動力繼續更深入的學習一些數據處理的方法，當然還有如何用機器學習的方式去實現進一步的預測，以及決策。    也是在圖書館閒逛的時候，意外發現的這本《數據挖掘與數據化運營實戰》，相較於其他的一些數據挖掘和機器學習的書籍，這">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://skyexx.github.io/Books-《數據挖掘與數據化運營實戰》Reading-notes-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>Books |《數據挖掘與數據化運營實戰》Reading notes (1) | Cactus Garden</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154176085-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-154176085-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cactus Garden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyexx.github.io/Books-《數據挖掘與數據化運營實戰》Reading-notes-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Skye">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://i.loli.net/2019/07/28/5d3cefcbd70fc75366.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cactus Garden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Books |《數據挖掘與數據化運營實戰》Reading notes (1)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-30 12:07:03" itemprop="dateCreated datePublished" datetime="2019-07-30T12:07:03+08:00">2019-07-30</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-09-30 19:45:41" itemprop="dateModified" datetime="2019-09-30T19:45:41+08:00">2019-09-30</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Technology/" itemprop="url" rel="index"><span itemprop="name">Technology</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 Views:  
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span title="Symbols count in article">3.6k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span title="Reading time">3 mins.</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>   一直對數據分析很感興趣，但在學校學習的都比較簡單，又礙於自己的懶惰，一直沒有深入了解。暑假藉著報名參加了一個數據分析的比賽（雖然在初賽就折戟了😂其實一點也不意外）讓自己比較有動力繼續更深入的學習一些數據處理的方法，當然還有如何用機器學習的方式去實現進一步的預測，以及決策。</p>
+<p>   也是在圖書館閒逛的時候，意外發現的這本《數據挖掘與數據化運營實戰》，相較於其他的一些數據挖掘和機器學習的書籍，這本書更偏向於實戰應用。它沒有過多的數學推導，比較測重於數據分析整體流程的一個介紹，對於一個初學者來說是一部很好的入門書籍。使初學者更加清楚的知道數據分析的應用情境，數據挖掘有哪些流程步驟，在每個步驟中我們該如何選擇最好的方法來達到期望的效果等等。總之對於一個數據和編程小白來說這是一本非常友好的入門書籍，看後會對數據挖掘有一個比較宏觀的認識，當然想要了解算法原理之類的一些核心技能這本書就不太夠用了，這些就需要更深入的一些書籍去了解了。</p>
+<p>我的閱讀順序可能比較奇怪，所以Reading notes也是各個章節穿插著紀錄的。</p>
+<h1 id="第六章-數據挖掘項目完整應用案例演示"><a href="#第六章-數據挖掘項目完整應用案例演示" class="headerlink" title="第六章 數據挖掘項目完整應用案例演示"></a>第六章 數據挖掘項目完整應用案例演示</h1><h2 id="綜述"><a href="#綜述" class="headerlink" title="綜述"></a>綜述</h2><p>幾個希望傳遞的重點：</p>
+<ul>
+<li>數據挖掘是有一定的基本流程和順序的，按照流程進行挖掘是數據挖掘分析嚴謹性的體現。</li>
+<li>數據挖掘只是數據運營的一部分，沒有落地應用的數據挖掘嚴格意義上還不能算是“完成”。</li>
+<li>落地應用中的運營方案對模型的應用效果影響極大，所以數據分析師不僅僅要熟悉數據分析和模型的搭建，還要熟悉與運營相關的業務。</li>
+</ul>
+<h2 id="項目背景和業務分析需求的提出"><a href="#項目背景和業務分析需求的提出" class="headerlink" title="項目背景和業務分析需求的提出"></a>項目背景和業務分析需求的提出</h2><ul>
+<li>背景：某互聯網公司“免費用戶運營團隊”，需要不斷將免費用戶提升為付費用戶，來從電子商務中獲取更大的利益。</li>
+<li>困境：高活躍度的群體付費轉化率最高，但是高活躍度用戶的流失比較大，有相當比例的高活躍度用戶會快速的跌落到中低活躍度中。</li>
+</ul>
+<h2 id="數據分析師參與需求討論"><a href="#數據分析師參與需求討論" class="headerlink" title="數據分析師參與需求討論"></a>數據分析師參與需求討論</h2><p>分析師與運營方進行了需求的討論。<br>討論的目的主要是：</p>
+<ul>
+<li>針對需求收集相關的背景數據和指標，與業務方一起熟悉背景中的相關業務邏輯，並收集業務方對需求的相關建議和看法。這些信息對需求的確認和思路的規劃乃至後期的分析都至關重要。</li>
+<li>從數據的分析的角度評估業務分析是否合理。某些情況下，某些分析就是“偽命題”</li>
+</ul>
+<h2 id="制訂需求分析框架和分析計畫"><a href="#制訂需求分析框架和分析計畫" class="headerlink" title="制訂需求分析框架和分析計畫"></a>制訂需求分析框架和分析計畫</h2><p>初步了解了背景，要制訂初步的分析計畫和分析框架。<br>分析框架的主要內容：</p>
+<ul>
+<li><strong>分析需求轉化成數據分析項目中目標變量的定義</strong>。具體到之前案例，定義“高度活躍免費用戶的流失”：[在某個時間點“A點”用戶是滿足高活躍用戶標準要求的（這時是屬於高活躍用戶群體的），隨後過“A點”7天（這個7天也是根據運營的時間節奏來訂出的），該高活躍用戶跌入至中低活躍用戶中，並在過“A點”14天，即兩週之後仍然沒有回到高活躍的標準。]這只是初步的定義，隨著後期進行數據抽取，並與業務方討論後，有跟深入的分析後，上述的定義可以被修改和完善，修改和完善的終極目的是為了數據分析和挖掘工作能最有效的達到預期效果，並提升業務工作效率。</li>
+<li><strong>分析思路的大致描述</strong>。具體到上述方案，通過搭建分類模型來比較準確的鎖定有可能流失的用戶群體。</li>
+<li><strong>分析樣本的數據抽取規則</strong>。數據抽取規則因項目而定，基本上是根據上面的目標變量的定義，選擇一個合適的時間窗口，然後抽取一定的樣本數據。</li>
+<li><strong>潛在分析變量（模型輸入變量）的大致圈定和羅列</strong>。經過前期的分析和討論，分析師已經確定了大致圈定的相關變量（從業務經驗判斷和以往分析中得來），上述案例中整理出大約63個原始變量。羅列出這些似乎對目標變量的預測有意義的相關變量。</li>
+<li><strong>分析過程中的項目風險思考和主要應對策略</strong>。具體到上述案例，項目風險思考主要包括模型效果不好的可能性，即有可能分類模型的思路被證明是不好的，也有可能是模型效果不好，或者準確度不高，或者模型不穩定。是否有相應的分析對策來部分彌補，若分類模型的思路被證明是行不通的，可退而求其次進行流失用戶的群體特徵細分，或者重新定義流失用戶等。</li>
+<li><strong>項目落地應用價值分析和展望</strong>。針對上述方案，主要有3個方面：模型投入應用有提前鎖定目標群體，使運營方有針對性的開展挽留工作；可以將建模過程中發現的有價值的，最可能影響流失的重要字段和指標選出來提供給運營方，用於制訂運營方案和策略的參考和依據；準對影響流失的核心指標和字段，可以提供給相關業務方，開展針對性的策略。</li>
+</ul>
+<p>書中的項目所給出的一個參考時間表</p>
+<blockquote>
+<p>分析計畫時間表舉例：<br>11.5～11.11  數據的抽樣和摸底階段<br>11.12～11.18 數據的前期分析階段<br>11.19～11.30 建模時間和業務方討論時間<br>12.1～12.9   模型驗證階段，驗證通過，提交分析結果和運營方案建議<br>12.10～12.23 運營方案的落地應用實施<br>12.24～1.8   效果評估和總結，優化方案，落地應用並監控效果</p>
+</blockquote>
+<h2 id="抽取樣本數據，熟悉數據，數據清洗和摸底"><a href="#抽取樣本數據，熟悉數據，數據清洗和摸底" class="headerlink" title="抽取樣本數據，熟悉數據，數據清洗和摸底"></a>抽取樣本數據，熟悉數據，數據清洗和摸底</h2><ul>
+<li>本階段的主要內容是：根據前期的分析和建模思路，以及初步圈定的分析字段（分析變量）編寫代碼，從數據庫中提取分析建模所需的樣本數據；通過對樣本數據的熟悉和摸底，找到無效數據，髒數據，錯誤數據等。並且對樣本數據中存在的這些明顯的數據質量問題進行清洗，剔除，轉換，同時視具體業務場景和項目需求，決定是否產生衍生變量，以及怎樣衍生等。</li>
+<li>針對數據質量的對策：<br>通過對原始樣本數據和原始變量的摸底，排查，發現有些變量缺失值高達50%。經過研究發現這些缺失是數據倉庫儲存過程中的記錄缺失，或是由於產品優化後的業務邏輯更改所造成的。這些無法滾回的數據，可以選擇直接刪除。<ul>
+<li>通過輸入變量之間的相關性分析，找出潛在共線性問題的相關輸入變量，對於高度線性相關的變量只保留一個。</li>
+<li>在數據庫的數據回滾過程中造成了某些字節的嚴重不符合邏輯或明顯自相矛盾，比如用戶最近30天登陸網站次數為0。針對如此不符合邏輯的數據，直接重新回滾數據，直到數據正確為止。</li>
+</ul>
+</li>
+</ul>
+<p>經過處理，即刪除嚴重缺失數據，素居倉庫重新回滾自相矛盾的數據，對高度相關性的數據部分有取有捨，在本階段共保留了36個表有意義的字段（變量）合相關數據。（最開始是63個）<br>（第8章會比較詳細的講到數據清洗）</p>
+<h2 id="按計畫初步搭建挖掘模型"><a href="#按計畫初步搭建挖掘模型" class="headerlink" title="按計畫初步搭建挖掘模型"></a>按計畫初步搭建挖掘模型</h2><p>對數據進行初步的摸底和清洗之後，就進入初步搭建挖掘模型階段了。在該階段，包括3個主要的工作內容:<br>進一步篩選模型的輸入變量。最終靜如模型的輸入變量應遵循“少而精”的總原則。該原則一方面能提高模型的穩定性，利益方面也是為了有效提升模型的預測精準度。關於如何刪選模型的輸入變量（8.6節，9.3.3節，第十章中會有比較詳細的分析。）<br>嘗試不同的挖掘算法和分析方法，並比較不同方案的效果，效率和穩定性。關於模型的比較和優化。7.4節有比較詳細的總結。（這裡使用了Neural network；Reg；Tree這三種，還需要有一條Baseline）<br>整理經過模型挑選出來的與目標變量的預測最相關的一系列核心輸入變量，將其作為與業務方討論落地應用時的參考和建議。</p>
+<h2 id="與業務方討論模型的初步結論，提出新的思路和模型優化方案"><a href="#與業務方討論模型的初步結論，提出新的思路和模型優化方案" class="headerlink" title="與業務方討論模型的初步結論，提出新的思路和模型優化方案"></a>與業務方討論模型的初步結論，提出新的思路和模型優化方案</h2><p>在本階段，需要整理模型的初步報告，結論，以及對主要預測字段（特徵）進行提煉，還要通過與業務方溝通和分享，在此基礎上討論出模型的可能優化方向，並對落地應用的方案進行討論，同時羅列出注意事項。<br>具體針對這個項目而言，除了模型比較之外，還對核心自變量進行了整理提煉，並進行了權重排序。<br>“預測模型的搭建和完善也跟網站分析一樣，遵循著‘持續優化，永無止境’”的規律。</p>
+<h2 id="按優化方案重新抽取樣本並建模，提煉結論並驗證模型"><a href="#按優化方案重新抽取樣本並建模，提煉結論並驗證模型" class="headerlink" title="按優化方案重新抽取樣本並建模，提煉結論並驗證模型"></a>按優化方案重新抽取樣本並建模，提煉結論並驗證模型</h2><p>在上述優化方案和新增衍生變量的基礎上，重新抽取樣本，一方面驗證之前的重要猜想；另一方面嘗試搭建新的模型提升預測效果。增加新的衍生變量後重複之前的測試，看哪一個模型效果好。這裡有提到“初步可以認為，目前的神經網絡模型相比於其他模型而言有更好的預測效果，可以更多的有效鎖定有流失風險的用戶”<br>模型建好後還需要用新的數據來驗證模型的穩定性。</p>
+<h2 id="完成分析報告和落地應用的建議"><a href="#完成分析報告和落地應用的建議" class="headerlink" title="完成分析報告和落地應用的建議"></a>完成分析報告和落地應用的建議</h2><p>在上述模型優化和驗證的基礎上，提交給業務方一份詳細完整的項目結論和應用建議，包括的內容應該有：<br>模型的預測效果和效率，以及在最新的實際數據中驗證模型的結果，即模型穩定性。<br>通過模型整理出來的可以作為營運參考的重要自變量及相應特徵，規律。<br>數據分析師根據模型效果和效率數據提出的落地應用的分層建議，以及相應的運營建議，其包括：預測模型打分應用基礎上進一步的客戶特徵分層，相應細分群體運營通道的選擇等。</p>
+<h2 id="制定具體的落地應用方案和評估方案"><a href="#制定具體的落地應用方案和評估方案" class="headerlink" title="制定具體的落地應用方案和評估方案"></a>制定具體的落地應用方案和評估方案</h2><h2 id="方案落地應用，並跟蹤評估"><a href="#方案落地應用，並跟蹤評估" class="headerlink" title="方案落地應用，並跟蹤評估"></a>方案落地應用，並跟蹤評估</h2><h2 id="落地應用方案在實際效果評估後，不斷修正完善"><a href="#落地應用方案在實際效果評估後，不斷修正完善" class="headerlink" title="落地應用方案在實際效果評估後，不斷修正完善"></a>落地應用方案在實際效果評估後，不斷修正完善</h2><h2 id="不同運營方案的評估，總結和反饋"><a href="#不同運營方案的評估，總結和反饋" class="headerlink" title="不同運營方案的評估，總結和反饋"></a>不同運營方案的評估，總結和反饋</h2><h2 id="醒目應用後的總結和反思"><a href="#醒目應用後的總結和反思" class="headerlink" title="醒目應用後的總結和反思"></a>醒目應用後的總結和反思</h2><p>“完美的分析結論和模型搭建只是數據化運營萬里長城的第一步”，想要模型正真推動業務的效率和效益，模型落地應用的環節更加關鍵，更加重要，更加複雜。</p>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Books/" rel="tag"># Books</a>
+          
+            <a href="/tags/Data-science/" rel="tag"># Data science</a>
+          
+            <a href="/tags/Reading-notes/" rel="tag"># Reading notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Hello-Hexo/" rel="next" title="Hello Hexo">
+                <i class="fa fa-chevron-left"></i> Hello Hexo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Pwc性格測試/" rel="prev" title="Pwc性格測試">
+                Pwc性格測試 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/07/28/5d3cefcbd70fc75366.png" alt="Skye">
+  
+  <p class="site-author-name" itemprop="name">Skye</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+        
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:skyexx.ye@gmail.com" title="E-Mail &rarr; mailto:skyexx.ye@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-數據挖掘項目完整應用案例演示"><span class="nav-number">1.</span> <span class="nav-text">第六章 數據挖掘項目完整應用案例演示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#綜述"><span class="nav-number">1.1.</span> <span class="nav-text">綜述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#項目背景和業務分析需求的提出"><span class="nav-number">1.2.</span> <span class="nav-text">項目背景和業務分析需求的提出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#數據分析師參與需求討論"><span class="nav-number">1.3.</span> <span class="nav-text">數據分析師參與需求討論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制訂需求分析框架和分析計畫"><span class="nav-number">1.4.</span> <span class="nav-text">制訂需求分析框架和分析計畫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽取樣本數據，熟悉數據，數據清洗和摸底"><span class="nav-number">1.5.</span> <span class="nav-text">抽取樣本數據，熟悉數據，數據清洗和摸底</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按計畫初步搭建挖掘模型"><span class="nav-number">1.6.</span> <span class="nav-text">按計畫初步搭建挖掘模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#與業務方討論模型的初步結論，提出新的思路和模型優化方案"><span class="nav-number">1.7.</span> <span class="nav-text">與業務方討論模型的初步結論，提出新的思路和模型優化方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按優化方案重新抽取樣本並建模，提煉結論並驗證模型"><span class="nav-number">1.8.</span> <span class="nav-text">按優化方案重新抽取樣本並建模，提煉結論並驗證模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成分析報告和落地應用的建議"><span class="nav-number">1.9.</span> <span class="nav-text">完成分析報告和落地應用的建議</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制定具體的落地應用方案和評估方案"><span class="nav-number">1.10.</span> <span class="nav-text">制定具體的落地應用方案和評估方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案落地應用，並跟蹤評估"><span class="nav-number">1.11.</span> <span class="nav-text">方案落地應用，並跟蹤評估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#落地應用方案在實際效果評估後，不斷修正完善"><span class="nav-number">1.12.</span> <span class="nav-text">落地應用方案在實際效果評估後，不斷修正完善</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同運營方案的評估，總結和反饋"><span class="nav-number">1.13.</span> <span class="nav-text">不同運營方案的評估，總結和反饋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#醒目應用後的總結和反思"><span class="nav-number">1.14.</span> <span class="nav-text">醒目應用後的總結和反思</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-fas fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Skye</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Symbols count total: </span>
+    
+    <span title="Symbols count total">14k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    
+    <span title="Reading time total">12 mins.</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.2.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>R 資料的預處理：刪減不需要的資料</title>
+    <url>/R-%E8%B3%87%E6%96%99%E7%9A%84%E9%A0%90%E8%99%95%E7%90%86%EF%BC%9A%E5%88%AA%E6%B8%9B%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E8%B3%87%E6%96%99/</url>
+    <content><![CDATA[<p>R的資料處理很常用的package“dplyr” 裡面select()常被用來做資料的刪減</p>
+<h1 id="select-的用法"><a href="#select-的用法" class="headerlink" title="select() 的用法"></a>select() 的用法</h1><p>以mtcars資料集為例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">head(mtcars,3)</span><br><span class="line">#                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
+
+<p>刪減不需要的資料欄位<br>假設不需要用到 mpy，hp這兩個欄位</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mtcars1=select(mtcars,-c(&quot;mpg&quot;,&quot;hp&quot;))</span><br><span class="line">head(mtcars1,3)</span><br><span class="line">#                   cyl disp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4           6  160 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag       6  160 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710          4  108 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
+
+<p>假設需要mpg到wt的資料,但是不需要cyl和hp這兩個欄位</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mtcars2=select(mtcars,mpg:wt,-c(&quot;cyl&quot;,&quot;hp&quot;))</span><br><span class="line">head(mtcars2,3)</span><br><span class="line">#                mpg disp drat    wt</span><br><span class="line"># Mazda RX4     21.0  160 3.90 2.620</span><br><span class="line"># Mazda RX4 Wag 21.0  160 3.90 2.875</span><br><span class="line"># Datsun 710    22.8  108 3.85 2.320</span><br></pre></td></tr></table></figure>
+
+<h1 id="select-的子函數"><a href="#select-的子函數" class="headerlink" title="select() 的子函數"></a>select() 的子函數</h1><p>select 還有很多非常好用的子函數</p>
+<ul>
+<li>starts_with()；</li>
+<li>ends_with()；</li>
+<li>contains()；</li>
+<li>matches()；</li>
+<li>num_range()；</li>
+<li>one_of()；</li>
+<li>everything()</li>
+</ul>
+<p>找出欄位中所有以“c”開頭的columns</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mtcars3 = select(mtcars,starts_with(&quot;c&quot;))</span><br><span class="line">head(mtcars3,3)</span><br><span class="line">#               cyl carb</span><br><span class="line"># Mazda RX4       6    4</span><br><span class="line"># Mazda RX4 Wag   6    4</span><br><span class="line"># Datsun 710      4    1</span><br></pre></td></tr></table></figure>
+
+<p>刪掉欄位名稱中有“ar”的columns</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mtcars4 = select(mtcars,-contains(&quot;ar&quot;))</span><br><span class="line">head(mtcars4,3)</span><br><span class="line"># 原始           mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line">#                mpg cyl disp  hp drat    wt  qsec vs am</span><br><span class="line"># Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1</span><br><span class="line"># Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1</span><br><span class="line"># Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1</span><br></pre></td></tr></table></figure>
+
+<p>可以看出“ar”是一整個的字符串，所以字母順序需要注意，有“ra”就被保留下來了</p>
+<p>其他的幾個子函數的用法也類似starts_with()</p>
+]]></content>
+      <categories>
+        <category>R</category>
+      </categories>
+      <tags>
+        <tag>details</tag>
+        <tag>dplyr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>R 資料的預處理：數據中缺失值(NA)的處理</title>
+    <url>/R%E6%95%B8%E6%93%9A%E4%B8%AD%E7%BC%BA%E5%A4%B1%E5%80%BC-NA-%E7%9A%84%E8%99%95%E7%90%86/</url>
+    <content><![CDATA[<p>訓練一個機器學習模型，其實大量的時間是花在資料的預處理和探索性資料分析上。尤其是實際中遇到的data都不會太乾淨，所以花較長的時間來做數據的預處理是很有必要的。</p>
+<p>首先來建立一個簡單的數據集</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">library(mice)</span><br><span class="line">name = c(&quot;Andy&quot;,&quot;Helly&quot;,&quot;Ann&quot;,&quot;Ketay&quot;,&quot;Wang&quot;,&quot;Liu&quot;)</span><br><span class="line">country = c(&quot;UK&quot;,&quot;US&quot;,&quot;US&quot;,&quot;US&quot;,&quot;CH&quot;,&quot;CH&quot;)</span><br><span class="line">gender = c(&quot;male&quot;,&quot;female&quot;,NA,&quot;female&quot;,&quot;male&quot;,NA)</span><br><span class="line">age = c(22,19,26,31,45,32)</span><br><span class="line">income = c(12,NA,55,77,32,NA)</span><br><span class="line"></span><br><span class="line">data = data.frame(name,country,gender,age,income)</span><br><span class="line">data</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 2 Helly      US female  19     NA</span><br><span class="line"># 3   Ann      US   &lt;NA&gt;  26     55</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br><span class="line"># 6   Liu      CH   &lt;NA&gt;  32     NA</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找NA"><a href="#查找NA" class="headerlink" title="查找NA"></a>查找NA</h2><ul>
+<li><p>存在NA的rows</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">complete.cases(data) # 當一筆資料是完整的，回傳TRUE；當一筆資料有遺漏值，回傳FALSE</span><br><span class="line">#[1]  TRUE FALSE FALSE  TRUE  TRUE FALSE</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找缺失值的位置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">which(is.na(data))  #返回缺失值的位置</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>計算數據集中有缺失的資料筆數所佔比例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">loss = sum(is.na(data)) #計算資料集中的缺失值總數</span><br><span class="line">have = sum(complete.cases(data)) #統計資料集中完整樣本的個數</span><br><span class="line">ratio = loss/(loss+have) #計算缺失值資料的比重</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="填補NA"><a href="#填補NA" class="headerlink" title="填補NA"></a>填補NA</h2><ol>
+<li><p>na.omit() 可以刪除所有含有缺失資料的row</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data1 = na.omit(data)</span><br><span class="line">data1</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最高頻率來填補缺失值.嘗試找到這些缺失值最可能的值。</p>
+<blockquote>
+<p>對於變數分佈近似正態分佈時可以選用平均值；偏態分佈一般採用中位數代表資料中心趨勢的指標。</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mean_income = mean(data$income)</span><br><span class="line">data2 = data</span><br><span class="line">#一些函式計算時擁有na.rm=TRUE，可以在計算以前移除缺失值並使用剩餘值進行計算</span><br><span class="line">data2[is.na(data2$income),&quot;income&quot;] = mean(data2$income,na.rm = T) #用平均數補充income的缺失值</span><br><span class="line">data2</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 2 Helly      US female  19     44</span><br><span class="line"># 3   Ann      US   &lt;NA&gt;  26     55</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br><span class="line"># 6   Liu      CH   &lt;NA&gt;  32     44</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>函式centralImputation()可以用資料的中心趨勢值來填補資料集的所有缺失值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data3 = data</span><br><span class="line">data3$income &lt;- centralImputation(data3$income)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通過變數的相關關係填補缺失值 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#函式cor()的功能是產生變數之間的相關值矩陣,引數use = &quot;complete.obs&quot;可以忽略含有NA的記錄</span><br><span class="line">cor(data[,c(&quot;age&quot;,&quot;income&quot;)],use = &quot;complete.obs&quot;) # =cor(data[,4:5],use = &quot;complete.obs&quot;)</span><br><span class="line"># age     income</span><br><span class="line"># age    1.00000000 0.07670152</span><br><span class="line"># income 0.07670152 1.00000000</span><br><span class="line">lm(age~income,data = data) </span><br><span class="line">#函式lm()可以用來獲取線性模型</span><br><span class="line">#可以使用上述線性關係計算變數的缺失值</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用K-Nearest Neighbours填補遺漏值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">require(DMwR)</span><br><span class="line">imputeData &lt;- knnImputation(data)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>R</category>
+      </categories>
+      <tags>
+        <tag>details</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>R 建模範例分析</title>
+    <url>/R%E5%BB%BA%E6%A8%A1%E7%AF%84%E4%BE%8B%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="R建模範例分析"><a href="#R建模範例分析" class="headerlink" title="R建模範例分析"></a>R建模範例分析</h1><p>Regression analysis is widely used in statisitic, always  analysis the correlation among  different variables. </p>
+<blockquote>
+<p>這是一個非常簡單資料處理和建模的例子，主要是為了熟悉整個資料分析和建模的流程。其中有很多細節可以繼續展開。</p>
+</blockquote>
+<h2 id="讀取資料"><a href="#讀取資料" class="headerlink" title="讀取資料"></a>讀取資料</h2><p>大部分讀取資料，讀取excel檔一本需要轉成CSV檔來讀取。<br>這裡我們以 iris.csv 這個 CSV 檔案作為範例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 讀取 iris.csv</span><br><span class="line">my.iris.df &lt;- read.csv(&quot;iris.csv&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>如果自己的csv檔沒有放在目前的目錄中，可以使用絕對路徑來指定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 使用絕對路徑</span><br><span class="line">my.iris.df &lt;- read.csv(&quot;D:\\iris.csv&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>雙反斜線（\）</strong>在R中屬於特殊的跳脫字元，所以在撰寫絕對路徑的時候，凡是要輸入反斜線的地方，都要改為雙反斜線。</p>
+<p>讀取資料完成後，為了方便查看大體量的資料可以用head（）來查看前面幾行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看 my.iris.df 的資料的前面20rows</span><br><span class="line">head(my.iris.df, 20)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>將csv表格讀進R之後個欄位若有空白或是特殊字元，會被自動替代為（.），它不會影響到資料，只是在變數指定的時候要使用新的名字</p>
+</blockquote>
+<h2 id="資料的預處理"><a href="#資料的預處理" class="headerlink" title="資料的預處理"></a>資料的預處理</h2><p>讀進去之後我們就需要更詳細的了解資料的內部結構：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看 my.iris.df 內部結構</span><br><span class="line">str(my.iris.df)</span><br></pre></td></tr></table></figure>
+
+<p>str輸出的一個row就是一個變數的欄位，標示了變數名稱與類型，後面接的是實際的資料筆數。</p>
+<p>檢查完資料的類型沒有什麼問題之後，我們需要處理資料中殘留的一些不乾淨的數據以及缺失值NA。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 檢查是否有 NA 的資料</span><br><span class="line">my.iris.df[!complete.cases(my.iris.df),]</span><br></pre></td></tr></table></figure>
+
+<p>如果資料是完整的就會返回一個空的dataframe</p>
+<h2 id="分析資料與繪圖"><a href="#分析資料與繪圖" class="headerlink" title="分析資料與繪圖"></a>分析資料與繪圖</h2><p>通常在開始分析資料之前，會先用 <strong>summary</strong> 看一下各個變數的基本統計量：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看基本統計量</span><br><span class="line">summary(my.iris.df)</span><br></pre></td></tr></table></figure>
+
+<p>當然光看數字肯定是非常不直觀的，繪圖會是一個查看各組數據相關性的好方法。這裡我們示範使用** ggplot2 與 GGally** 套件來畫圖的方法。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 載入 ggplot2 與 GGally 套件</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(GGally)</span><br></pre></td></tr></table></figure>
+
+<p>使用 ggpairs 可畫出很漂亮的資料<strong>分佈矩陣圖</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 繪製資料分佈矩陣圖</span><br><span class="line">ggpairs(my.iris.df)</span><br></pre></td></tr></table></figure>
+
+<p>如果只想畫出簡單的 <strong>XY 散佈圖</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 畫出 XY 散佈圖</span><br><span class="line">require(ggplot2)</span><br><span class="line">qplot(x = Petal.Length,</span><br><span class="line">      y = Petal.Width,</span><br><span class="line">      data = my.iris.df)</span><br></pre></td></tr></table></figure>
+
+<p>如果想要比較不同的 Species 類別的 XY 散佈圖，可以用<strong>color</strong>區分出不同的species：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 畫出 XY 散佈圖，依據 Species 上色</span><br><span class="line">require(ggplot2)</span><br><span class="line">qplot(x = Petal.Length,</span><br><span class="line">      y = Petal.Width,</span><br><span class="line">      data = my.iris.df,</span><br><span class="line">      color = Species)</span><br></pre></td></tr></table></figure>
+
+<h2 id="建立回歸模型"><a href="#建立回歸模型" class="headerlink" title="建立回歸模型"></a>建立回歸模型</h2><p>建立迴歸模型可以使用 <strong>lm</strong> 這個函數（lm 代表 linear models），假設我們想要拿 Sepal.Length 作為反應變數（也就是 Y），而 Sepal.Width、Petal.Length 與 Petal.Width 作為解釋變數（也就是 X），則可以執行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 建立迴歸模型</span><br><span class="line">iris.lm &lt;- lm(Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width,</span><br><span class="line">              data = my.iris.df)</span><br></pre></td></tr></table></figure>
+
+<p>其中第一個參數放的就是所謂的公式（formula），它用來表示迴歸模型的一種表示法，中間的** ~ <strong>相當於迴歸公式的</strong>等號**，左邊的 Sepal.Length 就是 Y，而右邊放的三個變數則是 X。第二個參數 data 則是用來指定資料來源的 data frame。</p>
+<p>建立好迴歸模型之後，可以使用 summary 查看模型配適的結果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看模型配適結果</span><br><span class="line">summary(iris.lm)</span><br></pre></td></tr></table></figure>
+
+<p>結果為：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Call:</span><br><span class="line">lm(formula = Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width,</span><br><span class="line">    data = my.iris.df)</span><br><span class="line">Residuals:</span><br><span class="line">     Min       1Q   Median       3Q      Max</span><br><span class="line">-0.82816 -0.21989  0.01875  0.19709  0.84570</span><br><span class="line">Coefficients:</span><br><span class="line">             Estimate Std. Error t value Pr(&gt;|t|)</span><br><span class="line">(Intercept)   1.85600    0.25078   7.401 9.85e-12 ***</span><br><span class="line">Sepal.Width   0.65084    0.06665   9.765  &lt; 2e-16 ***</span><br><span class="line">Petal.Length  0.70913    0.05672  12.502  &lt; 2e-16 ***</span><br><span class="line">Petal.Width  -0.55648    0.12755  -4.363 2.41e-05 ***</span><br><span class="line">---</span><br><span class="line">Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line">Residual standard error: 0.3145 on 146 degrees of freedom</span><br><span class="line">Multiple R-squared:  0.8586,    Adjusted R-squared:  0.8557</span><br><span class="line">F-statistic: 295.5 on 3 and 146 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<p>從這份輸出的結果中，我們可以看出各個解釋變數的係數，若將整個模型寫出來就會像這樣：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Sepal.Length = 0.65084 * Sepal.Width</span><br><span class="line">             + 0.70913 * Petal.Length</span><br><span class="line">             - 0.55648 * Petal.Width</span><br><span class="line">             + 1.856</span><br></pre></td></tr></table></figure>
+
+<p>報表中的 Pr(&gt;|t|) 就是統計上的 p-value，以這裡的值來說，每一個係數都非常顯著。<br>R-squared 的值為 0.8586，Adjusted R-squared 的值為 0.8557，表示模型的配適情況不錯</p>
+<h2 id="模型診斷"><a href="#模型診斷" class="headerlink" title="模型診斷"></a>模型診斷</h2><p>在配適完迴歸模型之後，接著要進行模型診斷，通常會先畫出幾張常用來診斷模型的圖，這裡我們用 ggfortify 這個套件來畫圖。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">library(ggfortify)</span><br><span class="line"># 畫出模型診斷用的圖</span><br><span class="line">autoplot(iris.lm)</span><br></pre></td></tr></table></figure>
+
+<p>在理論上迴歸模型配適完成後，其<strong>殘差值（residual）</strong>必須符合<strong>常態性（normality）</strong>、<strong>獨立性（independence）</strong>以及<strong>變異數同質性（homogeneity of variance）</strong>三種假設，所以接下來要用三種檢定檢查這三個條件是否符合。</p>
+<h3 id="殘差獨立性檢定"><a href="#殘差獨立性檢定" class="headerlink" title="殘差獨立性檢定"></a>殘差獨立性檢定</h3><p>獨立性檢定要使用到 car 這個套件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 殘差獨立性檢定</span><br><span class="line">require(car)</span><br><span class="line">durbinWatsonTest(iris.lm)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lag Autocorrelation D-W Statistic p-value</span><br><span class="line">  1     -0.03992126      2.060382   0.822</span><br><span class="line">Alternative hypothesis: rho != 0</span><br></pre></td></tr></table></figure>
+
+<p>殘差獨立性檢定的 p-value 也非常高，所以也不拒絕虛無假設，亦即殘差值的獨立性假設是合理的。</p>
+<h3 id="殘差變異數同質性檢定"><a href="#殘差變異數同質性檢定" class="headerlink" title="殘差變異數同質性檢定"></a>殘差變異數同質性檢定</h3><p>殘差的變異數同質性檢定可以使用 car 套件所提供的 ncvTest（）函數：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 殘差變異數同質性檢定</span><br><span class="line">require(car)</span><br><span class="line">ncvTest(iris.lm)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Non-constant Variance Score Test </span><br><span class="line">Variance formula: ~ fitted.values </span><br><span class="line">Chisquare = 4.448612    Df = 1     p = 0.03492962</span><br></pre></td></tr></table></figure>
+
+<p>殘差變異數同質性檢定的 p-value 稍微偏小，以一般 95% 的信賴水準來說，是拒絕虛無假設的，也就是說殘差的變異數沒有符合同質性的假設，但是因為這個 p-value 並沒有非常小，所以證據並不是非常明確。</p>
+<h2 id="預測"><a href="#預測" class="headerlink" title="預測"></a>預測</h2><p>在迴歸模型建立好之後，就可以利用這個模型來預測新的資料，假設我們收到一些新的觀測值（解釋變數 X）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 新觀測值</span><br><span class="line">new.iris &lt;- data.frame(Sepal.Width=3.1, Petal.Length=1.6, Petal.Width=0.3)</span><br><span class="line">new.iris</span><br></pre></td></tr></table></figure>
+
+<p>若要使用迴歸模型預測新的反應變數，可以使用 predict 函數</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 預測資料</span><br><span class="line">predict(iris.lm, new.iris)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1 </code></pre><p>4.841259<br>預測出來的 Sepal.Length 值就是 4.841259。</p>
+]]></content>
+      <categories>
+        <category>R</category>
+      </categories>
+      <tags>
+        <tag>regression</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pwc性格測試</title>
+    <url>/Pwc%E6%80%A7%E6%A0%BC%E6%B8%AC%E8%A9%A6/</url>
+    <content><![CDATA[<h1 id="緣起"><a href="#緣起" class="headerlink" title="緣起"></a>緣起</h1><p>因為想找個分析類 winter internship 所以投了pwc，很快就接到了筆試的郵件。今年的筆試其實還挺有意思的，從原有的單純智商測試題，變為了互動性比較強的遊戲，不過感覺內容其實變化不大，不過趣味性確實比較強。遊戲通關後會有一個性格測試的報告，其實不管之後會不會接到 interview 的面試，這份報告，對於未來的成長和自我反思還是很有參考價值的。</p>
+<h1 id="報告的內容"><a href="#報告的內容" class="headerlink" title="報告的內容"></a>報告的內容</h1><h2 id="個人風格"><a href="#個人風格" class="headerlink" title="個人風格"></a>個人風格</h2><p>相對於比較組，你的反應表明在解讀情緒和麵部表情方面，你的準確度趨向於非常高。</p>
+<h2 id="認知"><a href="#認知" class="headerlink" title="認知"></a>認知</h2><p>你傾向於加工信息量較小的信息，對於處理信息量較大的信息你的自信程度會比較低<br>加工信息的速度屬於平均水平</p>
+<h2 id="驅動力"><a href="#驅動力" class="headerlink" title="驅動力"></a>驅動力</h2><p>（這個結果很有意思，讓我有點意想不到）</p>
+<ul>
+<li>相對於比較組，你的反應表明你相當有可能需要<strong>花較長的時間來從挫折中恢復</strong>。同時在<strong>逆境之下</strong>，你在相當程度上更有可能<strong>難以保持對目標的專注</strong>。</li>
+<li>相對於比較組，你的注意力會平均地受你的價值觀、目標、想法、感覺和生理狀態影響。</li>
+<li>相對於比較組，你的反應表明你在很大程度上傾向於更願意出力來完成所想要達成的結果，以獲得內在或外在的獎勵。</li>
+</ul>
+<blockquote>
+<p>確實在面對逆境的時候我很容易把自己的生活搞的混亂不堪，然後花很長的時間從這片泥沼中慢慢爬起來。明白也許逆境是生活的常態，學會勇敢的面對挫折，不要把時間浪費在自憐自艾中，是我要努力做到。<br>我有點沒有想到我會是一個受獎勵驅動力很高的人</p>
+</blockquote>
+<h2 id="人際交往風格"><a href="#人際交往風格" class="headerlink" title="人際交往風格"></a>人際交往風格</h2><ul>
+<li>相對於比較組，你的反應表明你在很大程度上更傾向於尋求社交互動並會因其而感到充滿活力。</li>
+<li>相對於比較組，你的反應表明你在非常大的程度上傾向於表現得更自信、決斷和有把握。</li>
+<li>你的反應表明，在管理自己的行為以對社交線索作出回應方面，你的傾向程度與比較組中的其他大部分人相同。</li>
+<li>相對於比較組，你的反應表明你在相當程度上傾向於採取與其他人的需求相符，而不是與自己的需求相符的行動。</li>
+</ul>
+<h2 id="思維風格"><a href="#思維風格" class="headerlink" title="思維風格"></a>思維風格</h2><ul>
+<li><strong>相對於比較組，你的反應表明在做決策時，你略微地傾向於將注意力集中在直接成果</strong>。<br>（直白的說，我就我可能更注重短期利益，沒很好的長期收益的概念）</li>
+<li>在對世界和未來擁有積極看法上，你的傾向程度與比較組中的其他大部分人相同。在預計行動最後會產生更為有利或不太有利的結果上，你的預期較為合理。</li>
+<li>你的結果表明，在做涉及到一定程度⻛險的決策前，你在會仔細考慮⻛險收益比上的傾向程度與比較組中的其他大部分人相同。</li>
+<li><strong>相對於比較組，你的反應表明你在做決策時傾向於需要程度稍微較大的確定性。當未來較為容易預測時，你也會感到較為自在</strong>。</li>
+<li>解決問題時，你在嘗試新穎和實驗性的方法上的傾向程度與比較組中的其他大部分人相同。</li>
+<li>你的反應表明，在理性決策⻛格方面，你的傾向程度與比較組中的其他大部分人相同。在做決策時，你的思維可能會顯得周密、客觀和具有批判性。</li>
+<li>相對於比較組，在回應前仔細考慮自己的行動方面，你的傾向程度與比較組中的其他大部分人相同。</li>
+<li>在偏愛多樣性、經常性的變化，以及喜好嘗試新事物上，你的可能性與比較組中的其他大部分人相同。</li>
+<li>在創造性地思考和擁有自由暢通的思路及抽象性思路上，你的傾向程度與比較組中的其他大部分人相同。</li>
+</ul>
+<blockquote>
+<p>有時比較短視的想法，可能會限制更好的長期發展。可以培養一些短期不會有太大效果，但對於長期的人生會有比較好收益的習慣。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Daily life</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+        <tag>reflection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Books |《數據挖掘與數據化運營實戰》Reading notes (1)</title>
+    <url>/Books-%E3%80%8A%E6%95%B8%E6%93%9A%E6%8C%96%E6%8E%98%E8%88%87%E6%95%B8%E6%93%9A%E5%8C%96%E9%81%8B%E7%87%9F%E5%AF%A6%E6%88%B0%E3%80%8BReading-notes-1/</url>
+    <content><![CDATA[<p>   一直對數據分析很感興趣，但在學校學習的都比較簡單，又礙於自己的懶惰，一直沒有深入了解。暑假藉著報名參加了一個數據分析的比賽（雖然在初賽就折戟了😂其實一點也不意外）讓自己比較有動力繼續更深入的學習一些數據處理的方法，當然還有如何用機器學習的方式去實現進一步的預測，以及決策。</p>
+<p>   也是在圖書館閒逛的時候，意外發現的這本《數據挖掘與數據化運營實戰》，相較於其他的一些數據挖掘和機器學習的書籍，這本書更偏向於實戰應用。它沒有過多的數學推導，比較測重於數據分析整體流程的一個介紹，對於一個初學者來說是一部很好的入門書籍。使初學者更加清楚的知道數據分析的應用情境，數據挖掘有哪些流程步驟，在每個步驟中我們該如何選擇最好的方法來達到期望的效果等等。總之對於一個數據和編程小白來說這是一本非常友好的入門書籍，看後會對數據挖掘有一個比較宏觀的認識，當然想要了解算法原理之類的一些核心技能這本書就不太夠用了，這些就需要更深入的一些書籍去了解了。</p>
+<p>我的閱讀順序可能比較奇怪，所以Reading notes也是各個章節穿插著紀錄的。</p>
+<h1 id="第六章-數據挖掘項目完整應用案例演示"><a href="#第六章-數據挖掘項目完整應用案例演示" class="headerlink" title="第六章 數據挖掘項目完整應用案例演示"></a>第六章 數據挖掘項目完整應用案例演示</h1><h2 id="綜述"><a href="#綜述" class="headerlink" title="綜述"></a>綜述</h2><p>幾個希望傳遞的重點：</p>
+<ul>
+<li>數據挖掘是有一定的基本流程和順序的，按照流程進行挖掘是數據挖掘分析嚴謹性的體現。</li>
+<li>數據挖掘只是數據運營的一部分，沒有落地應用的數據挖掘嚴格意義上還不能算是“完成”。</li>
+<li>落地應用中的運營方案對模型的應用效果影響極大，所以數據分析師不僅僅要熟悉數據分析和模型的搭建，還要熟悉與運營相關的業務。</li>
+</ul>
+<h2 id="項目背景和業務分析需求的提出"><a href="#項目背景和業務分析需求的提出" class="headerlink" title="項目背景和業務分析需求的提出"></a>項目背景和業務分析需求的提出</h2><ul>
+<li>背景：某互聯網公司“免費用戶運營團隊”，需要不斷將免費用戶提升為付費用戶，來從電子商務中獲取更大的利益。</li>
+<li>困境：高活躍度的群體付費轉化率最高，但是高活躍度用戶的流失比較大，有相當比例的高活躍度用戶會快速的跌落到中低活躍度中。</li>
+</ul>
+<h2 id="數據分析師參與需求討論"><a href="#數據分析師參與需求討論" class="headerlink" title="數據分析師參與需求討論"></a>數據分析師參與需求討論</h2><p>分析師與運營方進行了需求的討論。<br>討論的目的主要是：</p>
+<ul>
+<li>針對需求收集相關的背景數據和指標，與業務方一起熟悉背景中的相關業務邏輯，並收集業務方對需求的相關建議和看法。這些信息對需求的確認和思路的規劃乃至後期的分析都至關重要。</li>
+<li>從數據的分析的角度評估業務分析是否合理。某些情況下，某些分析就是“偽命題”</li>
+</ul>
+<h2 id="制訂需求分析框架和分析計畫"><a href="#制訂需求分析框架和分析計畫" class="headerlink" title="制訂需求分析框架和分析計畫"></a>制訂需求分析框架和分析計畫</h2><p>初步了解了背景，要制訂初步的分析計畫和分析框架。<br>分析框架的主要內容：</p>
+<ul>
+<li><strong>分析需求轉化成數據分析項目中目標變量的定義</strong>。具體到之前案例，定義“高度活躍免費用戶的流失”：[在某個時間點“A點”用戶是滿足高活躍用戶標準要求的（這時是屬於高活躍用戶群體的），隨後過“A點”7天（這個7天也是根據運營的時間節奏來訂出的），該高活躍用戶跌入至中低活躍用戶中，並在過“A點”14天，即兩週之後仍然沒有回到高活躍的標準。]這只是初步的定義，隨著後期進行數據抽取，並與業務方討論後，有跟深入的分析後，上述的定義可以被修改和完善，修改和完善的終極目的是為了數據分析和挖掘工作能最有效的達到預期效果，並提升業務工作效率。</li>
+<li><strong>分析思路的大致描述</strong>。具體到上述方案，通過搭建分類模型來比較準確的鎖定有可能流失的用戶群體。</li>
+<li><strong>分析樣本的數據抽取規則</strong>。數據抽取規則因項目而定，基本上是根據上面的目標變量的定義，選擇一個合適的時間窗口，然後抽取一定的樣本數據。</li>
+<li><strong>潛在分析變量（模型輸入變量）的大致圈定和羅列</strong>。經過前期的分析和討論，分析師已經確定了大致圈定的相關變量（從業務經驗判斷和以往分析中得來），上述案例中整理出大約63個原始變量。羅列出這些似乎對目標變量的預測有意義的相關變量。</li>
+<li><strong>分析過程中的項目風險思考和主要應對策略</strong>。具體到上述案例，項目風險思考主要包括模型效果不好的可能性，即有可能分類模型的思路被證明是不好的，也有可能是模型效果不好，或者準確度不高，或者模型不穩定。是否有相應的分析對策來部分彌補，若分類模型的思路被證明是行不通的，可退而求其次進行流失用戶的群體特徵細分，或者重新定義流失用戶等。</li>
+<li><strong>項目落地應用價值分析和展望</strong>。針對上述方案，主要有3個方面：模型投入應用有提前鎖定目標群體，使運營方有針對性的開展挽留工作；可以將建模過程中發現的有價值的，最可能影響流失的重要字段和指標選出來提供給運營方，用於制訂運營方案和策略的參考和依據；準對影響流失的核心指標和字段，可以提供給相關業務方，開展針對性的策略。</li>
+</ul>
+<p>書中的項目所給出的一個參考時間表</p>
+<blockquote>
+<p>分析計畫時間表舉例：<br>11.5～11.11  數據的抽樣和摸底階段<br>11.12～11.18 數據的前期分析階段<br>11.19～11.30 建模時間和業務方討論時間<br>12.1～12.9   模型驗證階段，驗證通過，提交分析結果和運營方案建議<br>12.10～12.23 運營方案的落地應用實施<br>12.24～1.8   效果評估和總結，優化方案，落地應用並監控效果</p>
+</blockquote>
+<h2 id="抽取樣本數據，熟悉數據，數據清洗和摸底"><a href="#抽取樣本數據，熟悉數據，數據清洗和摸底" class="headerlink" title="抽取樣本數據，熟悉數據，數據清洗和摸底"></a>抽取樣本數據，熟悉數據，數據清洗和摸底</h2><ul>
+<li>本階段的主要內容是：根據前期的分析和建模思路，以及初步圈定的分析字段（分析變量）編寫代碼，從數據庫中提取分析建模所需的樣本數據；通過對樣本數據的熟悉和摸底，找到無效數據，髒數據，錯誤數據等。並且對樣本數據中存在的這些明顯的數據質量問題進行清洗，剔除，轉換，同時視具體業務場景和項目需求，決定是否產生衍生變量，以及怎樣衍生等。</li>
+<li>針對數據質量的對策：<br>通過對原始樣本數據和原始變量的摸底，排查，發現有些變量缺失值高達50%。經過研究發現這些缺失是數據倉庫儲存過程中的記錄缺失，或是由於產品優化後的業務邏輯更改所造成的。這些無法滾回的數據，可以選擇直接刪除。<ul>
+<li>通過輸入變量之間的相關性分析，找出潛在共線性問題的相關輸入變量，對於高度線性相關的變量只保留一個。</li>
+<li>在數據庫的數據回滾過程中造成了某些字節的嚴重不符合邏輯或明顯自相矛盾，比如用戶最近30天登陸網站次數為0。針對如此不符合邏輯的數據，直接重新回滾數據，直到數據正確為止。</li>
+</ul>
+</li>
+</ul>
+<p>經過處理，即刪除嚴重缺失數據，素居倉庫重新回滾自相矛盾的數據，對高度相關性的數據部分有取有捨，在本階段共保留了36個表有意義的字段（變量）合相關數據。（最開始是63個）<br>（第8章會比較詳細的講到數據清洗）</p>
+<h2 id="按計畫初步搭建挖掘模型"><a href="#按計畫初步搭建挖掘模型" class="headerlink" title="按計畫初步搭建挖掘模型"></a>按計畫初步搭建挖掘模型</h2><p>對數據進行初步的摸底和清洗之後，就進入初步搭建挖掘模型階段了。在該階段，包括3個主要的工作內容:<br>進一步篩選模型的輸入變量。最終靜如模型的輸入變量應遵循“少而精”的總原則。該原則一方面能提高模型的穩定性，利益方面也是為了有效提升模型的預測精準度。關於如何刪選模型的輸入變量（8.6節，9.3.3節，第十章中會有比較詳細的分析。）<br>嘗試不同的挖掘算法和分析方法，並比較不同方案的效果，效率和穩定性。關於模型的比較和優化。7.4節有比較詳細的總結。（這裡使用了Neural network；Reg；Tree這三種，還需要有一條Baseline）<br>整理經過模型挑選出來的與目標變量的預測最相關的一系列核心輸入變量，將其作為與業務方討論落地應用時的參考和建議。</p>
+<h2 id="與業務方討論模型的初步結論，提出新的思路和模型優化方案"><a href="#與業務方討論模型的初步結論，提出新的思路和模型優化方案" class="headerlink" title="與業務方討論模型的初步結論，提出新的思路和模型優化方案"></a>與業務方討論模型的初步結論，提出新的思路和模型優化方案</h2><p>在本階段，需要整理模型的初步報告，結論，以及對主要預測字段（特徵）進行提煉，還要通過與業務方溝通和分享，在此基礎上討論出模型的可能優化方向，並對落地應用的方案進行討論，同時羅列出注意事項。<br>具體針對這個項目而言，除了模型比較之外，還對核心自變量進行了整理提煉，並進行了權重排序。<br>“預測模型的搭建和完善也跟網站分析一樣，遵循著‘持續優化，永無止境’”的規律。</p>
+<h2 id="按優化方案重新抽取樣本並建模，提煉結論並驗證模型"><a href="#按優化方案重新抽取樣本並建模，提煉結論並驗證模型" class="headerlink" title="按優化方案重新抽取樣本並建模，提煉結論並驗證模型"></a>按優化方案重新抽取樣本並建模，提煉結論並驗證模型</h2><p>在上述優化方案和新增衍生變量的基礎上，重新抽取樣本，一方面驗證之前的重要猜想；另一方面嘗試搭建新的模型提升預測效果。增加新的衍生變量後重複之前的測試，看哪一個模型效果好。這裡有提到“初步可以認為，目前的神經網絡模型相比於其他模型而言有更好的預測效果，可以更多的有效鎖定有流失風險的用戶”<br>模型建好後還需要用新的數據來驗證模型的穩定性。</p>
+<h2 id="完成分析報告和落地應用的建議"><a href="#完成分析報告和落地應用的建議" class="headerlink" title="完成分析報告和落地應用的建議"></a>完成分析報告和落地應用的建議</h2><p>在上述模型優化和驗證的基礎上，提交給業務方一份詳細完整的項目結論和應用建議，包括的內容應該有：<br>模型的預測效果和效率，以及在最新的實際數據中驗證模型的結果，即模型穩定性。<br>通過模型整理出來的可以作為營運參考的重要自變量及相應特徵，規律。<br>數據分析師根據模型效果和效率數據提出的落地應用的分層建議，以及相應的運營建議，其包括：預測模型打分應用基礎上進一步的客戶特徵分層，相應細分群體運營通道的選擇等。</p>
+<h2 id="制定具體的落地應用方案和評估方案"><a href="#制定具體的落地應用方案和評估方案" class="headerlink" title="制定具體的落地應用方案和評估方案"></a>制定具體的落地應用方案和評估方案</h2><h2 id="方案落地應用，並跟蹤評估"><a href="#方案落地應用，並跟蹤評估" class="headerlink" title="方案落地應用，並跟蹤評估"></a>方案落地應用，並跟蹤評估</h2><h2 id="落地應用方案在實際效果評估後，不斷修正完善"><a href="#落地應用方案在實際效果評估後，不斷修正完善" class="headerlink" title="落地應用方案在實際效果評估後，不斷修正完善"></a>落地應用方案在實際效果評估後，不斷修正完善</h2><h2 id="不同運營方案的評估，總結和反饋"><a href="#不同運營方案的評估，總結和反饋" class="headerlink" title="不同運營方案的評估，總結和反饋"></a>不同運營方案的評估，總結和反饋</h2><h2 id="醒目應用後的總結和反思"><a href="#醒目應用後的總結和反思" class="headerlink" title="醒目應用後的總結和反思"></a>醒目應用後的總結和反思</h2><p>“完美的分析結論和模型搭建只是數據化運營萬里長城的第一步”，想要模型正真推動業務的效率和效益，模型落地應用的環節更加關鍵，更加重要，更加複雜。</p>
+]]></content>
+      <categories>
+        <category>Technology</category>
+      </categories>
+      <tags>
+        <tag>Books</tag>
+        <tag>Data science</tag>
+        <tag>Reading notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello Hexo</title>
+    <url>/Hello-Hexo/</url>
+    <content><![CDATA[<h1 id="Hexo中Markdown的一些基本語法"><a href="#Hexo中Markdown的一些基本語法" class="headerlink" title="Hexo中Markdown的一些基本語法"></a>Hexo中Markdown的一些基本語法</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><pre><code>分段：兩個回車
+換行：回車
+標題：# ~ ######，#號的個數表示幾級標題，即表示一級標題到六級標題
+強調：**文字** ， __文字__ ， _文字_ ， *文字* ， 文字
+引用：&gt; 注意後面緊跟個空格
+表格：- 和 | 分割行和列 ， : 控制對其方式</code></pre><h3 id="標題"><a href="#標題" class="headerlink" title="標題"></a>標題</h3><pre><code># 一級標題
+## 二級標題
+### 三級標題
+###### 六級標題</code></pre><p>效果如下：</p>
+<h1 id="一級標題"><a href="#一級標題" class="headerlink" title="一級標題"></a>一級標題</h1><h2 id="二級標題"><a href="#二級標題" class="headerlink" title="二級標題"></a>二級標題</h2><h3 id="三級標題"><a href="#三級標題" class="headerlink" title="三級標題"></a>三級標題</h3><h6 id="六級標題"><a href="#六級標題" class="headerlink" title="六級標題"></a>六級標題</h6><h3 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h3><pre><code>**加粗**
+*傾斜*
+***傾斜加粗***
+~~加刪除線~~
+`高亮突出背景色`</code></pre><p>效果如下：<br><strong>加粗</strong><br><em>傾斜</em><br><strong><em>傾斜加粗</em></strong><br><del>加刪除線</del><br><code>高亮突出背景色</code></p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><pre><code>&gt; 這是引用內容
+&gt;&gt; 這是引用內容
+&gt;&gt;&gt;&gt;&gt;&gt; 這是引用內容</code></pre><p>效果如下：</p>
+<blockquote>
+<p>這是引用內容</p>
+<blockquote>
+<p>這是引用內容</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>這是引用內容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="分割線"><a href="#分割線" class="headerlink" title="分割線"></a>分割線</h3><p>三個或以上的 -，* 都可以</p>
+<pre><code>***
+******</code></pre><p>效果如下:</p>
+<hr>
+<hr>
+]]></content>
+      <categories>
+        <category>Technology</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
