@@ -6,7 +6,7 @@
     <content><![CDATA[<h2 id="this-is-test"><a href="#this-is-test" class="headerlink" title="this is test"></a>this is test</h2><p><img src="https://img-blog.csdnimg.cn/20200311110734967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="file"></p>
 ]]></content>
       <categories>
-        <category>Projects</category>
+        <category>Commercial</category>
       </categories>
       <tags>
         <tag>test</tag>
@@ -45,7 +45,7 @@
 <p>其他的幾個子函數的用法也類似starts_with()</p>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>Technological</category>
       </categories>
       <tags>
         <tag>details</tag>
@@ -97,7 +97,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>Technological</category>
       </categories>
       <tags>
         <tag>details</tag>
@@ -185,7 +185,7 @@
 <pre><code>1 </code></pre><p>4.841259<br>預測出來的 Sepal.Length 值就是 4.841259。</p>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>Technological</category>
       </categories>
       <tags>
         <tag>regression</tag>
@@ -285,7 +285,7 @@
 <h2 id="制定具體的落地應用方案和評估方案"><a href="#制定具體的落地應用方案和評估方案" class="headerlink" title="制定具體的落地應用方案和評估方案"></a>制定具體的落地應用方案和評估方案</h2><h2 id="方案落地應用，並跟蹤評估"><a href="#方案落地應用，並跟蹤評估" class="headerlink" title="方案落地應用，並跟蹤評估"></a>方案落地應用，並跟蹤評估</h2><h2 id="落地應用方案在實際效果評估後，不斷修正完善"><a href="#落地應用方案在實際效果評估後，不斷修正完善" class="headerlink" title="落地應用方案在實際效果評估後，不斷修正完善"></a>落地應用方案在實際效果評估後，不斷修正完善</h2><h2 id="不同運營方案的評估，總結和反饋"><a href="#不同運營方案的評估，總結和反饋" class="headerlink" title="不同運營方案的評估，總結和反饋"></a>不同運營方案的評估，總結和反饋</h2><h2 id="醒目應用後的總結和反思"><a href="#醒目應用後的總結和反思" class="headerlink" title="醒目應用後的總結和反思"></a>醒目應用後的總結和反思</h2><p>“完美的分析結論和模型搭建只是數據化運營萬里長城的第一步”，想要模型正真推動業務的效率和效益，模型落地應用的環節更加關鍵，更加重要，更加複雜。</p>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>Technological</category>
       </categories>
       <tags>
         <tag>Books</tag>
@@ -335,7 +335,7 @@
 <hr>
 ]]></content>
       <categories>
-        <category>Notes</category>
+        <category>Technological</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
