@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MongoDB 的載入</title>
+    <url>/MongoDB%20%E7%9A%84%E8%BC%89%E5%85%A5/</url>
+    <content><![CDATA[<h2 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h2><p>安裝 Mongo3.2</p>
+<p>Windows：<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/</a></p>
+<p>Mac OS：<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/</a></p>
+<p>安裝 Studio 3T（MongoDB的可視化工具）</p>
+<p><a href="https://robomongo.org/" target="_blank" rel="noopener">https://robomongo.org/</a></p>
+<h2 id="將資料匯入Studio-3T"><a href="#將資料匯入Studio-3T" class="headerlink" title="將資料匯入Studio 3T"></a>將資料匯入Studio 3T</h2><h3 id="Create-database"><a href="#Create-database" class="headerlink" title="Create database"></a>Create database</h3>]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>database</tag>
+        <tag>mongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>article</title>
     <url>/article/</url>
     <content><![CDATA[<h2 id="this-is-test"><a href="#this-is-test" class="headerlink" title="this is test"></a>this is test</h2><p><img src="https://img-blog.csdnimg.cn/20200311110734967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="file"></p>
