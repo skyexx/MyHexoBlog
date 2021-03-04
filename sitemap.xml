@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://skyexx.github.io/about/index.html</loc>
+    
+    <lastmod>2021-03-04T07:17:32.251Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/%E8%B3%87%E6%96%99%E5%80%AB%E7%90%86%E8%88%87%E5%88%86%E6%9E%90%E9%99%B7%E9%98%B1/</loc>
+    
+    <lastmod>2021-03-04T07:14:08.854Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://skyexx.github.io/MongoDB%20%E7%9A%84%E8%BC%89%E5%85%A5/</loc>
     
-    <lastmod>2021-01-12T04:22:15.390Z</lastmod>
+    <lastmod>2021-01-15T14:39:19.781Z</lastmod>
     
   </url>
   
@@ -75,13 +89,6 @@
     <loc>https://skyexx.github.io/categories/index.html</loc>
     
     <lastmod>2020-03-12T05:29:37.815Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/about/index.html</loc>
-    
-    <lastmod>2019-12-22T07:46:58.000Z</lastmod>
     
   </url>
   
