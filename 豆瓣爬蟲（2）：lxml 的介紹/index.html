@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Skye">
+
+
+
+
+
+<title>豆瓣爬蟲（2）：lxml 的介紹 | Skye&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Skye&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Skye&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">豆瓣爬蟲（2）：lxml 的介紹</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Skye</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 31, 2021&nbsp;&nbsp;23:54:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Technological/">Technological</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="豆瓣爬蟲（2）：lxml-的介紹"><a href="#豆瓣爬蟲（2）：lxml-的介紹" class="headerlink" title="豆瓣爬蟲（2）：lxml 的介紹"></a>豆瓣爬蟲（2）：lxml 的介紹</h1><h2 id="lxml介紹"><a href="#lxml介紹" class="headerlink" title="lxml介紹"></a>lxml介紹</h2><p>Python的lxml 模組是一個非常好用且效能高的HTML、XML解析工具，通過它解析網頁，爬蟲就可以輕鬆的從網頁中提取想要的資料。lxml對XML和HTML都有很好的支援，分別使用 lxml.etree 和 lxml.html 兩個模組。</p>
+<h2 id="使用lxml提取網頁資料的流程"><a href="#使用lxml提取網頁資料的流程" class="headerlink" title="使用lxml提取網頁資料的流程"></a>使用lxml提取網頁資料的流程</h2><p>要從網頁裡面提取資料，使用lxml需要兩步：</p>
+<ul>
+<li>第一步，用lxml把網頁（或xml）解析成一個DOM樹。這個過程，我們可以選擇<code>etree</code>、<code>etree.HTML</code>和 <code>lxml.html</code>這三種來實現，它們基本類似但又有些許差別。</li>
+<li>第二步，使用<code>xpath</code>遍歷這棵DOM 樹，找到你想要的資料所在的節點並提取。這一步要求我們對xpath規則比較熟練，xpath規則很多，但別怕，我來總結一些常用的套路。</li>
+</ul>
+<h3 id="生成DOM樹"><a href="#生成DOM樹" class="headerlink" title="生成DOM樹"></a>生成DOM樹</h3><p>上面我們說了，可以有三種方法來把網頁解析成DOM樹，那麼我們選擇哪一種呢？</p>
+<p>一般HTML網頁用這個比較多：<code>etree.HTML(html)</code>和<code>lxml.html(html)</code></p>
+<h4 id="🌟etree-HTML-html"><a href="#🌟etree-HTML-html" class="headerlink" title="🌟etree.HTML(html)"></a>🌟etree.HTML(html)</h4><p>我們可以用這個：<code>print(etree.tostring(etree.HTML(html)).decode())</code>來將dom樹還原成之前的html，我們可以發現<code>etree.HTML()</code>函式會補全html程式碼片段，給它們加上<code>&lt;html&gt;</code>和<code>&lt;body&gt;</code>標籤。</p>
+<h4 id="🌟lxml-html-html"><a href="#🌟lxml-html-html" class="headerlink" title="🌟lxml.html(html)"></a>🌟lxml.html(html)</h4><p>lxml.html是lxml的子模組，它是對etree的封裝，更適合解析html網頁。生成DOM樹的方法有多個：</p>
+<ul>
+<li>lxml.html.document_fromstring()</li>
+<li>lxml.html.fragment_fromstring()</li>
+<li>lxml.html.fragments_fromstring()</li>
+<li>lxml.html.fromstring()</li>
+</ul>
+<p>我們解析網頁用最後一個fromstring()即可。</p>
+<h3 id="使用xpath提取資料"><a href="#使用xpath提取資料" class="headerlink" title="使用xpath提取資料"></a>使用xpath提取資料</h3><p>以下面一段簡單的html為例，來介紹一下xpath對資料的提取：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"p_1 item"</span>&gt;</span>item_1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"p_2 item"</span>&gt;</span>item_2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"p3"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/go-p3"</span>&gt;</span>item_3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>首先生成DOM樹：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree </span><br><span class="line">doc = etree.HTML(html)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>通過標籤屬性定位節點:比如我們要獲取<code>&lt;div class=&quot;2&quot;&gt;</code>這節點：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doc.xpath(<span class="string">'//div[@class="2"]'</span>)</span><br><span class="line">print(etree.tostring(doc.xpath(<span class="string">'//div[@class="2"]'</span>)[<span class="number">0</span>]).decode())</span><br><span class="line"><span class="comment"># &lt;div class="2"&gt;</span></span><br><span class="line"><span class="comment">#     &lt;p id="p3"&gt;&lt;a href="/go-p3"&gt;item_3&lt;/a&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="comment"># &lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>contains語法</li>
+</ol>
+<p>html中有兩個<code>&lt;p&gt;</code>標籤的class含有<code>item</code>，如果我們要提取這兩個<code>&lt;p&gt;</code>標籤，則：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 獲取&lt;p&gt;的文字：</span></span><br><span class="line">doc.xpath(<span class="string">'//p[contains(@class, "item")]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; ['item_1', 'item_2']</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>starts-with語法</li>
+</ol>
+<p>一樣的提取需求，兩個<code>&lt;p&gt;</code>標籤的class都是以p_開頭的，所以:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 獲取&lt;p&gt;的文字：</span></span><br><span class="line">doc.xpath(<span class="string">'//p[starts-with(@class, "p_")]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; ['item_1', 'item_2']</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>獲取某一屬性的值</li>
+</ol>
+<p>比如，我們想提取網頁中所有的連結：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">doc.xpath(<span class="string">'//@href'</span>)</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Skye</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        <a href="/tags/spider/"># spider</a>
+                    
+                        <a href="/tags/lxml/"># lxml</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/豆瓣爬蟲(1)：selenium 的介紹/">豆瓣爬蟲（1）：selenium 的介紹</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Skye | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

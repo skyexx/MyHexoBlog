@@ -11,7 +11,7 @@
 
 
 
-<title>豆瓣爬蟲(1)：selenium 的介紹 | Skye&#39;s Blog</title>
+<title>豆瓣爬蟲（1）：selenium 的介紹 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">豆瓣爬蟲(1)：selenium 的介紹</h1>
+            <h1 class="post-title">豆瓣爬蟲（1）：selenium 的介紹</h1>
             
                 <div class="post-meta">
                     
@@ -217,6 +217,30 @@
 <p>⚠️ 可能會遇到的error：</p>
 <p>“chromedriver” cannot be opened because the developer cannot be verified. Unable to launch the chrome browser on Mac OS</p>
 <p>解決辦法可以看這個<a href="https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/" target="_blank" rel="noopener">Blog</a>按照上面的步驟輸入就可以正常運行了。</p>
+<h2 id="selenium-的一些基本用法"><a href="#selenium-的一些基本用法" class="headerlink" title="selenium 的一些基本用法"></a>selenium 的一些基本用法</h2><p>控制瀏覽器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome() <span class="comment"># 需要調用對應的chromedriver.exe</span></span><br></pre></td></tr></table></figure>
+
+<p>使用IP代理，通常不需要都行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chrome_option = webdriver.ChromeOptions()</span><br><span class="line">chrome_option.add_argument(<span class="string">'--proxy--server=112.84.55.122:9999'</span>)<span class="comment">#使用代理IP</span></span><br></pre></td></tr></table></figure>
+
+<p>等待網頁加載</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.implicitly_wait(<span class="number">5</span>) <span class="comment">#最長等待5秒，記載完成後自動跳過</span></span><br></pre></td></tr></table></figure>
+
+<p>打開網頁</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.get(url) <span class="comment"># 需要打開的網頁</span></span><br></pre></td></tr></table></figure>
+
+<p>點擊網頁節點</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'這裡放網頁xpath路徑'</span>).click()</span><br></pre></td></tr></table></figure>
+
+<p>輸入內容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'這裡放網頁輸入框的xpath路徑'</span>).send_keys(<span class="string">'輸入詞'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>獲取文本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'網頁中文本xpath路徑'</span>).text <span class="comment">#直接獲取某個具體文本</span></span><br></pre></td></tr></table></figure>
+
+<p>網頁下拉</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">js=<span class="string">"var q=document.documentElement.scrollTop=10000000"</span> <span class="comment">#滾動條，數值為每次下拉的長度，不疊加，以瀏覽器底部為最大值</span></span><br><span class="line">driver.execute_script(js)<span class="comment">#調用js</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="使用-selenium-模擬豆瓣登錄的-demo"><a href="#使用-selenium-模擬豆瓣登錄的-demo" class="headerlink" title="使用 selenium 模擬豆瓣登錄的 demo"></a>使用 selenium 模擬豆瓣登錄的 demo</h2><p>因為selenium是模擬人的一個登錄的行為，所以首先要釐清一下我們在做登錄時的一個邏輯：</p>
 <ol>
 <li>打開瀏覽器</li>
@@ -275,8 +299,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/豆瓣爬蟲（2）：lxml 的介紹/">豆瓣爬蟲（2）：lxml 的介紹</a>
             
-            <a class="next" rel="next" href="/資料倫理與分析陷阱/">社媒(1)：資料倫理與分析陷阱</a>
+            
+            <a class="next" rel="next" href="/資料倫理與分析陷阱/">社媒（1）：資料倫理與分析陷阱</a>
             
         </section>
 
