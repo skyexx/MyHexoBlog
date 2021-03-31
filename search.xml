@@ -3,7 +3,7 @@
   <entry>
     <title>豆瓣爬蟲（2）：lxml 的介紹</title>
     <url>/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2%EF%BC%882%EF%BC%89%EF%BC%9Alxml%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</url>
-    <content><![CDATA[<h1 id="豆瓣爬蟲（2）：lxml-的介紹"><a href="#豆瓣爬蟲（2）：lxml-的介紹" class="headerlink" title="豆瓣爬蟲（2）：lxml 的介紹"></a>豆瓣爬蟲（2）：lxml 的介紹</h1><h2 id="lxml介紹"><a href="#lxml介紹" class="headerlink" title="lxml介紹"></a>lxml介紹</h2><p>Python的lxml 模組是一個非常好用且效能高的HTML、XML解析工具，通過它解析網頁，爬蟲就可以輕鬆的從網頁中提取想要的資料。lxml對XML和HTML都有很好的支援，分別使用 lxml.etree 和 lxml.html 兩個模組。</p>
+    <content><![CDATA[<h2 id="lxml介紹"><a href="#lxml介紹" class="headerlink" title="lxml介紹"></a>lxml介紹</h2><p>Python的lxml 模組是一個非常好用且效能高的HTML、XML解析工具，通過它解析網頁，爬蟲就可以輕鬆的從網頁中提取想要的資料。lxml對XML和HTML都有很好的支援，分別使用 lxml.etree 和 lxml.html 兩個模組。</p>
 <h2 id="使用lxml提取網頁資料的流程"><a href="#使用lxml提取網頁資料的流程" class="headerlink" title="使用lxml提取網頁資料的流程"></a>使用lxml提取網頁資料的流程</h2><p>要從網頁裡面提取資料，使用lxml需要兩步：</p>
 <ul>
 <li>第一步，用lxml把網頁（或xml）解析成一個DOM樹。這個過程，我們可以選擇<code>etree</code>、<code>etree.HTML</code>和 <code>lxml.html</code>這三種來實現，它們基本類似但又有些許差別。</li>
@@ -55,8 +55,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>lxml</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -121,8 +121,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>selenium</tag>
         <tag>spider</tag>
+        <tag>selenium</tag>
       </tags>
   </entry>
   <entry>
