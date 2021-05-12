@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Skye">
+
+
+
+
+
+<title>社媒（2）：斷詞以及tidy形式的轉換 | Skye&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Skye&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Skye&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">社媒（2）：斷詞以及tidy形式的轉換</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Skye</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 7, 2021&nbsp;&nbsp;15:02:27</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Technological/">Technological</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="涉及的知識點"><a href="#涉及的知識點" class="headerlink" title="涉及的知識點"></a>涉及的知識點</h2><ul>
+<li>tidy形式的轉換</li>
+<li>斷句</li>
+<li>斷詞</li>
+</ul>
+<h2 id="會用到的packages"><a href="#會用到的packages" class="headerlink" title="會用到的packages"></a>會用到的packages</h2><p>會用到的packages和函數：</p>
+<ul>
+<li><p><strong>library(dplyr)</strong>：整合所有在前處理數據會常用的“邏輯”，加入pipeline的概念</p>
+<ul>
+<li>select()：挑選特定column出來</li>
+<li>filter()：自訂條件濾掉column中的資料</li>
+<li>arrange()：調整row排列順序</li>
+<li>mutate()：以現有的column資料做運算，形成新的column</li>
+<li>summarise()：將目前的資料做統計運算，形成統計結論</li>
+<li>tibble()：將典型的字符向量变成 tidy 文本数据集</li>
+</ul>
+</li>
+<li><p><strong>library(jiebaR)</strong>：用於斷詞（ref：<a href="https://zhuanlan.zhihu.com/p/35846130）" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35846130）</a></p>
+<ul>
+<li>worker()：初始化斷詞引擎<ul>
+<li>stop_word=”stop_word.txt”：停用詞</li>
+<li>user=”xxx.txt”：自定義詞庫：可以自己定義，也可以借用搜狗細胞詞庫，有大量專業領域詞彙</li>
+<li>bylines = TRUE：不保留標點符號</li>
+<li>注意：user=”xxx.txt” 以及 stop_word=”stop_word.txt”的txt檔案一定要是UTF-8編碼的格式</li>
+</ul>
+</li>
+<li>segment()：斷詞（一般配合supply來寫成function使用）</li>
+<li>filter_segment()：在前面worker()過濾後的基礎上，再次過濾</li>
+</ul>
+</li>
+<li><p><strong>library(tidytext)</strong>：</p>
+<ul>
+<li>unnest_tokens()：將文本拆分成tokens，轉換成tidy的格式</li>
+</ul>
+</li>
+<li><p><strong>library(tidyr)</strong>：重新定義資料框，留下繪圖需要的點</p>
+<ul>
+<li>spread()：</li>
+<li>gather()：</li>
+<li>separate(): 將 info 欄位以分號分割成三個欄位，並且直接放進原 data frame 中</li>
+</ul>
+</li>
+</ul>
+<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><h2 id="讀取資料以及packages"><a href="#讀取資料以及packages" class="headerlink" title="讀取資料以及packages"></a>讀取資料以及packages</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 避免中文亂碼</span><br><span class="line">Sys.setlocale(category = &quot;LC_ALL&quot;, locale = &quot;zh_TW.UTF-8&quot;) </span><br><span class="line"></span><br><span class="line"># 載入資料</span><br><span class="line">library(dplyr)</span><br><span class="line">library(tidytext)</span><br><span class="line">library(wordcloud2)</span><br><span class="line">library(data.table)</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(wordcloud)</span><br><span class="line">library(tidyr)</span><br><span class="line">library(jiebaR)</span><br><span class="line"></span><br><span class="line"># 把文章和留言讀進來</span><br><span class="line">MetaData = read.csv(&apos;./data/PTTcoin_articleMetaData.csv&apos;,encoding = &apos;UTF-8&apos;)</span><br><span class="line">Reviews  = read.csv(&apos;./data/PTTcoin_articleReviews.csv&apos;,encoding = &apos;UTF-8&apos;)</span><br><span class="line"></span><br><span class="line">MetaData$sentence &lt;- as.character(MetaData$sentence)</span><br><span class="line">Reviews$cmtContent &lt;- as.character(Reviews$cmtContent)</span><br><span class="line"></span><br><span class="line"># 挑選文章對應的留言</span><br><span class="line">Reviews = left_join(MetaData, Reviews[,c(&quot;artUrl&quot;, &quot;cmtContent&quot;)], by = &quot;artUrl&quot;)</span><br><span class="line"></span><br><span class="line"># 查看讀進來的資料</span><br><span class="line">str(Reviews)</span><br></pre></td></tr></table></figure>
+
+<p><img src alt="讀進來的原始資料"> </p>
+<h2 id="斷詞"><a href="#斷詞" class="headerlink" title="斷詞"></a>斷詞</h2><h3 id="初始化斷詞引擎"><a href="#初始化斷詞引擎" class="headerlink" title="初始化斷詞引擎"></a>初始化斷詞引擎</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 初始化斷詞引擎</span><br><span class="line">jieba_tokenizer &lt;- worker(stop_word = &quot;./stop_words.txt&quot;,user=&quot;./user_dict.txt&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>我們將設置好的斷詞引擎加入我們寫好的斷詞函式中，方便在在我們資料格式中斷詞</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 自定義斷詞函式</span><br><span class="line">chinese_tokenizer &lt;- function(t) &#123;</span><br><span class="line">  lapply(t, function(x) &#123;</span><br><span class="line">    tokens &lt;- segment(x, jieba_tokenizer)</span><br><span class="line">    tokens &lt;- tokens[nchar(tokens)&gt;1]</span><br><span class="line">    return(tokens)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tokens &lt;- MetaData %&gt;% </span><br><span class="line">  unnest_tokens(word, sentence, token=chinese_tokenizer)</span><br><span class="line">str(tokens)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 格式化日期欄位</span><br><span class="line">tokens$artDate &lt;- tokens$artDate %&gt;% as.Date(&quot;%Y/%m/%d&quot;)</span><br><span class="line"></span><br><span class="line"># 過濾特殊字元</span><br><span class="line">tokens &lt;- tokens %&gt;% </span><br><span class="line">  filter(!(word %in% stop_words)) %&gt;% # 去掉停用字裡的一些詞彙</span><br><span class="line">  filter(!grepl(&apos;[[:punct:]]&apos;,word)) %&gt;% # 去標點符號</span><br><span class="line">  filter(!grepl(&quot;[&apos;^0-9a-z&apos;]&quot;,word)) %&gt;% # 去英文、數字</span><br><span class="line">  filter(nchar(.$word)&gt;1) </span><br><span class="line">  # select(-artDate, -artUrl)</span><br><span class="line"></span><br><span class="line">head(tokens, 20)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 文字雲</span><br><span class="line"># 計算詞彙的出現次數，如果詞彙只有一個字則不列入計算</span><br><span class="line">tokens_count &lt;- tokens %&gt;% </span><br><span class="line">  filter(nchar(.$word)&gt;1) %&gt;%</span><br><span class="line">  group_by(word) %&gt;% </span><br><span class="line">  summarise(sum = n()) %&gt;% </span><br><span class="line">  filter(sum&gt;10) %&gt;%</span><br><span class="line">  arrange(desc(sum))</span><br><span class="line">head(tokens_count, 30)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tokens_count %&gt;% </span><br><span class="line">  filter(word!=c(&quot;比特幣&quot;,&quot;原文&quot;))%&gt;%</span><br><span class="line">#  wordcloud2()</span><br></pre></td></tr></table></figure>
+
+<p>那麼如果我們想知道裡面的名詞都有哪些？</p>
+<p>我們就需要更改worker()中type的參數，改為worker(type=”tag”)，就可以用jieba來標記中文的詞性了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 初始化詞性標註引擎</span><br><span class="line">tag_cuter &lt;- worker(type=&quot;tag&quot;, stop_word=&quot;./stop_words.txt&quot;,user=&quot;./user_dict.txt&quot;) </span><br><span class="line"></span><br><span class="line">raw_text &lt;- &quot;在狗狗幣的市場中有一隻巨鯨持有著30%的狗狗幣，有一些線索指出這個持有者很有可能就是馬斯克&quot;</span><br><span class="line">look &lt;- segment(raw_text, tag_cuter)</span><br><span class="line"></span><br><span class="line"># 標註詞性的斷詞函式</span><br><span class="line">get_noun = function(x)&#123;</span><br><span class="line">  index = names(x) %in% c(&quot;n&quot;,&quot;nr&quot;,&quot;nr1&quot;,&quot;nr2&quot;,&quot;nrj&quot;,&quot;nrf&quot;,&quot;ns&quot;,&quot;nsf&quot;,&quot;nt&quot;,&quot;nz&quot;,&quot;nl&quot;,&quot;ng&quot;)</span><br><span class="line">  x[index]</span><br><span class="line">&#125;</span><br><span class="line">get_noun(look)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 自定義斷詞函式</span><br><span class="line">tag_tokenizer &lt;- function(t) &#123;</span><br><span class="line">  lapply(t, function(x) &#123;</span><br><span class="line">    tokens &lt;- segment(x, tag_cuter)</span><br><span class="line">    tokens &lt;- tokens[nchar(tokens)&gt;1]</span><br><span class="line">    return(paste(tokens,names(tokens))) # 將詞性和詞合併在一個欄位中，後面會再分開</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 將全文用標註詞性的斷詞函式斷開</span><br><span class="line">tag_tokens &lt;- MetaData %&gt;% </span><br><span class="line">  unnest_tokens(word, sentence, token=tag_tokenizer)</span><br><span class="line">str(tag_tokens)</span><br><span class="line"></span><br><span class="line"># 將詞和詞性分割成 2 欄，並新增至 Data Frame 中</span><br><span class="line">new_df &lt;- separate(tag_tokens, word, c(&quot;word&quot;, &quot;tag&quot;), &quot; &quot;)</span><br><span class="line"></span><br><span class="line"># 篩選出所有的名詞</span><br><span class="line">new_df_n &lt;- new_df %&gt;%</span><br><span class="line">  filter(tag %in% c(&quot;n&quot;,&quot;nr&quot;,&quot;nr1&quot;,&quot;nr2&quot;,&quot;nrj&quot;,&quot;nrf&quot;,&quot;ns&quot;,&quot;nsf&quot;,&quot;nt&quot;,&quot;nz&quot;,&quot;nl&quot;,&quot;ng&quot;))</span><br><span class="line">  # filter(tag == &quot;x&quot;)</span><br><span class="line">head(new_df_n)</span><br><span class="line"></span><br><span class="line"># 計算每個詞出現的次數</span><br><span class="line">tokens_count &lt;- new_df_n %&gt;% </span><br><span class="line">  filter(nchar(.$word)&gt;1) %&gt;%</span><br><span class="line">  group_by(word) %&gt;% </span><br><span class="line">  summarise(sum = n()) %&gt;% </span><br><span class="line">  filter(sum&gt;10) %&gt;%</span><br><span class="line">  arrange(desc(sum))</span><br><span class="line"></span><br><span class="line"># 查看看出現最多的前20個名詞</span><br><span class="line">head(tokens_count,20)</span><br><span class="line"></span><br><span class="line"># 畫出文字雲</span><br><span class="line">tokens_count %&gt;% </span><br><span class="line">  filter(word!=c(&quot;比特幣&quot;,&quot;價格&quot;,&quot;原文&quot;))%&gt;%</span><br><span class="line">  top_n(20)%&gt;%</span><br><span class="line">  wordcloud2()</span><br></pre></td></tr></table></figure>
+
+<p>图片的插入</p>
+<p><img src="https://github.com/skyexx/skyexx.github.io/blob/master/image/MongoDB/MongoDB_1.png?raw=true" alt="GitHub"> </p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Skye</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/courses/"># courses</a>
+                    
+                        <a href="/tags/nlp/"># nlp</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/有關 Data mining 的一點反思/">有關 Data mining 的一點反思</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Skye | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

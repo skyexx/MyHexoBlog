@@ -11,7 +11,7 @@
 
 
 
-<title>MongoDB 的載入 | Skye&#39;s Blog</title>
+<title>有關 Data mining 的一點反思 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">MongoDB 的載入</h1>
+            <h1 class="post-title">有關 Data mining 的一點反思</h1>
             
                 <div class="post-meta">
                     
@@ -185,7 +185,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">January 12, 2021&nbsp;&nbsp;0:39:35</a>
+                        Date: <a href="#">May 4, 2021&nbsp;&nbsp;16:17:04</a>
                         </span>
                     
                     
@@ -201,12 +201,35 @@
         </header>
 
         <div class="post-content">
-            <h2 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h2><p>安裝 Mongo3.2</p>
-<p>Windows：<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/</a></p>
-<p>Mac OS：<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/</a></p>
-<p>安裝 Studio 3T（MongoDB的可視化工具）</p>
-<p><a href="https://robomongo.org/" target="_blank" rel="noopener">https://robomongo.org/</a></p>
-<h2 id="將資料匯入Studio-3T"><a href="#將資料匯入Studio-3T" class="headerlink" title="將資料匯入Studio 3T"></a>將資料匯入Studio 3T</h2><h3 id="Create-database"><a href="#Create-database" class="headerlink" title="Create database"></a>Create database</h3><p><img src="https://github.com/skyexx/skyexx.github.io/blob/master/image/MongoDB/MongoDB_1.png?raw=true" alt="GitHub"> </p>
+            <p>寫這篇的起因，就是最近幾節課課的期中報告都是Data mining相關的project。</p>
+<h1 id="工具🔨-vs-目的🚩"><a href="#工具🔨-vs-目的🚩" class="headerlink" title="工具🔨 vs 目的🚩"></a>工具🔨 vs 目的🚩</h1><p>美國作家馬克·吐溫有句名言，說：“如果你身上唯一的工具是一把錘子，那麼你會把所有的問題都看成釘子。”美國著名投資家查理·芒格，根據馬克·吐溫的這句話，將這種現象稱為“拿錘子的人”——芒格分析說，人們經過年復一年的專業培訓，會成為經濟學家、工程師、營銷經理、投資經理等等。一旦當他們瞭解並熟悉某一個領域的思維模式之後，他們就會到處嘗試將所有遇到的問題，都用自己的專業思維模式來解決。</p>
+<p>我們在學習的時候也會有這種問題，像是這學期的社群媒體分析的課上學習了一些nlp的知識以及工具，像是“情緒分析”，“關係網絡”，“n-grams”等。就使得在分析某個議題的時候，我們就會很自然的直接套用這些分析工具，無論是否必要。</p>
+<p>這就引出最近我在做 Data mining 的時候幾點反思：</p>
+<h2 id="我們分析的目的是什麼？"><a href="#我們分析的目的是什麼？" class="headerlink" title="我們分析的目的是什麼？"></a>我們分析的目的是什麼？</h2><p>很多時候我們甚至都還沒明確分析的目的，只是有一個現成的資料集，就開始按照流程來套工具🔧。把一個資料集用額種各樣工具處理完之後，再來從一堆結果中找有什麼值得探討和解釋的points。這其實是一個很本末倒置的過程。我們的分析應該是為我們的目的服務的，而不是從結果中隨意得出幾個結論。</p>
+<p>所以在開始一些列分析的步驟前一定要先釐清我們的目標：</p>
+<ul>
+<li>我們最主要分析的問題是什麼？（what？How？）</li>
+<li>這個問題的合理性以及意義所在？</li>
+<li>圍繞這個問題我們能從那些方面展開討論？</li>
+</ul>
+<p>我們也可以借助一些工具來幫助我們展開我們要分析的問題，釐清我們要分析的目標：</p>
+<ul>
+<li>問題樹</li>
+<li>⋯⋯</li>
+</ul>
+<p>總之多花些時間在釐清分析的目的會便於我們後續運用更合適的工具，得到我們想要的結果。不會做著做著突然突然迷失在一堆資料中，開始懷疑自己到底在幹嘛。</p>
+<h2 id="工具是否合適？"><a href="#工具是否合適？" class="headerlink" title="工具是否合適？"></a>工具是否合適？</h2><p>釐清問題之後我們就可以選擇合適的分析工具了。工具的何時與否還是要看我們分析的目的是什麼。</p>
+<h2 id="分析結果的評估？"><a href="#分析結果的評估？" class="headerlink" title="分析結果的評估？"></a>分析結果的評估？</h2><h3 id="模型的評估"><a href="#模型的評估" class="headerlink" title="模型的評估"></a>模型的評估</h3><p>模型的評估，在Data mining中對於分類和回歸問題都有很多不同的評估方式（Accuracy，F1-score，SSE，MSE⋯⋯），但是具體問題要具體分析，找到合適的評估指標。用錯了評估指標就會出現，像是Accuracy很高，但是模型並不fit的情況。</p>
+<h3 id="結果的評估"><a href="#結果的評估" class="headerlink" title="結果的評估"></a>結果的評估</h3><p>結果的評估分為很多個方面，首先我們要看是不是有符合我們想要分析的目標。</p>
+<p>如果沒有得到我們預期的結果是什麼原因：</p>
+<ul>
+<li>資料本身的屬性，並不能很好的解決我們的問題（要不要多加入一些資料）</li>
+<li>是不是資料的前處理有問題（像是feature的篩選、data imbalance的處理、斷詞、專業領域的lexicon的選擇等）</li>
+<li>工具的選擇有些問題（有些資料可能不適合用樹的模型做分類）</li>
+</ul>
+<h1 id="化繁為簡"><a href="#化繁為簡" class="headerlink" title="化繁為簡"></a>化繁為簡</h1><p>以前考試只覺得煎熬，想著怎麼在考前最短的時間拿到還不錯的成績，然後考完就可以就瞬間把所有知識忘掉。</p>
+<p>最近開始意識到其實考試是一個很好的化繁為簡的過程，而且是有人幫助你將重點的知識歸納出來。</p>
+<p>其實複習已經是一個強迫自己梳理知識歸納總結的過程了，但是透過考試我們能更好的找出自己梳理的重點，和老師想在這節課傳達的重點之間的差距。從而補足自己這節課上的知識漏洞。意識到這一點之後，其實分數已經沒那麼重要了，重要的是歸納梳理的過程，以及考試之後對於自己知識漏洞的補足。</p>
 
         </div>
 
@@ -235,9 +258,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/database/"># database</a>
-                    
-                        <a href="/tags/mongoDB/"># mongoDB</a>
+                        <a href="/tags/courses/"># courses</a>
                     
                         
                 </span>
@@ -250,10 +271,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/社媒（1）：資料倫理與分析陷阱/">社媒（1）：資料倫理與分析陷阱</a>
+                <a class="prev" rel="prev" href="/社媒（2）：斷詞以及tidy形式的轉換/">社媒（2）：斷詞以及tidy形式的轉換</a>
             
             
-            <a class="next" rel="next" href="/article/">article</a>
+            <a class="next" rel="next" href="/豆瓣爬蟲（2）：lxml 的介紹/">豆瓣爬蟲（2）：lxml 的介紹</a>
             
         </section>
 
