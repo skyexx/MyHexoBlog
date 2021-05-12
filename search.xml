@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>社媒（2）：斷詞以及tidy形式的轉換</title>
+    <title>社媒（3）：R 情緒分析</title>
+    <url>/%E7%A4%BE%E5%AA%92%EF%BC%883%EF%BC%89%EF%BC%9A%E7%94%A8R%E5%81%9A%E6%83%85%E7%B7%92%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>courses</tag>
+        <tag>nlp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>社媒（2）：R 斷詞以及tidy形式的轉換</title>
     <url>/%E7%A4%BE%E5%AA%92%EF%BC%882%EF%BC%89%EF%BC%9A%E6%96%B7%E8%A9%9E%E4%BB%A5%E5%8F%8Atidy%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BD%89%E6%8F%9B/</url>
     <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="涉及的知識點"><a href="#涉及的知識點" class="headerlink" title="涉及的知識點"></a>涉及的知識點</h2><ul>
 <li>tidy形式的轉換</li>
@@ -20,7 +32,7 @@
 <li>tibble()：將典型的字符向量变成 tidy 文本数据集</li>
 </ul>
 </li>
-<li><p><strong>library(jiebaR)</strong>：用於斷詞（ref：<a href="https://zhuanlan.zhihu.com/p/35846130）" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35846130）</a></p>
+<li><p><strong>library(jiebaR)</strong>：用於斷詞（ref：<a href="https://zhuanlan.zhihu.com/p/35846130" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35846130</a> ）</p>
 <ul>
 <li>worker()：初始化斷詞引擎<ul>
 <li>stop_word=”stop_word.txt”：停用詞</li>
@@ -176,8 +188,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>lxml</tag>
         <tag>spider</tag>
+        <tag>lxml</tag>
       </tags>
   </entry>
   <entry>
@@ -242,8 +254,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>selenium</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
