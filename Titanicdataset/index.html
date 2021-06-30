@@ -11,7 +11,7 @@
 
 
 
-<title>社媒（3）：R 情緒分析 | Skye&#39;s Blog</title>
+<title>Titanicdataset | Skye&#39;s Blog</title>
 
 
 
@@ -110,11 +110,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">社媒（3）：R 情緒分析</h1>
+            <h1 class="post-title">Titanicdataset</h1>
             
                 <div class="post-meta">
                     
@@ -123,23 +185,55 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 8, 2021&nbsp;&nbsp;15:02:27</a>
+                        Date: <a href="#">June 30, 2021&nbsp;&nbsp;15:07:11</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Technological/">Technological</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <h2 id="資料處理流程"><a href="#資料處理流程" class="headerlink" title="資料處理流程"></a>資料處理流程</h2><ol>
+<li>資料前處理<ul>
+<li>簡單的Feature Engineering<ul>
+<li>只保留Cabin的艙位號（前面的字母）。</li>
+<li>把Name中的有一定含義的 title 元素提取出來，並將比較少用的title合併到比較常用的tittle中，建立一個新的類別“Title”</li>
+<li>把姓氏提取出來，創建新的類別“Surname”</li>
+</ul>
+</li>
+<li>Missing Data<ul>
+<li>NA值 &amp; 空白值</li>
+</ul>
+</li>
+<li>減少資料量<ul>
+<li>屬性的篩選：刪掉不要的屬性</li>
+</ul>
+</li>
+<li>正規化處理</li>
+</ul>
+</li>
+<li>模型的建立<ul>
+<li>隨機森林（Random Forest）</li>
+<li>SVM（Support Vector Machines）</li>
+<li>GBM（Gradient Boosting Machine）</li>
+</ul>
+</li>
+<li>模型的解釋</li>
+<li>預測及分析<ul>
+<li>混淆矩陣</li>
+<li>ROC</li>
+<li>AUC</li>
+</ul>
+</li>
+</ol>
+<h2 id="資料前處理"><a href="#資料前處理" class="headerlink" title="資料前處理"></a>資料前處理</h2><h3 id="簡單的Feature-Engineering："><a href="#簡單的Feature-Engineering：" class="headerlink" title="簡單的Feature Engineering："></a>簡單的Feature Engineering：</h3><ul>
+<li>只保留Cabin的艙位號（前面的字母）。</li>
+<li>把Name中的有一定含義的 title 元素提取出來，並將比較少用的title合併到比較常用的tittle中，建立一個新的類別“Title”</li>
+<li>把姓氏提取出來，創建新的類別“Surname”</li>
+</ul>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7681df4a-9597-4a3e-9c10-8e5177b6105b/Screen_Shot_2021-04-07_at_1.07.52_PM.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7681df4a-9597-4a3e-9c10-8e5177b6105b/Screen_Shot_2021-04-07_at_1.07.52_PM.png"><br><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5750cb94-ed86-49cb-80fe-387f46702a3a/Screen_Shot_2021-04-07_at_1.08.13_PM.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5750cb94-ed86-49cb-80fe-387f46702a3a/Screen_Shot_2021-04-07_at_1.08.13_PM.png"></p>
+
         </div>
 
         
@@ -166,12 +260,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/courses/"># courses</a>
-                    
-                        <a href="/tags/nlp/"># nlp</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -182,10 +270,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/Titanicdataset/">Titanicdataset</a>
             
-            
-            <a class="next" rel="next" href="/社媒（2）：斷詞以及tidy形式的轉換/">社媒（2）：R 斷詞以及tidy形式的轉換</a>
+            <a class="next" rel="next" href="/社媒（3）：用R做情緒分析/">社媒（3）：R 情緒分析</a>
             
         </section>
 

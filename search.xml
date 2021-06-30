@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Titanicdataset</title>
+    <url>/Titanicdataset/</url>
+    <content><![CDATA[<h2 id="資料處理流程"><a href="#資料處理流程" class="headerlink" title="資料處理流程"></a>資料處理流程</h2><ol>
+<li>資料前處理<ul>
+<li>簡單的Feature Engineering<ul>
+<li>只保留Cabin的艙位號（前面的字母）。</li>
+<li>把Name中的有一定含義的 title 元素提取出來，並將比較少用的title合併到比較常用的tittle中，建立一個新的類別“Title”</li>
+<li>把姓氏提取出來，創建新的類別“Surname”</li>
+</ul>
+</li>
+<li>Missing Data<ul>
+<li>NA值 &amp; 空白值</li>
+</ul>
+</li>
+<li>減少資料量<ul>
+<li>屬性的篩選：刪掉不要的屬性</li>
+</ul>
+</li>
+<li>正規化處理</li>
+</ul>
+</li>
+<li>模型的建立<ul>
+<li>隨機森林（Random Forest）</li>
+<li>SVM（Support Vector Machines）</li>
+<li>GBM（Gradient Boosting Machine）</li>
+</ul>
+</li>
+<li>模型的解釋</li>
+<li>預測及分析<ul>
+<li>混淆矩陣</li>
+<li>ROC</li>
+<li>AUC</li>
+</ul>
+</li>
+</ol>
+<h2 id="資料前處理"><a href="#資料前處理" class="headerlink" title="資料前處理"></a>資料前處理</h2><h3 id="簡單的Feature-Engineering："><a href="#簡單的Feature-Engineering：" class="headerlink" title="簡單的Feature Engineering："></a>簡單的Feature Engineering：</h3><ul>
+<li>只保留Cabin的艙位號（前面的字母）。</li>
+<li>把Name中的有一定含義的 title 元素提取出來，並將比較少用的title合併到比較常用的tittle中，建立一個新的類別“Title”</li>
+<li>把姓氏提取出來，創建新的類別“Surname”</li>
+</ul>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7681df4a-9597-4a3e-9c10-8e5177b6105b/Screen_Shot_2021-04-07_at_1.07.52_PM.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7681df4a-9597-4a3e-9c10-8e5177b6105b/Screen_Shot_2021-04-07_at_1.07.52_PM.png"><br><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5750cb94-ed86-49cb-80fe-387f46702a3a/Screen_Shot_2021-04-07_at_1.08.13_PM.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5750cb94-ed86-49cb-80fe-387f46702a3a/Screen_Shot_2021-04-07_at_1.08.13_PM.png"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>社媒（3）：R 情緒分析</title>
     <url>/%E7%A4%BE%E5%AA%92%EF%BC%883%EF%BC%89%EF%BC%9A%E7%94%A8R%E5%81%9A%E6%83%85%E7%B7%92%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[]]></content>
@@ -71,12 +115,12 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 格式化日期欄位</span><br><span class="line">tokens$artDate &lt;- tokens$artDate %&gt;% as.Date(&quot;%Y/%m/%d&quot;)</span><br><span class="line"></span><br><span class="line"># 過濾特殊字元</span><br><span class="line">tokens &lt;- tokens %&gt;% </span><br><span class="line">  filter(!(word %in% stop_words)) %&gt;% # 去掉停用字裡的一些詞彙</span><br><span class="line">  filter(!grepl(&apos;[[:punct:]]&apos;,word)) %&gt;% # 去標點符號</span><br><span class="line">  filter(!grepl(&quot;[&apos;^0-9a-z&apos;]&quot;,word)) %&gt;% # 去英文、數字</span><br><span class="line">  filter(nchar(.$word)&gt;1) </span><br><span class="line">  # select(-artDate, -artUrl)</span><br><span class="line"></span><br><span class="line">head(tokens, 20)</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://github.com/skyexx/skyexx.github.io/blob/master/image/R/SMA/2-%E5%89%8D20%E7%9A%84tokens.png?raw=true" alt="查看出現詞"> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 文字雲</span><br><span class="line"># 計算詞彙的出現次數，如果詞彙只有一個字則不列入計算</span><br><span class="line">tokens_count &lt;- tokens %&gt;% </span><br><span class="line">  filter(nchar(.$word)&gt;1) %&gt;%</span><br><span class="line">  group_by(word) %&gt;% </span><br><span class="line">  summarise(sum = n()) %&gt;% </span><br><span class="line">  filter(sum&gt;10) %&gt;%</span><br><span class="line">  arrange(desc(sum))</span><br><span class="line">head(tokens_count, 30)</span><br></pre></td></tr></table></figure>
+<h2 id="文字雲"><a href="#文字雲" class="headerlink" title="文字雲"></a>文字雲</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 文字雲</span><br><span class="line"># 計算詞彙的出現次數，如果詞彙只有一個字則不列入計算</span><br><span class="line">tokens_count &lt;- tokens %&gt;% </span><br><span class="line">  filter(nchar(.$word)&gt;1) %&gt;%</span><br><span class="line">  group_by(word) %&gt;% </span><br><span class="line">  summarise(sum = n()) %&gt;% </span><br><span class="line">  filter(sum&gt;10) %&gt;%</span><br><span class="line">  arrange(desc(sum))</span><br><span class="line">head(tokens_count, 30)</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://github.com/skyexx/skyexx.github.io/blob/master/image/R/SMA/2-%E5%87%BA%E7%8F%BE%E6%9C%80%E5%A4%9A%E7%9A%84%E5%89%8D30%E5%80%8B%E8%A9%9E.png?raw=true" alt="出現前30的詞"></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tokens_count %&gt;% </span><br><span class="line">  filter(word!=c(&quot;比特幣&quot;,&quot;原文&quot;))%&gt;%</span><br><span class="line">#  wordcloud2()</span><br></pre></td></tr></table></figure>
 
-<p>那麼如果我們想知道裡面的名詞都有哪些？</p>
+<h2 id="詞性的標註（NER）"><a href="#詞性的標註（NER）" class="headerlink" title="詞性的標註（NER）"></a>詞性的標註（NER）</h2><p>那麼如果我們想知道裡面的名詞都有哪些？</p>
 <p>我們就需要更改worker()中type的參數，改為worker(type=”tag”)，就可以用jieba來標記中文的詞性了</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 初始化詞性標註引擎</span><br><span class="line">tag_cuter &lt;- worker(type=&quot;tag&quot;, stop_word=&quot;./stop_words.txt&quot;,user=&quot;./user_dict.txt&quot;) </span><br><span class="line"></span><br><span class="line">raw_text &lt;- &quot;在狗狗幣的市場中有一隻巨鯨持有著30%的狗狗幣，有一些線索指出這個持有者很有可能就是馬斯克&quot;</span><br><span class="line">look &lt;- segment(raw_text, tag_cuter)</span><br><span class="line"></span><br><span class="line"># 標註詞性的斷詞函式</span><br><span class="line">get_noun = function(x)&#123;</span><br><span class="line">  index = names(x) %in% c(&quot;n&quot;,&quot;nr&quot;,&quot;nr1&quot;,&quot;nr2&quot;,&quot;nrj&quot;,&quot;nrf&quot;,&quot;ns&quot;,&quot;nsf&quot;,&quot;nt&quot;,&quot;nz&quot;,&quot;nl&quot;,&quot;ng&quot;)</span><br><span class="line">  x[index]</span><br><span class="line">&#125;</span><br><span class="line">get_noun(look)</span><br></pre></td></tr></table></figure>
 
@@ -196,8 +240,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>lxml</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -262,8 +306,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>selenium</tag>
         <tag>spider</tag>
+        <tag>selenium</tag>
       </tags>
   </entry>
   <entry>
