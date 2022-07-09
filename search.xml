@@ -324,8 +324,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>lxml</tag>
         <tag>spider</tag>
+        <tag>lxml</tag>
       </tags>
   </entry>
   <entry>
@@ -390,8 +390,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>selenium</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -503,6 +503,18 @@
       <tags>
         <tag>database</tag>
         <tag>mongoDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github 圖床測試</title>
+    <url>/article/</url>
+    <content><![CDATA[<h2 id="this-is-test"><a href="#this-is-test" class="headerlink" title="this is test"></a>this is test</h2><p><img src="https://img-blog.csdnimg.cn/20200311110734967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="file"></p>
+]]></content>
+      <categories>
+        <category>Commercial</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
       </tags>
   </entry>
   <entry>
