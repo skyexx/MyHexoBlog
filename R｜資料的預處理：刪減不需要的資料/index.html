@@ -11,7 +11,7 @@
 
 
 
-<title>MongoDB 的載入 | Skye&#39;s Blog</title>
+<title>R｜資料的預處理：刪減不需要的資料 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">MongoDB 的載入</h1>
+            <h1 class="post-title">R｜資料的預處理：刪減不需要的資料</h1>
             
                 <div class="post-meta">
                     
@@ -185,7 +185,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">January 12, 2021&nbsp;&nbsp;0:39:35</a>
+                        Date: <a href="#">October 17, 2019&nbsp;&nbsp;23:30:03</a>
                         </span>
                     
                     
@@ -201,12 +201,34 @@
         </header>
 
         <div class="post-content">
-            <h2 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h2><p>安裝 Mongo3.2</p>
-<p>Windows：<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/</a></p>
-<p>Mac OS：<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/</a></p>
-<p>安裝 Studio 3T（MongoDB的可視化工具）</p>
-<p><a href="https://robomongo.org/" target="_blank" rel="noopener">https://robomongo.org/</a></p>
-<h2 id="將資料匯入Studio-3T"><a href="#將資料匯入Studio-3T" class="headerlink" title="將資料匯入Studio 3T"></a>將資料匯入Studio 3T</h2><h3 id="Create-database"><a href="#Create-database" class="headerlink" title="Create database"></a>Create database</h3><p><img src="https://github.com/skyexx/skyexx.github.io/blob/master/image/MongoDB/MongoDB_1.png?raw=true" alt="GitHub"> </p>
+            <p>R的資料處理很常用的package“dplyr” 裡面select()常被用來做資料的刪減</p>
+<h1 id="select-的用法"><a href="#select-的用法" class="headerlink" title="select() 的用法"></a>select() 的用法</h1><p>以mtcars資料集為例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">head(mtcars,3)</span><br><span class="line">#                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
+
+<p>刪減不需要的資料欄位<br>假設不需要用到 mpy，hp這兩個欄位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtcars1=select(mtcars,-c(&quot;mpg&quot;,&quot;hp&quot;))</span><br><span class="line">head(mtcars1,3)</span><br><span class="line">#                   cyl disp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4           6  160 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag       6  160 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710          4  108 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
+
+<p>假設需要mpg到wt的資料,但是不需要cyl和hp這兩個欄位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtcars2=select(mtcars,mpg:wt,-c(&quot;cyl&quot;,&quot;hp&quot;))</span><br><span class="line">head(mtcars2,3)</span><br><span class="line">#                mpg disp drat    wt</span><br><span class="line"># Mazda RX4     21.0  160 3.90 2.620</span><br><span class="line"># Mazda RX4 Wag 21.0  160 3.90 2.875</span><br><span class="line"># Datsun 710    22.8  108 3.85 2.320</span><br></pre></td></tr></table></figure>
+
+<h1 id="select-的子函數"><a href="#select-的子函數" class="headerlink" title="select() 的子函數"></a>select() 的子函數</h1><p>select 還有很多非常好用的子函數</p>
+<ul>
+<li>starts_with()；</li>
+<li>ends_with()；</li>
+<li>contains()；</li>
+<li>matches()；</li>
+<li>num_range()；</li>
+<li>one_of()；</li>
+<li>everything()</li>
+</ul>
+<p>找出欄位中所有以“c”開頭的columns</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtcars3 = select(mtcars,starts_with(&quot;c&quot;))</span><br><span class="line">head(mtcars3,3)</span><br><span class="line">#               cyl carb</span><br><span class="line"># Mazda RX4       6    4</span><br><span class="line"># Mazda RX4 Wag   6    4</span><br><span class="line"># Datsun 710      4    1</span><br></pre></td></tr></table></figure>
+
+<p>刪掉欄位名稱中有“ar”的columns</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mtcars4 = select(mtcars,-contains(&quot;ar&quot;))</span><br><span class="line">head(mtcars4,3)</span><br><span class="line"># 原始           mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line">#                mpg cyl disp  hp drat    wt  qsec vs am</span><br><span class="line"># Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1</span><br><span class="line"># Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1</span><br><span class="line"># Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1</span><br></pre></td></tr></table></figure>
+
+<p>可以看出“ar”是一整個的字符串，所以字母順序需要注意，有“ra”就被保留下來了</p>
+<p>其他的幾個子函數的用法也類似starts_with()</p>
 
         </div>
 
@@ -235,9 +257,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/database/"># database</a>
+                        <a href="/tags/details/"># details</a>
                     
-                        <a href="/tags/mongoDB/"># mongoDB</a>
+                        <a href="/tags/dplyr/"># dplyr</a>
                     
                         
                 </span>
@@ -250,10 +272,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/文字探勘-1｜資料倫理與分析陷阱/">文字探勘-1｜資料倫理與分析陷阱</a>
+                <a class="prev" rel="prev" href="/MongoDB 的載入/">MongoDB 的載入</a>
             
             
-            <a class="next" rel="next" href="/R｜資料的預處理：刪減不需要的資料/">R｜資料的預處理：刪減不需要的資料</a>
+            <a class="next" rel="next" href="/R｜數據中缺失值-NA-的處理/">R｜數據中缺失值-NA-的處理</a>
             
         </section>
 

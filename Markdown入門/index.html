@@ -11,7 +11,7 @@
 
 
 
-<title>R 資料的預處理：刪減不需要的資料 | Skye&#39;s Blog</title>
+<title>Markdown 入門 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">R 資料的預處理：刪減不需要的資料</h1>
+            <h1 class="post-title">Markdown 入門</h1>
             
                 <div class="post-meta">
                     
@@ -185,7 +185,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 17, 2019&nbsp;&nbsp;23:30:03</a>
+                        Date: <a href="#">July 27, 2019&nbsp;&nbsp;11:57:06</a>
                         </span>
                     
                     
@@ -201,34 +201,43 @@
         </header>
 
         <div class="post-content">
-            <p>R的資料處理很常用的package“dplyr” 裡面select()常被用來做資料的刪減</p>
-<h1 id="select-的用法"><a href="#select-的用法" class="headerlink" title="select() 的用法"></a>select() 的用法</h1><p>以mtcars資料集為例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">head(mtcars,3)</span><br><span class="line">#                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
-
-<p>刪減不需要的資料欄位<br>假設不需要用到 mpy，hp這兩個欄位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtcars1=select(mtcars,-c(&quot;mpg&quot;,&quot;hp&quot;))</span><br><span class="line">head(mtcars1,3)</span><br><span class="line">#                   cyl disp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4           6  160 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag       6  160 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710          4  108 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
-
-<p>假設需要mpg到wt的資料,但是不需要cyl和hp這兩個欄位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtcars2=select(mtcars,mpg:wt,-c(&quot;cyl&quot;,&quot;hp&quot;))</span><br><span class="line">head(mtcars2,3)</span><br><span class="line">#                mpg disp drat    wt</span><br><span class="line"># Mazda RX4     21.0  160 3.90 2.620</span><br><span class="line"># Mazda RX4 Wag 21.0  160 3.90 2.875</span><br><span class="line"># Datsun 710    22.8  108 3.85 2.320</span><br></pre></td></tr></table></figure>
-
-<h1 id="select-的子函數"><a href="#select-的子函數" class="headerlink" title="select() 的子函數"></a>select() 的子函數</h1><p>select 還有很多非常好用的子函數</p>
-<ul>
-<li>starts_with()；</li>
-<li>ends_with()；</li>
-<li>contains()；</li>
-<li>matches()；</li>
-<li>num_range()；</li>
-<li>one_of()；</li>
-<li>everything()</li>
-</ul>
-<p>找出欄位中所有以“c”開頭的columns</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mtcars3 = select(mtcars,starts_with(&quot;c&quot;))</span><br><span class="line">head(mtcars3,3)</span><br><span class="line">#               cyl carb</span><br><span class="line"># Mazda RX4       6    4</span><br><span class="line"># Mazda RX4 Wag   6    4</span><br><span class="line"># Datsun 710      4    1</span><br></pre></td></tr></table></figure>
-
-<p>刪掉欄位名稱中有“ar”的columns</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mtcars4 = select(mtcars,-contains(&quot;ar&quot;))</span><br><span class="line">head(mtcars4,3)</span><br><span class="line"># 原始           mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line">#                mpg cyl disp  hp drat    wt  qsec vs am</span><br><span class="line"># Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1</span><br><span class="line"># Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1</span><br><span class="line"># Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1</span><br></pre></td></tr></table></figure>
-
-<p>可以看出“ar”是一整個的字符串，所以字母順序需要注意，有“ra”就被保留下來了</p>
-<p>其他的幾個子函數的用法也類似starts_with()</p>
+            <h1 id="Hexo中Markdown的一些基本語法"><a href="#Hexo中Markdown的一些基本語法" class="headerlink" title="Hexo中Markdown的一些基本語法"></a>Hexo中Markdown的一些基本語法</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><pre><code>分段：兩個回車
+換行：回車
+標題：# ~ ######，#號的個數表示幾級標題，即表示一級標題到六級標題
+強調：**文字** ， __文字__ ， _文字_ ， *文字* ， 文字
+引用：&gt; 注意後面緊跟個空格
+表格：- 和 | 分割行和列 ， : 控制對其方式</code></pre><h3 id="標題"><a href="#標題" class="headerlink" title="標題"></a>標題</h3><pre><code># 一級標題
+## 二級標題
+### 三級標題
+###### 六級標題</code></pre><p>效果如下：</p>
+<h1 id="一級標題"><a href="#一級標題" class="headerlink" title="一級標題"></a>一級標題</h1><h2 id="二級標題"><a href="#二級標題" class="headerlink" title="二級標題"></a>二級標題</h2><h3 id="三級標題"><a href="#三級標題" class="headerlink" title="三級標題"></a>三級標題</h3><h6 id="六級標題"><a href="#六級標題" class="headerlink" title="六級標題"></a>六級標題</h6><h3 id="強調"><a href="#強調" class="headerlink" title="強調"></a>強調</h3><pre><code>**加粗**
+*傾斜*
+***傾斜加粗***
+~~加刪除線~~
+`高亮突出背景色`</code></pre><p>效果如下：<br><strong>加粗</strong><br><em>傾斜</em><br><strong><em>傾斜加粗</em></strong><br><del>加刪除線</del><br><code>高亮突出背景色</code></p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><pre><code>&gt; 這是引用內容
+&gt;&gt; 這是引用內容
+&gt;&gt;&gt;&gt;&gt;&gt; 這是引用內容</code></pre><p>效果如下：</p>
+<blockquote>
+<p>這是引用內容</p>
+<blockquote>
+<p>這是引用內容</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>這是引用內容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="分割線"><a href="#分割線" class="headerlink" title="分割線"></a>分割線</h3><p>三個或以上的 -，* 都可以</p>
+<pre><code>***
+******</code></pre><p>效果如下:</p>
+<hr>
+<hr>
 
         </div>
 
@@ -257,9 +266,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/details/"># details</a>
-                    
-                        <a href="/tags/dplyr/"># dplyr</a>
+                        <a href="/tags/Hexo/"># Hexo</a>
                     
                         
                 </span>
@@ -272,10 +279,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/article/">article</a>
+                <a class="prev" rel="prev" href="/Books｜《數據挖掘與數據化運營實戰》/">Books |《數據挖掘與數據化運營實戰》Reading notes (1)</a>
             
             
-            <a class="next" rel="next" href="/R數據中缺失值-NA-的處理/">R 資料的預處理：數據中缺失值(NA)的處理</a>
+            <a class="next" rel="next" href="/hello-world/">Hello World</a>
             
         </section>
 

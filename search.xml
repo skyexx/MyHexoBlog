@@ -129,8 +129,8 @@
 ]]></content>
   </entry>
   <entry>
-    <title>社媒（3）：R 情緒分析</title>
-    <url>/%E7%A4%BE%E5%AA%92%EF%BC%883%EF%BC%89%EF%BC%9A%E7%94%A8R%E5%81%9A%E6%83%85%E7%B7%92%E5%88%86%E6%9E%90/</url>
+    <title>文字探勘-3｜用R做情緒分析</title>
+    <url>/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-3%EF%BD%9C%E7%94%A8R%E5%81%9A%E6%83%85%E7%B7%92%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Technological</category>
@@ -141,8 +141,8 @@
       </tags>
   </entry>
   <entry>
-    <title>社媒（2）：R 斷詞以及tidy形式的轉換</title>
-    <url>/%E7%A4%BE%E5%AA%92%EF%BC%882%EF%BC%89%EF%BC%9A%E6%96%B7%E8%A9%9E%E4%BB%A5%E5%8F%8Atidy%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BD%89%E6%8F%9B/</url>
+    <title>文字探勘-2｜斷詞以及tidy形式的轉換</title>
+    <url>/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-2%EF%BD%9C%E6%96%B7%E8%A9%9E%E4%BB%A5%E5%8F%8Atidy%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BD%89%E6%8F%9B/</url>
     <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="涉及的知識點"><a href="#涉及的知識點" class="headerlink" title="涉及的知識點"></a>涉及的知識點</h2><ul>
 <li>tidy形式的轉換</li>
 <li>斷句</li>
@@ -270,8 +270,8 @@
       </tags>
   </entry>
   <entry>
-    <title>豆瓣爬蟲（2）：lxml 的介紹</title>
-    <url>/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2%EF%BC%882%EF%BC%89%EF%BC%9Alxml%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</url>
+    <title>豆瓣爬蟲-2｜lxml 的介紹</title>
+    <url>/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2-2%EF%BD%9Clxml%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</url>
     <content><![CDATA[<h2 id="lxml介紹"><a href="#lxml介紹" class="headerlink" title="lxml介紹"></a>lxml介紹</h2><p>Python的lxml 模組是一個非常好用且效能高的HTML、XML解析工具，通過它解析網頁，爬蟲就可以輕鬆的從網頁中提取想要的資料。lxml對XML和HTML都有很好的支援，分別使用 lxml.etree 和 lxml.html 兩個模組。</p>
 <h2 id="使用lxml提取網頁資料的流程"><a href="#使用lxml提取網頁資料的流程" class="headerlink" title="使用lxml提取網頁資料的流程"></a>使用lxml提取網頁資料的流程</h2><p>要從網頁裡面提取資料，使用lxml需要兩步：</p>
 <ul>
@@ -329,8 +329,8 @@
       </tags>
   </entry>
   <entry>
-    <title>豆瓣爬蟲（1）：selenium 的介紹</title>
-    <url>/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2(1)%EF%BC%9Aselenium%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</url>
+    <title>豆瓣爬蟲-1｜selenium 的介紹</title>
+    <url>/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2-1%EF%BD%9Cselenium%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</url>
     <content><![CDATA[<h1 id="豆瓣爬蟲（1）：selenium-的介紹"><a href="#豆瓣爬蟲（1）：selenium-的介紹" class="headerlink" title="豆瓣爬蟲（1）：selenium 的介紹"></a>豆瓣爬蟲（1）：selenium 的介紹</h1><p>紀錄一下寫豆瓣爬蟲的過程和一些心得</p>
 <h2 id="selenium-的介紹"><a href="#selenium-的介紹" class="headerlink" title="selenium 的介紹"></a>selenium 的介紹</h2><p>selenium 是一款自動化測試利器，可以自動化模擬人的瀏覽器操作行為，所以也可以用於網絡爬蟲。<br>不過這裡主要講一講怎樣用selenium來模擬登錄，並持久化cookie，然後用requests爬取頁面。</p>
 <h2 id="selenium-的安装及配置"><a href="#selenium-的安装及配置" class="headerlink" title="selenium 的安装及配置"></a>selenium 的安装及配置</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>直接安裝 selenium </p>
@@ -395,8 +395,8 @@
       </tags>
   </entry>
   <entry>
-    <title>社媒（1）：資料倫理與分析陷阱</title>
-    <url>/%E7%A4%BE%E5%AA%92%EF%BC%881%EF%BC%89%EF%BC%9A%E8%B3%87%E6%96%99%E5%80%AB%E7%90%86%E8%88%87%E5%88%86%E6%9E%90%E9%99%B7%E9%98%B1/</url>
+    <title>文字探勘-1｜資料倫理與分析陷阱</title>
+    <url>/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-1%EF%BD%9C%E8%B3%87%E6%96%99%E5%80%AB%E7%90%86%E8%88%87%E5%88%86%E6%9E%90%E9%99%B7%E9%98%B1/</url>
     <content><![CDATA[<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>“社媒”這一系列主要用以梳理“社群媒體分析”這堂課的知識點以及紀錄一些課後的思考🤔。</p>
 <h2 id="資料倫理"><a href="#資料倫理" class="headerlink" title="資料倫理"></a>資料倫理</h2><h2 id="🌰-Case-Automated-Health-Care-App"><a href="#🌰-Case-Automated-Health-Care-App" class="headerlink" title="🌰 Case: Automated Health Care App"></a>🌰 Case: Automated Health Care App</h2><p>來源：<a href="https://aiethics.princeton.edu/case-studies/case-study-pdfs/" target="_blank" rel="noopener">https://aiethics.princeton.edu/case-studies/case-study-pdfs/</a></p>
 <p>簡介：Charlie 是一款智能健康管理的app</p>
@@ -506,20 +506,8 @@
       </tags>
   </entry>
   <entry>
-    <title>article</title>
-    <url>/article/</url>
-    <content><![CDATA[<h2 id="this-is-test"><a href="#this-is-test" class="headerlink" title="this is test"></a>this is test</h2><p><img src="https://img-blog.csdnimg.cn/20200311110734967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="file"></p>
-]]></content>
-      <categories>
-        <category>Commercial</category>
-      </categories>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>R 資料的預處理：刪減不需要的資料</title>
-    <url>/R-%E8%B3%87%E6%96%99%E7%9A%84%E9%A0%90%E8%99%95%E7%90%86%EF%BC%9A%E5%88%AA%E6%B8%9B%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E8%B3%87%E6%96%99/</url>
+    <title>R｜資料的預處理：刪減不需要的資料</title>
+    <url>/R%EF%BD%9C%E8%B3%87%E6%96%99%E7%9A%84%E9%A0%90%E8%99%95%E7%90%86%EF%BC%9A%E5%88%AA%E6%B8%9B%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E8%B3%87%E6%96%99/</url>
     <content><![CDATA[<p>R的資料處理很常用的package“dplyr” 裡面select()常被用來做資料的刪減</p>
 <h1 id="select-的用法"><a href="#select-的用法" class="headerlink" title="select() 的用法"></a>select() 的用法</h1><p>以mtcars資料集為例</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">head(mtcars,3)</span><br><span class="line">#                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span><br><span class="line"># Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span><br><span class="line"># Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span><br><span class="line"># Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span><br></pre></td></tr></table></figure>
@@ -558,8 +546,8 @@
       </tags>
   </entry>
   <entry>
-    <title>R 資料的預處理：數據中缺失值(NA)的處理</title>
-    <url>/R%E6%95%B8%E6%93%9A%E4%B8%AD%E7%BC%BA%E5%A4%B1%E5%80%BC-NA-%E7%9A%84%E8%99%95%E7%90%86/</url>
+    <title>R｜數據中缺失值-NA-的處理</title>
+    <url>/R%EF%BD%9C%E6%95%B8%E6%93%9A%E4%B8%AD%E7%BC%BA%E5%A4%B1%E5%80%BC-NA-%E7%9A%84%E8%99%95%E7%90%86/</url>
     <content><![CDATA[<p>訓練一個機器學習模型，其實大量的時間是花在資料的預處理和探索性資料分析上。尤其是實際中遇到的data都不會太乾淨，所以花較長的時間來做數據的預處理是很有必要的。</p>
 <p>首先來建立一個簡單的數據集</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">library(mice)</span><br><span class="line">name = c(&quot;Andy&quot;,&quot;Helly&quot;,&quot;Ann&quot;,&quot;Ketay&quot;,&quot;Wang&quot;,&quot;Liu&quot;)</span><br><span class="line">country = c(&quot;UK&quot;,&quot;US&quot;,&quot;US&quot;,&quot;US&quot;,&quot;CH&quot;,&quot;CH&quot;)</span><br><span class="line">gender = c(&quot;male&quot;,&quot;female&quot;,NA,&quot;female&quot;,&quot;male&quot;,NA)</span><br><span class="line">age = c(22,19,26,31,45,32)</span><br><span class="line">income = c(12,NA,55,77,32,NA)</span><br><span class="line"></span><br><span class="line">data = data.frame(name,country,gender,age,income)</span><br><span class="line">data</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 2 Helly      US female  19     NA</span><br><span class="line"># 3   Ann      US   &lt;NA&gt;  26     55</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br><span class="line"># 6   Liu      CH   &lt;NA&gt;  32     NA</span><br></pre></td></tr></table></figure>
@@ -609,8 +597,8 @@
       </tags>
   </entry>
   <entry>
-    <title>R 建模範例分析</title>
-    <url>/R%E5%BB%BA%E6%A8%A1%E7%AF%84%E4%BE%8B%E5%88%86%E6%9E%90/</url>
+    <title>R｜建模範例分析</title>
+    <url>/R%EF%BD%9C%E5%BB%BA%E6%A8%A1%E7%AF%84%E4%BE%8B%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<h1 id="R建模範例分析"><a href="#R建模範例分析" class="headerlink" title="R建模範例分析"></a>R建模範例分析</h1><p>Regression analysis is widely used in statisitic, always  analysis the correlation among  different variables. </p>
 <blockquote>
 <p>這是一個非常簡單資料處理和建模的例子，主要是為了熟悉整個資料分析和建模的流程。其中有很多細節可以繼續展開。</p>
@@ -742,7 +730,7 @@
   </entry>
   <entry>
     <title>Books |《數據挖掘與數據化運營實戰》Reading notes (1)</title>
-    <url>/Books-%E3%80%8A%E6%95%B8%E6%93%9A%E6%8C%96%E6%8E%98%E8%88%87%E6%95%B8%E6%93%9A%E5%8C%96%E9%81%8B%E7%87%9F%E5%AF%A6%E6%88%B0%E3%80%8BReading-notes-1/</url>
+    <url>/Books%EF%BD%9C%E3%80%8A%E6%95%B8%E6%93%9A%E6%8C%96%E6%8E%98%E8%88%87%E6%95%B8%E6%93%9A%E5%8C%96%E9%81%8B%E7%87%9F%E5%AF%A6%E6%88%B0%E3%80%8B/</url>
     <content><![CDATA[<p>   一直對數據分析很感興趣，但在學校學習的都比較簡單，又礙於自己的懶惰，一直沒有深入了解。暑假藉著報名參加了一個數據分析的比賽（雖然在初賽就折戟了😂其實一點也不意外）讓自己比較有動力繼續更深入的學習一些數據處理的方法，當然還有如何用機器學習的方式去實現進一步的預測，以及決策。</p>
 <p>   也是在圖書館閒逛的時候，意外發現的這本《數據挖掘與數據化運營實戰》，相較於其他的一些數據挖掘和機器學習的書籍，這本書更偏向於實戰應用。它沒有過多的數學推導，比較測重於數據分析整體流程的一個介紹，對於一個初學者來說是一部很好的入門書籍。使初學者更加清楚的知道數據分析的應用情境，數據挖掘有哪些流程步驟，在每個步驟中我們該如何選擇最好的方法來達到期望的效果等等。總之對於一個數據和編程小白來說這是一本非常友好的入門書籍，看後會對數據挖掘有一個比較宏觀的認識，當然想要了解算法原理之類的一些核心技能這本書就不太夠用了，這些就需要更深入的一些書籍去了解了。</p>
 <p>我的閱讀順序可能比較奇怪，所以Reading notes也是各個章節穿插著紀錄的。</p>
@@ -799,8 +787,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello Hexo</title>
-    <url>/Hello-Hexo/</url>
+    <title>Markdown 入門</title>
+    <url>/Markdown%E5%85%A5%E9%96%80/</url>
     <content><![CDATA[<h1 id="Hexo中Markdown的一些基本語法"><a href="#Hexo中Markdown的一些基本語法" class="headerlink" title="Hexo中Markdown的一些基本語法"></a>Hexo中Markdown的一些基本語法</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><pre><code>分段：兩個回車
 換行：回車
 標題：# ~ ######，#號的個數表示幾級標題，即表示一級標題到六級標題
