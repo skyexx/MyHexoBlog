@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>重新開始寫作</title>
+    <url>/%E9%87%8D%E6%96%B0%E9%96%8B%E5%A7%8B%E5%AF%AB%E4%BD%9C/</url>
+    <content><![CDATA[<p>忙忙碌碌的2022上半年就這麼倏忽而過，最近決定重新開始寫一寫文章。</p>
+<p>一方面，因為近期在寫論文的過程中明顯感覺自己組織長篇文章的能力越來越弱。另一方面，也想要好好審視一下自己、紀錄一下生活。同時也是希望可以慢慢培養出寫作的習慣。</p>
+<p>最近在聽池大的 podcast<a href="https://app.podcastguru.io/podcast/mactalk-1619054900" target="_blank" rel="noopener">「MacTalk·夜航西飞」</a>，裡面有一期和孟岩聊到二人堅持寫作的這件事情。很多人會質疑「你創業工作這麼忙了，怎麼會還有自己的時間寫東西」。大家一方面，驚訝於二人的時間管理，另一方面不理解堅持寫作的意義。</p>
+<blockquote>
+<p>孟岩就提到芒格說的一則黑猩猩的故事：</p>
+<p>當我在給一隻黑猩猩講解一件事情的時候，最終會留下什麼呢？</p>
+<p>一頭霧水的黑猩猩，和一個更理解這件事情的我自己。</p>
+</blockquote>
+<p>寫作的意義是梳理，是reset的過程。有些事情我們以為自己了解了，但當需要給別人講解的時候，又變得十分困難。時常沒辦法非常迅速的組織出一套清晰且有邏輯的說詞。本質上還是我們對於這件事的理解不夠深入，把「知道了」誤以為「理解了」。</p>
+<p>寫作的好處就在於，可以幫助你再一次的梳理你以為你已經了解的事情。寫的過程就是重新思考，重新構建的過程。就像第一遍，你憑感覺搭了一個樂高城堡，但發現怪怪的。第二遍，就看著說明書，把各個部分又重新搭建了一遍。寫作的過程就像是第二遍看說明，只不過這個說明書要你自己總結。</p>
+]]></content>
+      <categories>
+        <category>Daily</category>
+      </categories>
+      <tags>
+        <tag>reflection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分類演算法實作 Titanic disaster dataset</title>
     <url>/Titanicdataset/</url>
     <content><![CDATA[<h2 id="資料處理流程"><a href="#資料處理流程" class="headerlink" title="資料處理流程"></a>資料處理流程</h2><ol>
@@ -312,8 +333,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>lxml</tag>
         <tag>spider</tag>
+        <tag>lxml</tag>
       </tags>
   </entry>
   <entry>
@@ -378,8 +399,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>selenium</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -781,9 +802,8 @@
         <category>Technological</category>
       </categories>
       <tags>
-        <tag>Books</tag>
-        <tag>Data science</tag>
-        <tag>Reading notes</tag>
+        <tag>data science</tag>
+        <tag>reading notes</tag>
       </tags>
   </entry>
   <entry>
