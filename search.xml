@@ -4,9 +4,11 @@
     <title>有寫就好｜面對焦慮</title>
     <url>/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E9%9D%A2%E5%B0%8D%E7%84%A6%E6%85%AE/</url>
     <content><![CDATA[<p>感覺周圍最近抱怨「大環境」的言論甚囂塵上，自己也難免受此影響，有些焦慮。焦慮的時候讀書總不會錯的，這裡紀錄一些最近看到的段落：</p>
-<p>《宇宙》裡卡爾薩根在回顧人類發展史的時候說：</p>
-<p>「讓我們回望過去。數不清的年月前，潮起潮落的灘塗裡，生命逐漸成形。他掙扎著變成一個又一個不同的形狀，攫取了一種又一種不同的力量，終於自信地爬上陸地。經過一代又一代的變化，他控制了天空，也潛入了黑暗的深淵；我們看著他在憤怒和飢餓中重塑自身，看著他越來越像我們。他不斷伸展，不斷優化，向著難以置信的目標一刻不停地前進。然後，他變成了我們，生命的韻律至今在我們的大腦和動脈中搏動……」</p>
-<p>美國最高法院首席大法官約翰·羅伯茨(John Roberts)，參加兒子的初中畢業典禮時的演講：</p>
+<p><strong>《宇宙》裡卡爾薩根在回顧人類發展史的時候說：</strong></p>
+<blockquote>
+<p>「讓我們回望過去。數不清的年月前，潮起潮落的灘塗裡，生命逐漸成形。他掙扎著變成一個又一個不同的形狀，攫取了一種又一種不同的力量，終於自信地爬上陸地。經過一代又一代的變化，他控制了天空，也潛入了黑暗的深淵；我們看著他在憤怒和飢餓中重塑自身,看著他越來越像我們。他不斷伸展，不斷優化，向著難以置信的目標一刻不停地前進。然後，他變成了我們，生命的韻律至今在我們的大腦和動脈中搏動……」</p>
+</blockquote>
+<p><strong>美國最高法院首席大法官約翰·羅伯茨(John Roberts)，參加兒子的初中畢業典禮時的演講：</strong></p>
 <p>From time to time in the years to come, I hope you will be treated unfairly, so that you will come to know the value of justice.<br>我希望在未來歲月中，你能時不時地遭遇不公，唯有如此，你才能懂得公正的價值。</p>
 <p>I hope that you will suffer betrayal because that will teach you the importance of loyalty.<br>我希望你嚐到背叛的滋味，這樣你才能領悟到忠誠之重要。</p>
 <p>Sorry to say, butI hope you will be lonely from time to time so that you don’t take friends for granted.<br>抱歉，我還希望你們時常感到孤獨，唯有如此，你才 不會視朋友為理所當然。<br>I wish you bad luck,again, from time to time so that you will be conscious of the role of chance in life and understand that your success is not completely deserved and that the failure of others is not completely deserved either.<br>我祝你們偶爾運氣不佳，這樣你才會意識到機遇在人 生中扮演的⻆色，從而明白你的成功並非天經地義， 而他人的失敗也不是命中註定。<br>And when you lose, as you will from time to time, I hope every now and then, your opponent will gloat over your failure. It is a way for you to understand the importance of sportsmanship.<br>當你偶爾失敗時，我願你的對手時不時地會幸災樂 禍。這樣你才能懂得互相尊重的競技精神的重要。<br>I hope you’ll be ignoredso you know the importance of listening to others.<br>我希望你被人無視，唯有如此，你才懂得傾聽他人有多重要。<br>And I hope you will have just enough painto learn compassion.<br>我祝你感受足夠的痛楚來學會同情。<br>Unless you are perfect, it does not mean don’t make any changes.<br>除非你完美無瑕，那麼這句話絕不意味著不去改變自己。<br>“The unexamined life is not worth living.”<br>未經自省的人生沒有意義。</p>
@@ -402,8 +404,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>lxml</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -468,8 +470,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>selenium</tag>
         <tag>spider</tag>
+        <tag>selenium</tag>
       </tags>
   </entry>
   <entry>
