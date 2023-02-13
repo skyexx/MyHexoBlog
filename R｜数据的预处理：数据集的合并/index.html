@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Skye">
+
+
+
+
+
+<title>R｜数据的预处理：数据集的合并 | Skye&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">SiQing&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">SiQing&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">R｜数据的预处理：数据集的合并</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Skye</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 27, 2019&nbsp;&nbsp;23:30:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Technological/">Technological</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>合并数据集<br>很多情况下，数据集都不会只有一个文件，但是为了方便后续的处理和分析，在预处理的阶段就会将各个数据集进行合并。<br><img src="https://img-blog.csdnimg.cn/20200227104344935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="1-Inner-Join内连接"><a href="#1-Inner-Join内连接" class="headerlink" title="1. Inner Join内连接"></a>1. Inner Join内连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 数据集A</span><br><span class="line">A = data.frame(id=c(1,3,5), A_val=c(&apos;a&apos;,&apos;x&apos;,&apos;c&apos;)) </span><br><span class="line">   id A_val </span><br><span class="line">1  1  a</span><br><span class="line">2  3 x</span><br><span class="line">3  5 c</span><br><span class="line"># 数据集B</span><br><span class="line">B = data.frame(id=c(3,5,6), B_val=c(&apos;x&apos;,&apos;y&apos;,&apos;z&apos;)) </span><br><span class="line">   id B_val </span><br><span class="line">1  3  x</span><br><span class="line">2  5  y</span><br><span class="line">3  6  z</span><br><span class="line"># 函数merge( )通过“id”取交集，所以只剩下 id为3 5的</span><br><span class="line">A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;) A_B</span><br><span class="line">   id A_val B_val </span><br><span class="line">1  3    x     x </span><br><span class="line">2  5    c     y</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Out-Join-外连接"><a href="#2-Out-Join-外连接" class="headerlink" title="2. Out Join 外连接"></a>2. Out Join 外连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 通过“id”将B外接导A上</span><br><span class="line">left_A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;, all.x=T)</span><br><span class="line">left_A_B # A left join B</span><br><span class="line">    id A_val B_val </span><br><span class="line">1   1    a    &lt;NA&gt;</span><br><span class="line">2   3    x     x </span><br><span class="line">3   5    c     y</span><br><span class="line"># 通过“id”将A外接导B上</span><br><span class="line">right_A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;, all.y=T) </span><br><span class="line">right_A_B # A right join B</span><br><span class="line">    id A_val B_val </span><br><span class="line">1   3    x     x </span><br><span class="line">2   5    c     y</span><br><span class="line">3   6   &lt;NA&gt;   z</span><br><span class="line"># 通过“id”将AB都保留</span><br><span class="line">full_A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;, all=T) </span><br><span class="line">full_A_B # A full outer join B</span><br><span class="line">    id A_val B_val </span><br><span class="line">1   1    a    &lt;NA&gt; </span><br><span class="line">2   3    x     x </span><br><span class="line">3   5    c     y</span><br><span class="line">4   6   &lt;NA&gt;   z</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Concatenation"><a href="#3-Concatenation" class="headerlink" title="3. Concatenation"></a>3. Concatenation</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 将A B数据集columns的名字改成统一的</span><br><span class="line">colnames(A) = colnames(B) = c(&apos;id&apos;,&apos;val&apos;);</span><br><span class="line"># 然后用rbind()将A B两组数据集通过row合并，B接在A的下面(需要相同的column)</span><br><span class="line">rbind(A,B) # Concatenate vertically</span><br><span class="line">  id val</span><br><span class="line">1 1   a</span><br><span class="line">2 3   x</span><br><span class="line">3 5   c </span><br><span class="line">4 3   x </span><br><span class="line">5 5   y </span><br><span class="line">6 6   z</span><br><span class="line"></span><br><span class="line"># 将A B数据集通过column合并，B接在A的后面</span><br><span class="line">cbind(A,B) # Concatenate horizontally </span><br><span class="line">    id val  id val</span><br><span class="line">1   1   a   3   x </span><br><span class="line">2   3   x   5   y </span><br><span class="line">3   5   c   6   z</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Set-Operation交集"><a href="#4-Set-Operation交集" class="headerlink" title="4. Set Operation交集"></a>4. Set Operation交集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># A intersect B</span><br><span class="line"> subset(A, (A$id %in% B$id &amp; A$val %in% B$val))</span><br><span class="line">    id val</span><br><span class="line">2   3   x</span><br><span class="line"># A except B</span><br><span class="line"> subset(A, ! (A$id %in% B$id &amp; A$val %in% B$val))</span><br><span class="line">    id val</span><br><span class="line">1   1   a</span><br><span class="line">3   5   c</span><br><span class="line"># B except A</span><br><span class="line"> subset(B, ! (B$id %in% A$id &amp; B$val %in% A$val))</span><br><span class="line">    id val </span><br><span class="line">2   5   y </span><br><span class="line">3   6   z</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-用dplyr包来查找交集"><a href="#5-用dplyr包来查找交集" class="headerlink" title="5. 用dplyr包来查找交集"></a>5. 用dplyr包来查找交集</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># More efficient row/column binding</span></span><br><span class="line">dplyr::bind_rows(A, B); dplyr::bind_cols(A, B)</span><br><span class="line"><span class="comment"># A intersect/union B</span></span><br><span class="line">dplyr::intersect(A, B); dplyr::union(A, B);</span><br><span class="line"><span class="comment"># A except B; B except A</span></span><br><span class="line">dplyr::setdiff(A, B); dplyr::setdiff(B, A)</span><br><span class="line"><span class="comment"># Observation-level set comparison</span></span><br><span class="line">dplyr::setequal(A, B)</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-用SQL语法来合并数据集（sqldf包）"><a href="#6-用SQL语法来合并数据集（sqldf包）" class="headerlink" title="6. 用SQL语法来合并数据集（sqldf包）"></a>6. 用SQL语法来合并数据集（sqldf包）</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">library(sqldf)</span><br><span class="line"><span class="comment"># Inner join</span></span><br><span class="line">sqldf('<span class="keyword">select</span> A.id, A.val <span class="keyword">as</span> A_val, B.val <span class="keyword">as</span> B_val <span class="keyword">from</span> A <span class="keyword">inner</span> <span class="keyword">join</span> B <span class="keyword">on</span> A.id = B.id<span class="string">')</span></span><br><span class="line"><span class="string"># Left outer join</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> A.id, A.val <span class="keyword">as</span> A_val, B.val <span class="keyword">as</span> B_val <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B <span class="keyword">on</span> A.id = B.id<span class="string">')</span></span><br><span class="line"><span class="string"># Union</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">union</span> <span class="keyword">select</span> * <span class="keyword">from</span> B<span class="string">')</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">except</span> <span class="keyword">select</span> * <span class="keyword">from</span> B<span class="string">')</span></span><br><span class="line"><span class="string">#     id val </span></span><br><span class="line"><span class="string"># 1   1   a</span></span><br><span class="line"><span class="string"># 2   5   c</span></span><br><span class="line"><span class="string"> sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">intersect</span> <span class="keyword">select</span> * <span class="keyword">from</span> B<span class="string">')</span></span><br><span class="line"><span class="string">#     id val </span></span><br><span class="line"><span class="string"># 1   3   x</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span></span><br><span class="line">(<span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">union</span> <span class="keyword">all</span> <span class="keyword">select</span> * <span class="keyword">from</span> B) <span class="keyword">where</span> <span class="keyword">id</span> &gt; <span class="number">5</span><span class="string">')</span></span><br><span class="line"><span class="string">#     id val </span></span><br><span class="line"><span class="string"># 1   6   z</span></span><br><span class="line"><span class="string">mtcars = data.frame(mtcars);</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> row_names, mpg, cyl, wt <span class="keyword">from</span> mtcars</span><br><span class="line"><span class="keyword">where</span> row_names <span class="keyword">like</span> <span class="string">"%Toyota%"</span> <span class="string">', row.names=T)</span></span><br><span class="line"><span class="string">#                 mpg cyl wt </span></span><br><span class="line"><span class="string"># Toyota Corolla 33.9 4 1.835 </span></span><br><span class="line"><span class="string"># Toyota Corona 21.5 4 2.465</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Skye</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/data-science/"># data science</a>
+                    
+                        <a href="/tags/details/"># details</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/模型的评估：性能量度/">模型的评估：性能量度</a>
+            
+            
+            <a class="next" rel="next" href="/R｜資料的預處理：刪減不需要的資料/">R｜资料的预处理：删减不需要的资料</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Skye | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

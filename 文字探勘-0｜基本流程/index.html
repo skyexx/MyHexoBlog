@@ -11,7 +11,7 @@
 
 
 
-<title>文字探勘-1｜资料伦理与分析陷阱 | Skye&#39;s Blog</title>
+<title>文字探勘-0｜基本流程 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">文字探勘-1｜资料伦理与分析陷阱</h1>
+            <h1 class="post-title">文字探勘-0｜基本流程</h1>
             
                 <div class="post-meta">
                     
@@ -185,7 +185,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 4, 2021&nbsp;&nbsp;15:02:27</a>
+                        Date: <a href="#">March 1, 2021&nbsp;&nbsp;23:02:05</a>
                         </span>
                     
                     
@@ -201,88 +201,60 @@
         </header>
 
         <div class="post-content">
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>“社媒”这一系列主要用以梳理“社群媒体分析”这堂课的知识点以及纪录一些课后的思考🤔。</p>
-<h2 id="资料伦理"><a href="#资料伦理" class="headerlink" title="资料伦理"></a>资料伦理</h2><h2 id="🌰-Case-Automated-Health-Care-App"><a href="#🌰-Case-Automated-Health-Care-App" class="headerlink" title="🌰 Case: Automated Health Care App"></a>🌰 Case: Automated Health Care App</h2><p>来源：<a href="https://aiethics.princeton.edu/case-studies/case-study-pdfs/" target="_blank" rel="noopener">https://aiethics.princeton.edu/case-studies/case-study-pdfs/</a></p>
-<p>简介：Charlie 是一款智能健康管理的app</p>
+            <h3 id="文字挖掘的基本流程："><a href="#文字挖掘的基本流程：" class="headerlink" title="文字挖掘的基本流程："></a>文字挖掘的基本流程：</h3><p><img src="https://img-blog.csdnimg.cn/20200305221146509.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="基本处理步骤："><a href="#基本处理步骤：" class="headerlink" title="基本处理步骤："></a>基本处理步骤：</h3><h4 id="1-抓取非结构化的资料："><a href="#1-抓取非结构化的资料：" class="headerlink" title="1. 抓取非结构化的资料："></a>1. 抓取非结构化的资料：</h4><ul>
+<li><p>定义资料的来源：<br> 新闻、社群网络、论坛、文献资料（BBC、微博、豆瓣、知乎、各大学术期刊）</p>
+</li>
+<li><p>定义关键字找出相关文章：<br> 白名单：与想要分析的资料相关的一些关键字<br> 黑名单：与白名单相似的，但与要分析的资料无关的干扰项</p>
+</li>
+<li><p>过滤假的信息：<br> 有时我们需要分析留言，评论的内容，而这其中常常参杂着很多（有文章指出大约在16%，有些可能会更多）造假的评论和留言。这些是我们希望尽可能的去避免，去过滤掉的。</p>
 <ul>
-<li>利用只会手表来监测患者的血糖</li>
-<li>利用AI演算法，来计算药剂的注射量，以及生活型态的建议</li>
-<li>并设置论坛（furom）来供病友互相交流，并且提供最新的资讯。</li>
-</ul>
-<h3 id="旧版："><a href="#旧版：" class="headerlink" title="旧版："></a>旧版：</h3><p>⚠️ 面临的问题：</p>
-<ul>
-<li>虽然大部分使用者对降低血糖都有作用，但是少数族裔，和少部分一些人并没有改善</li>
-<li>在论坛中出现了同温层现象，并互相攻击</li>
-<li>有一些人离开了</li>
-</ul>
-<p>上述👆问题的分析：</p>
-<ul>
-<li>问题1：少数族裔没有效果很可能是，他们的资料量太小，没有足够的资料来建立模型，来给这一部分人群提供比较完善的医疗方案。<ul>
-<li>我的一些小困惑 😖<ul>
-<li>差异化的模型？ ？</li>
-<li>所以这种模型要怎么训练？ ？</li>
-<li>是不是只有应用之后才能知道不适合所有人，从而做出差异化的模型？ ？</li>
-<li>前期的数据探索是否能看出一些端倪？ ？</li>
-<li>所以是不是只要数据够多，模型就可以cover这种差异化？ ？ ）</li>
+<li>依内容</li>
+<li>依发布时间（像是一般一个产品发布初期可能会有水军来刷评价）</li>
+<li>依作者</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>问题2：人喜欢看符合自己价值观的</li>
-</ul>
-<p>解决方案：</p>
+<h4 id="2-资料的前处理"><a href="#2-资料的前处理" class="headerlink" title="2. 资料的前处理"></a>2. 资料的前处理</h4><p>目的：转成正规的语句</p>
 <ul>
-<li>问题1：<ul>
-<li>收集更多少数族裔的资料</li>
+<li>格式统一<ul>
+<li>去除格式话的标签</li>
+<li>半形全形的转换</li>
 </ul>
 </li>
-<li>问题2：<ul>
-<li>减少病人接触非主流的报导</li>
-<li>同温层：不按时间次序显示文章和留言；被赞较多的优先</li>
+<li>去除或取代一些数字和符号<ul>
+<li>ε=ε=ε=ε=ε=ε=┌(;￣◇￣)┘：逃跑</li>
+<li>awsl “啊我死了”：太可爱<ul>
+<li>更正一些标点符号</li>
 </ul>
 </li>
-<li>问题3：<ul>
-<li>个性化推荐文章，使用（MAB）</li>
-</ul>
-</li>
-</ul>
-<h3 id="新版："><a href="#新版：" class="headerlink" title="新版："></a>新版：</h3><p>运行结果：基本解决上述的3个问题</p>
-<p>⚠️ 但是！一些人产生了担忧：</p>
-<ul>
-<li>文章遭到公司的过滤，替病友决定了什么是该看的文章（家长式领导Paternalism）</li>
-<li>MAB的推荐系统的文章可能对病友造成伤害</li>
-<li>Charlie演算法运作机制不明，缺乏透明度</li>
-</ul>
-<p>团队的反馈：</p>
-<ul>
-<li>文章的过滤基于的是医学专业的考量</li>
-<li>MAB推荐的文章都是经过认证的</li>
-<li>AI虽有黑箱的问题，但是人类专家得出结论，一般病人也不会询问医生是如何判断的。</li>
-</ul>
-<h2 id="资料分析的陷阱"><a href="#资料分析的陷阱" class="headerlink" title="资料分析的陷阱"></a>资料分析的陷阱</h2><p>资料分析常常被拿来误导：</p>
-<ul>
-<li>误导可以带来利益</li>
-<li>误导的信息传播的特别快</li>
-<li>人类的同理心可以产生完美的误导</li>
-</ul>
-<p>误导产生的面向：</p>
-<ul>
-<li>人本身：<ul>
-<li>人本身跟偏爱和自己立场一致的文章：很可能并不会看完文章的，判断对错，只是因为立场一致而就进一步传播</li>
-<li>同温层的产生</li>
-</ul>
-</li>
-<li>机器的诱导：<ul>
-<li>演算法为增加用户黏性而一直只推荐用户喜欢的文章：使用户只能看到和自己立场相似的文章，而看不到客观的事实。</li>
-</ul>
-</li>
-<li>结果的呈现：<ul>
-<li>修改图表的scale从而达到表达自己想要的结论的目的。</li>
-<li>相关性常被误导为因果关系</li>
-<li>观察的偏差：观察角度的不同可能会有完全不一样的结论（如何避免呢？？？）</li>
+<li>有些帖文没有标点</li>
+<li>中文英文对于语句结束的定义不同</li>
+<li>去除引号和一些无法处理的符号</li>
 </ul>
 </li>
 </ul>
+<h4 id="3-断句断词"><a href="#3-断句断词" class="headerlink" title="3. 断句断词"></a>3. 断句断词</h4><p>断句的目的：我们可以看一下一篇文章有几个句子，每个句子的长度。通过分析每个句子的长度和复杂度我们可以侧面看出教育水平。</p>
+<p>断词的目的：中文都是以字为单位，但是要分析的话我们需要以词为单位来分析才有意义。</p>
+<p><strong>注：</strong> 我们常常需要根据不同的分析案例来自建词典。（jiebaR提供自己自建词典）因为不同领域的一些专有名词在常用的词典中没有。</p>
+<h4 id="4-去除停用字"><a href="#4-去除停用字" class="headerlink" title="4. 去除停用字"></a>4. 去除停用字</h4><p>断词后去除一些缀词，口头语，感叹词（像是：啊，哦，你，我，他，总之）</p>
+<h4 id="5-根据所需进行分析和应用"><a href="#5-根据所需进行分析和应用" class="headerlink" title="5. 根据所需进行分析和应用"></a>5. 根据所需进行分析和应用</h4><ul>
+<li>文字云</li>
+<li>知识图谱</li>
+<li>对话机器人</li>
+<li>……</li>
+</ul>
+<h3 id="需要的工具套件："><a href="#需要的工具套件：" class="headerlink" title="需要的工具套件："></a>需要的工具套件：</h3><ol>
+<li>内容来源：guternbergr 古腾堡计划，提供很多书籍电子版资料，可以用guternbergr套件以编号直接下载书籍</li>
+<li>自己爬取内容：现成的爬虫工具，自己写爬虫</li>
+<li>基本文字处理：dplyr、tidytext 包</li>
+<li>断词模组：<pre><code>1. 中文：jiebar包
+    基本断词
+    自定义使用者断词词典
+    自定义停用词
+ 2. 英文：Stanford Cote NLP</code></pre></li>
+<li>词性标注模组：<br>  中文：Stanford Cote NLP<br>  英文：Stanford Cote NLP</li>
+</ol>
 
         </div>
 
@@ -311,7 +283,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/courses/"># courses</a>
+                        <a href="/tags/data-science/"># data science</a>
                     
                         
                 </span>
@@ -324,10 +296,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/豆瓣爬蟲-1｜selenium 的介紹/">豆瓣爬虫-1｜selenium 的介紹</a>
+                <a class="prev" rel="prev" href="/文字探勘-1｜資料倫理與分析陷阱/">文字探勘-1｜资料伦理与分析陷阱</a>
             
             
-            <a class="next" rel="next" href="/文字探勘-0｜基本流程/">文字探勘-0｜基本流程</a>
+            <a class="next" rel="next" href="/MongoDB 的載入/">MongoDB 的载入</a>
             
         </section>
 

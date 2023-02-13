@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Skye">
+
+
+
+
+
+<title>pandas 数据分析实例 | Skye&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">SiQing&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">SiQing&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">pandas 数据分析实例</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Skye</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 1, 2020&nbsp;&nbsp;23:02:05</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Technological/">Technological</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>话不多说就开始吧！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment"># 读入 csv 文字档</span></span><br><span class="line">gapminder = pd.read_csv(<span class="string">'gapminder.csv'</span>)</span><br><span class="line"><span class="comment"># 读取excel档 gapminder = pd.read_excel(xlsx_file)</span></span><br><span class="line">print(type(gapminder))</span><br><span class="line">gapminder.head()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gapminder.shape <span class="comment"># 查看 DataFrame有几行几列</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>(1704, 6)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gapminder.columns <span class="comment"># 查看 DataFrame 的变数函数</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Index([&apos;country&apos;, &apos;continent&apos;, &apos;year&apos;, &apos;lifeExp&apos;, &apos;pop&apos;, &apos;gdpPercap&apos;], dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gapminder.index <span class="comment"># 查看 DataFrame 的列索引信息</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>RangeIndex(start=0, stop=1704, step=1)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gapminder.info() <span class="comment"># 查看 DataFrame 的详细信息</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 1704 entries, 0 to 1703
+Data columns (total 6 columns):
+country      1704 non-null object
+continent    1704 non-null object
+year         1704 non-null int64
+lifeExp      1704 non-null float64
+pop          1704 non-null int64
+gdpPercap    1704 non-null float64
+dtypes: float64(2), int64(2), object(2)
+memory usage: 80.0+ KB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gapminder.describe() <span class="comment"># 查看 DataFrame 各变量的描述统计</span></span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>count</td>
+      <td>1704.00000</td>
+      <td>1704.000000</td>
+      <td>1.704000e+03</td>
+      <td>1704.000000</td>
+    </tr>
+    <tr>
+      <td>mean</td>
+      <td>1979.50000</td>
+      <td>59.474439</td>
+      <td>2.960121e+07</td>
+      <td>7215.327081</td>
+    </tr>
+    <tr>
+      <td>std</td>
+      <td>17.26533</td>
+      <td>12.917107</td>
+      <td>1.061579e+08</td>
+      <td>9857.454543</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>1952.00000</td>
+      <td>23.599000</td>
+      <td>6.001100e+04</td>
+      <td>241.165877</td>
+    </tr>
+    <tr>
+      <td>25%</td>
+      <td>1965.75000</td>
+      <td>48.198000</td>
+      <td>2.793664e+06</td>
+      <td>1202.060309</td>
+    </tr>
+    <tr>
+      <td>50%</td>
+      <td>1979.50000</td>
+      <td>60.712500</td>
+      <td>7.023596e+06</td>
+      <td>3531.846989</td>
+    </tr>
+    <tr>
+      <td>75%</td>
+      <td>1993.25000</td>
+      <td>70.845500</td>
+      <td>1.958522e+07</td>
+      <td>9325.462346</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>2007.00000</td>
+      <td>82.603000</td>
+      <td>1.318683e+09</td>
+      <td>113523.132900</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>数据整理</p>
+<p>dplyr的基本功能是六个能与SQL查询语法相互呼应的函数：</p>
+<p>filter（）函数：SQL查询中的where描述</p>
+<p>select（）函数：SQL查询中的select描述</p>
+<p>mutate（）函数：SQL查询中的衍生字段描述</p>
+<p>arrange（）函数：SQL查询中的order by描述</p>
+<p>summarise（）函数：SQL查询中的聚合函数描述</p>
+<p>group_by（）函数：SQL查询中的group by描述</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 撰写布尔判断条件将符合条件的观测值从数据框中筛选出，</span></span><br><span class="line"><span class="comment"># 实践filter（）函数的功能，例如选出China：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'country'</span>] == <span class="string">'China'</span>]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>288</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>44.00000</td>
+      <td>556263527</td>
+      <td>400.448611</td>
+    </tr>
+    <tr>
+      <td>289</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>50.54896</td>
+      <td>637408000</td>
+      <td>575.987001</td>
+    </tr>
+    <tr>
+      <td>290</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>44.50136</td>
+      <td>665770000</td>
+      <td>487.674018</td>
+    </tr>
+    <tr>
+      <td>291</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>58.38112</td>
+      <td>754550000</td>
+      <td>612.705693</td>
+    </tr>
+    <tr>
+      <td>292</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>63.11888</td>
+      <td>862030000</td>
+      <td>676.900092</td>
+    </tr>
+    <tr>
+      <td>293</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1977</td>
+      <td>63.96736</td>
+      <td>943455000</td>
+      <td>741.237470</td>
+    </tr>
+    <tr>
+      <td>294</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1982</td>
+      <td>65.52500</td>
+      <td>1000281000</td>
+      <td>962.421380</td>
+    </tr>
+    <tr>
+      <td>295</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1987</td>
+      <td>67.27400</td>
+      <td>1084035000</td>
+      <td>1378.904018</td>
+    </tr>
+    <tr>
+      <td>296</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1992</td>
+      <td>68.69000</td>
+      <td>1164970000</td>
+      <td>1655.784158</td>
+    </tr>
+    <tr>
+      <td>297</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1997</td>
+      <td>70.42600</td>
+      <td>1230075000</td>
+      <td>2289.234136</td>
+    </tr>
+    <tr>
+      <td>298</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>2002</td>
+      <td>72.02800</td>
+      <td>1280400000</td>
+      <td>3119.280896</td>
+    </tr>
+    <tr>
+      <td>299</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>72.96100</td>
+      <td>1318683096</td>
+      <td>4959.114854</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果有多个条件，可以使用|或&amp;amp;符号连接，例如选出2007年的亚洲国家(用.iloc选择显示前几行)：</span></span><br><span class="line">gapminder[(gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>) &amp; (gapminder[<span class="string">'continent'</span>] == <span class="string">'Asia'</span>)].iloc[<span class="number">0</span>:<span class="number">10</span>,]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>11</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>43.828</td>
+      <td>31889923</td>
+      <td>974.580338</td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>Bahrain</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>75.635</td>
+      <td>708573</td>
+      <td>29796.048340</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>Bangladesh</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>64.062</td>
+      <td>150448339</td>
+      <td>1391.253792</td>
+    </tr>
+    <tr>
+      <td>227</td>
+      <td>Cambodia</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>59.723</td>
+      <td>14131858</td>
+      <td>1713.778686</td>
+    </tr>
+    <tr>
+      <td>299</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>72.961</td>
+      <td>1318683096</td>
+      <td>4959.114854</td>
+    </tr>
+    <tr>
+      <td>671</td>
+      <td>Hong Kong, China</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>82.208</td>
+      <td>6980412</td>
+      <td>39724.978670</td>
+    </tr>
+    <tr>
+      <td>707</td>
+      <td>India</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>64.698</td>
+      <td>1110396331</td>
+      <td>2452.210407</td>
+    </tr>
+    <tr>
+      <td>719</td>
+      <td>Indonesia</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>70.650</td>
+      <td>223547000</td>
+      <td>3540.651564</td>
+    </tr>
+    <tr>
+      <td>731</td>
+      <td>Iran</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>70.964</td>
+      <td>69453570</td>
+      <td>11605.714490</td>
+    </tr>
+    <tr>
+      <td>743</td>
+      <td>Iraq</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>59.545</td>
+      <td>27499638</td>
+      <td>4471.061906</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用list标注变数名称，可以将所需变数的一列提取出来</span></span><br><span class="line">gapminder[[<span class="string">'country'</span>, <span class="string">'continent'</span>]].iloc[<span class="number">0</span>:<span class="number">10</span>,]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接撰写衍生公式并为变数命名即可实践mutate（）函数的功能，搭配apply（）与lambda函数将公式应用到每一个观测值，</span></span><br><span class="line"><span class="comment"># 例如新增一个country_abb变数撷取原本country变数的前三个英文字母：</span></span><br><span class="line">gapminder[<span class="string">'country_abb'</span>] = gapminder[<span class="string">'country'</span>].apply(<span class="keyword">lambda</span> x: x[:<span class="number">3</span>])</span><br><span class="line">gapminder.iloc[<span class="number">1</span>:<span class="number">10</span>,]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+      <th>country_abb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1977</td>
+      <td>38.438</td>
+      <td>14880372</td>
+      <td>786.113360</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1982</td>
+      <td>39.854</td>
+      <td>12881816</td>
+      <td>978.011439</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1987</td>
+      <td>40.822</td>
+      <td>13867957</td>
+      <td>852.395945</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1992</td>
+      <td>41.674</td>
+      <td>16317921</td>
+      <td>649.341395</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1997</td>
+      <td>41.763</td>
+      <td>22227415</td>
+      <td>635.341351</td>
+      <td>Afg</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 呼叫DataFrame不同的聚合函数针对字段计算，实践summarise（）函数的功能，例如计算2007年全球人口总数：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>][[<span class="string">'pop'</span>]].sum()</span><br></pre></td></tr></table></figure>
+
+<pre><code>pop    6251013179
+dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者计算 2007 年全球的平均寿命、平均财富：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>][[<span class="string">'lifeExp'</span>, <span class="string">'gdpPercap'</span>]].mean()</span><br></pre></td></tr></table></figure>
+
+<pre><code>lifeExp         67.007423
+gdpPercap    11680.071820
+dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最后用 DataFrame的 groupby 方法实践 group_by（）函数的功能，例如计算2007年各洲人口总数：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(by = <span class="string">'continent'</span>)[<span class="string">'pop'</span>].sum()</span><br></pre></td></tr></table></figure>
+
+<pre><code>continent
+Africa       929539692
+Americas     898871184
+Asia        3811953827
+Europe       586098529
+Oceania       24549947
+Name: pop, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者计算2007年各洲平均寿命、平均财富：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(by = <span class="string">'continent'</span>)[<span class="string">'lifeExp'</span>, <span class="string">'gdpPercap'</span>].mean()</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lifeExp</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Africa</td>
+      <td>54.806038</td>
+      <td>3089.032605</td>
+    </tr>
+    <tr>
+      <td>Americas</td>
+      <td>73.608120</td>
+      <td>11003.031625</td>
+    </tr>
+    <tr>
+      <td>Asia</td>
+      <td>70.728485</td>
+      <td>12473.026870</td>
+    </tr>
+    <tr>
+      <td>Europe</td>
+      <td>77.648600</td>
+      <td>25054.481636</td>
+    </tr>
+    <tr>
+      <td>Oceania</td>
+      <td>80.719500</td>
+      <td>29810.188275</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>Python可视化的基石是Matplotlib套件的pyplot，她的绘图哲学是将图形的元素，例如坐标轴、线、点或者文字用不同的方法一一拼凑起来，优点是绘图的弹性非常高，缺点则是对于初学者的门坎略高。为了解决这个问题，pandas套件将matplotlib.pyplot的基础图形包装起来成为一个方法，让使用者只要呼叫df.plot（）就能够便利地绘图，可以选择的图形种类相当丰富，只要指定kind =参数即可：<br>line’：线图（预设）<br>‘bar’：垂直直方图<br>‘barh’：水平直方图<br>‘hist’：直方图<br>‘box’：盒须图<br>‘scatter’：散布图<br>‘hexbin’：hexbin plot<br>…etc.<br>在作图之前我们加载matplotlib.pyplot与seaborn，前者是绘图的基础套件，后者是让图形的样式美观：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可视化时间与数值：线图</span></span><br><span class="line"><span class="comment"># 将中国数据筛选出来并绘制从1952年至2007年的人口变化：</span></span><br><span class="line"></span><br><span class="line">gapminder_cn = gapminder[gapminder[<span class="string">'country'</span>] == <span class="string">'China'</span>]</span><br><span class="line">gapminder_cn[[<span class="string">'year'</span>, <span class="string">'pop'</span>]].plot(kind = <span class="string">'line'</span>, x = <span class="string">'year'</span>, y = <span class="string">'pop'</span>, title = <span class="string">'Pop vs. Year in China'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212022335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者将中国、日本、韩国数据筛选出来并绘制从1952年至2007年的平均寿命变化</span></span><br><span class="line"></span><br><span class="line">gapminder_northasia = gapminder.loc[gapminder[<span class="string">'country'</span>].isin([<span class="string">'China'</span>, <span class="string">'Japan'</span>, <span class="string">'Korea, Rep.'</span>])]</span><br><span class="line">gapminder_northasia_pivot = gapminder_northasia.pivot_table(values = <span class="string">'lifeExp'</span>, columns = <span class="string">'country'</span>, index = <span class="string">'year'</span>)</span><br><span class="line">gapminder_northasia_pivot.plot(title = <span class="string">'Life Expectancies in North Asia'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212035991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化数值的分布：直方图、盒须图</span></span><br><span class="line"><span class="comment"># 将2007年数据筛选出来并以三个子图（subplots）绘制人口数、平均寿命与人均所得的直方图：</span></span><br><span class="line"></span><br><span class="line">gapminder_2007 = gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>]</span><br><span class="line">gapminder_2007[[<span class="string">'pop'</span>, <span class="string">'gdpPercap'</span>, <span class="string">'lifeExp'</span>]].hist(bins = <span class="number">15</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212057731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者绘制人均所得的直方图：</span></span><br><span class="line">gapminder_2007[[<span class="string">'gdpPercap'</span>]].plot(kind = <span class="string">'hist'</span>, title = <span class="string">'GDP Per Capita in 2007'</span>, legend = <span class="literal">False</span>, bins = <span class="number">15</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212111699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者将人均所得直方图依照不同洲别以不同颜色绘制：</span></span><br><span class="line">gapminder_continent_pivot = gapminder_2007.pivot_table(values = <span class="string">'gdpPercap'</span>, columns = <span class="string">'continent'</span>, index = <span class="string">'country'</span>)</span><br><span class="line">gapminder_continent_pivot.plot(kind = <span class="string">'hist'</span>, alpha=<span class="number">0.5</span>, bins = <span class="number">20</span>, title = <span class="string">'GDP Per Capita by Continent'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212122981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者依照不同洲别，将人均所得以盒须图绘制</span></span><br><span class="line">gapminder_continent_pivot.plot(kind = <span class="string">'box'</span>, title = <span class="string">'GDP Per Capita by Continent'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212137412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化相关性：散点图、hexbin plot</span></span><br><span class="line">gapminder_2007.plot(kind = <span class="string">'scatter'</span>, x = <span class="string">'gdpPercap'</span>, y = <span class="string">'lifeExp'</span>, title = <span class="string">'Wealth vs. Health in 2007'</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment"># 改为hexbin plot</span></span><br><span class="line">gapminder_2007.plot(kind = <span class="string">'hexbin'</span>, x = <span class="string">'gdpPercap'</span>, y = <span class="string">'lifeExp'</span>, title = <span class="string">'Wealth vs. Health in 2007'</span>, gridsize = <span class="number">20</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212149915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/2020040121221111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化排名：直方图</span></span><br><span class="line"><span class="comment"># 绘制2007年各洲的人口总数：</span></span><br><span class="line">summarized_df = gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(by = <span class="string">'continent'</span>)[<span class="string">'pop'</span>].sum()</span><br><span class="line">summarized_df.plot(kind = <span class="string">'bar'</span>, rot = <span class="number">0</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2020040121222379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 或者绘制2007年各洲平均寿命、平均财富：</span></span><br><span class="line">mean_df = gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(<span class="string">'continent'</span>)[<span class="string">'lifeExp'</span>,<span class="string">'gdpPercap'</span>].mean()</span><br><span class="line">mean_df = mean_df.reset_index()</span><br><span class="line"></span><br><span class="line">mean_df.head()</span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">ax.plot(mean_df[<span class="string">'continent'</span>], mean_df[<span class="string">'lifeExp'</span>], <span class="string">'-'</span>, label = <span class="string">'lifeExp'</span>)</span><br><span class="line">ax2 = ax.twinx()</span><br><span class="line">ax2.plot(mean_df[<span class="string">'continent'</span>], mean_df[<span class="string">'gdpPercap'</span>], <span class="string">'-r'</span>, label = <span class="string">'gdpPercap'</span>)</span><br><span class="line">ax.set_ylim(<span class="number">40</span>,<span class="number">100</span>)</span><br><span class="line">ax2.set_ylim(<span class="number">0</span>, <span class="number">50000</span>)</span><br><span class="line">ax.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">ax2.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401223604799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Skye</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/data-science/"># data science</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/选专业/">研究生申请自传</a>
+            
+            
+            <a class="next" rel="next" href="/article/">Github 图床测试</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Skye | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

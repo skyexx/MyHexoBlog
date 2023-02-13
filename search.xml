@@ -209,6 +209,13 @@
 <h3 id="AUC："><a href="#AUC：" class="headerlink" title="AUC："></a>AUC：</h3><p>AUC也就是ROC曲线下方的面积，AUC值越大的分类器，正确率越高。</p>
 <p>根据 AUC 比较模型的效果也就是：Random Forest(0.844) &gt; GBM(0.836) &gt; SVM(0.795)</p>
 ]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>data science</tag>
+        <tag>details</tag>
+      </tags>
   </entry>
   <entry>
     <title>文字探勘-2｜断词以及tidy形式的转换</title>
@@ -394,8 +401,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>lxml</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
@@ -460,8 +467,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>selenium</tag>
         <tag>spider</tag>
+        <tag>selenium</tag>
       </tags>
   </entry>
   <entry>
@@ -558,6 +565,71 @@
       </tags>
   </entry>
   <entry>
+    <title>文字探勘-0｜基本流程</title>
+    <url>/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-0%EF%BD%9C%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="文字挖掘的基本流程："><a href="#文字挖掘的基本流程：" class="headerlink" title="文字挖掘的基本流程："></a>文字挖掘的基本流程：</h3><p><img src="https://img-blog.csdnimg.cn/20200305221146509.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="基本处理步骤："><a href="#基本处理步骤：" class="headerlink" title="基本处理步骤："></a>基本处理步骤：</h3><h4 id="1-抓取非结构化的资料："><a href="#1-抓取非结构化的资料：" class="headerlink" title="1. 抓取非结构化的资料："></a>1. 抓取非结构化的资料：</h4><ul>
+<li><p>定义资料的来源：<br> 新闻、社群网络、论坛、文献资料（BBC、微博、豆瓣、知乎、各大学术期刊）</p>
+</li>
+<li><p>定义关键字找出相关文章：<br> 白名单：与想要分析的资料相关的一些关键字<br> 黑名单：与白名单相似的，但与要分析的资料无关的干扰项</p>
+</li>
+<li><p>过滤假的信息：<br> 有时我们需要分析留言，评论的内容，而这其中常常参杂着很多（有文章指出大约在16%，有些可能会更多）造假的评论和留言。这些是我们希望尽可能的去避免，去过滤掉的。</p>
+<ul>
+<li>依内容</li>
+<li>依发布时间（像是一般一个产品发布初期可能会有水军来刷评价）</li>
+<li>依作者</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-资料的前处理"><a href="#2-资料的前处理" class="headerlink" title="2. 资料的前处理"></a>2. 资料的前处理</h4><p>目的：转成正规的语句</p>
+<ul>
+<li>格式统一<ul>
+<li>去除格式话的标签</li>
+<li>半形全形的转换</li>
+</ul>
+</li>
+<li>去除或取代一些数字和符号<ul>
+<li>ε=ε=ε=ε=ε=ε=┌(;￣◇￣)┘：逃跑</li>
+<li>awsl “啊我死了”：太可爱<ul>
+<li>更正一些标点符号</li>
+</ul>
+</li>
+<li>有些帖文没有标点</li>
+<li>中文英文对于语句结束的定义不同</li>
+<li>去除引号和一些无法处理的符号</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-断句断词"><a href="#3-断句断词" class="headerlink" title="3. 断句断词"></a>3. 断句断词</h4><p>断句的目的：我们可以看一下一篇文章有几个句子，每个句子的长度。通过分析每个句子的长度和复杂度我们可以侧面看出教育水平。</p>
+<p>断词的目的：中文都是以字为单位，但是要分析的话我们需要以词为单位来分析才有意义。</p>
+<p><strong>注：</strong> 我们常常需要根据不同的分析案例来自建词典。（jiebaR提供自己自建词典）因为不同领域的一些专有名词在常用的词典中没有。</p>
+<h4 id="4-去除停用字"><a href="#4-去除停用字" class="headerlink" title="4. 去除停用字"></a>4. 去除停用字</h4><p>断词后去除一些缀词，口头语，感叹词（像是：啊，哦，你，我，他，总之）</p>
+<h4 id="5-根据所需进行分析和应用"><a href="#5-根据所需进行分析和应用" class="headerlink" title="5. 根据所需进行分析和应用"></a>5. 根据所需进行分析和应用</h4><ul>
+<li>文字云</li>
+<li>知识图谱</li>
+<li>对话机器人</li>
+<li>……</li>
+</ul>
+<h3 id="需要的工具套件："><a href="#需要的工具套件：" class="headerlink" title="需要的工具套件："></a>需要的工具套件：</h3><ol>
+<li>内容来源：guternbergr 古腾堡计划，提供很多书籍电子版资料，可以用guternbergr套件以编号直接下载书籍</li>
+<li>自己爬取内容：现成的爬虫工具，自己写爬虫</li>
+<li>基本文字处理：dplyr、tidytext 包</li>
+<li>断词模组：<pre><code>1. 中文：jiebar包
+    基本断词
+    自定义使用者断词词典
+    自定义停用词
+ 2. 英文：Stanford Cote NLP</code></pre></li>
+<li>词性标注模组：<br>  中文：Stanford Cote NLP<br>  英文：Stanford Cote NLP</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>data science</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MongoDB 的载入</title>
     <url>/MongoDB%20%E7%9A%84%E8%BC%89%E5%85%A5/</url>
     <content><![CDATA[<h2 id="安装-MongoDB"><a href="#安装-MongoDB" class="headerlink" title="安装 MongoDB"></a>安装 MongoDB</h2><p>安裝 Mongo3.2</p>
@@ -584,6 +656,791 @@
 ]]></content>
   </entry>
   <entry>
+    <title>pandas 数据分析实例</title>
+    <url>/pandas%20%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/</url>
+    <content><![CDATA[<p>话不多说就开始吧！</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment"># 读入 csv 文字档</span></span><br><span class="line">gapminder = pd.read_csv(<span class="string">'gapminder.csv'</span>)</span><br><span class="line"><span class="comment"># 读取excel档 gapminder = pd.read_excel(xlsx_file)</span></span><br><span class="line">print(type(gapminder))</span><br><span class="line">gapminder.head()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</code></pre><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gapminder.shape <span class="comment"># 查看 DataFrame有几行几列</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>(1704, 6)</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gapminder.columns <span class="comment"># 查看 DataFrame 的变数函数</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Index([&apos;country&apos;, &apos;continent&apos;, &apos;year&apos;, &apos;lifeExp&apos;, &apos;pop&apos;, &apos;gdpPercap&apos;], dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gapminder.index <span class="comment"># 查看 DataFrame 的列索引信息</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>RangeIndex(start=0, stop=1704, step=1)</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gapminder.info() <span class="comment"># 查看 DataFrame 的详细信息</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 1704 entries, 0 to 1703
+Data columns (total 6 columns):
+country      1704 non-null object
+continent    1704 non-null object
+year         1704 non-null int64
+lifeExp      1704 non-null float64
+pop          1704 non-null int64
+gdpPercap    1704 non-null float64
+dtypes: float64(2), int64(2), object(2)
+memory usage: 80.0+ KB</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gapminder.describe() <span class="comment"># 查看 DataFrame 各变量的描述统计</span></span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>count</td>
+      <td>1704.00000</td>
+      <td>1704.000000</td>
+      <td>1.704000e+03</td>
+      <td>1704.000000</td>
+    </tr>
+    <tr>
+      <td>mean</td>
+      <td>1979.50000</td>
+      <td>59.474439</td>
+      <td>2.960121e+07</td>
+      <td>7215.327081</td>
+    </tr>
+    <tr>
+      <td>std</td>
+      <td>17.26533</td>
+      <td>12.917107</td>
+      <td>1.061579e+08</td>
+      <td>9857.454543</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>1952.00000</td>
+      <td>23.599000</td>
+      <td>6.001100e+04</td>
+      <td>241.165877</td>
+    </tr>
+    <tr>
+      <td>25%</td>
+      <td>1965.75000</td>
+      <td>48.198000</td>
+      <td>2.793664e+06</td>
+      <td>1202.060309</td>
+    </tr>
+    <tr>
+      <td>50%</td>
+      <td>1979.50000</td>
+      <td>60.712500</td>
+      <td>7.023596e+06</td>
+      <td>3531.846989</td>
+    </tr>
+    <tr>
+      <td>75%</td>
+      <td>1993.25000</td>
+      <td>70.845500</td>
+      <td>1.958522e+07</td>
+      <td>9325.462346</td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>2007.00000</td>
+      <td>82.603000</td>
+      <td>1.318683e+09</td>
+      <td>113523.132900</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>数据整理</p>
+<p>dplyr的基本功能是六个能与SQL查询语法相互呼应的函数：</p>
+<p>filter（）函数：SQL查询中的where描述</p>
+<p>select（）函数：SQL查询中的select描述</p>
+<p>mutate（）函数：SQL查询中的衍生字段描述</p>
+<p>arrange（）函数：SQL查询中的order by描述</p>
+<p>summarise（）函数：SQL查询中的聚合函数描述</p>
+<p>group_by（）函数：SQL查询中的group by描述</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 撰写布尔判断条件将符合条件的观测值从数据框中筛选出，</span></span><br><span class="line"><span class="comment"># 实践filter（）函数的功能，例如选出China：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'country'</span>] == <span class="string">'China'</span>]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>288</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>44.00000</td>
+      <td>556263527</td>
+      <td>400.448611</td>
+    </tr>
+    <tr>
+      <td>289</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>50.54896</td>
+      <td>637408000</td>
+      <td>575.987001</td>
+    </tr>
+    <tr>
+      <td>290</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>44.50136</td>
+      <td>665770000</td>
+      <td>487.674018</td>
+    </tr>
+    <tr>
+      <td>291</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>58.38112</td>
+      <td>754550000</td>
+      <td>612.705693</td>
+    </tr>
+    <tr>
+      <td>292</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>63.11888</td>
+      <td>862030000</td>
+      <td>676.900092</td>
+    </tr>
+    <tr>
+      <td>293</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1977</td>
+      <td>63.96736</td>
+      <td>943455000</td>
+      <td>741.237470</td>
+    </tr>
+    <tr>
+      <td>294</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1982</td>
+      <td>65.52500</td>
+      <td>1000281000</td>
+      <td>962.421380</td>
+    </tr>
+    <tr>
+      <td>295</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1987</td>
+      <td>67.27400</td>
+      <td>1084035000</td>
+      <td>1378.904018</td>
+    </tr>
+    <tr>
+      <td>296</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1992</td>
+      <td>68.69000</td>
+      <td>1164970000</td>
+      <td>1655.784158</td>
+    </tr>
+    <tr>
+      <td>297</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>1997</td>
+      <td>70.42600</td>
+      <td>1230075000</td>
+      <td>2289.234136</td>
+    </tr>
+    <tr>
+      <td>298</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>2002</td>
+      <td>72.02800</td>
+      <td>1280400000</td>
+      <td>3119.280896</td>
+    </tr>
+    <tr>
+      <td>299</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>72.96100</td>
+      <td>1318683096</td>
+      <td>4959.114854</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果有多个条件，可以使用|或&amp;amp;符号连接，例如选出2007年的亚洲国家(用.iloc选择显示前几行)：</span></span><br><span class="line">gapminder[(gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>) &amp; (gapminder[<span class="string">'continent'</span>] == <span class="string">'Asia'</span>)].iloc[<span class="number">0</span>:<span class="number">10</span>,]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>11</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>43.828</td>
+      <td>31889923</td>
+      <td>974.580338</td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>Bahrain</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>75.635</td>
+      <td>708573</td>
+      <td>29796.048340</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>Bangladesh</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>64.062</td>
+      <td>150448339</td>
+      <td>1391.253792</td>
+    </tr>
+    <tr>
+      <td>227</td>
+      <td>Cambodia</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>59.723</td>
+      <td>14131858</td>
+      <td>1713.778686</td>
+    </tr>
+    <tr>
+      <td>299</td>
+      <td>China</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>72.961</td>
+      <td>1318683096</td>
+      <td>4959.114854</td>
+    </tr>
+    <tr>
+      <td>671</td>
+      <td>Hong Kong, China</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>82.208</td>
+      <td>6980412</td>
+      <td>39724.978670</td>
+    </tr>
+    <tr>
+      <td>707</td>
+      <td>India</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>64.698</td>
+      <td>1110396331</td>
+      <td>2452.210407</td>
+    </tr>
+    <tr>
+      <td>719</td>
+      <td>Indonesia</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>70.650</td>
+      <td>223547000</td>
+      <td>3540.651564</td>
+    </tr>
+    <tr>
+      <td>731</td>
+      <td>Iran</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>70.964</td>
+      <td>69453570</td>
+      <td>11605.714490</td>
+    </tr>
+    <tr>
+      <td>743</td>
+      <td>Iraq</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>59.545</td>
+      <td>27499638</td>
+      <td>4471.061906</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 用list标注变数名称，可以将所需变数的一列提取出来</span></span><br><span class="line">gapminder[[<span class="string">'country'</span>, <span class="string">'continent'</span>]].iloc[<span class="number">0</span>:<span class="number">10</span>,]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直接撰写衍生公式并为变数命名即可实践mutate（）函数的功能，搭配apply（）与lambda函数将公式应用到每一个观测值，</span></span><br><span class="line"><span class="comment"># 例如新增一个country_abb变数撷取原本country变数的前三个英文字母：</span></span><br><span class="line">gapminder[<span class="string">'country_abb'</span>] = gapminder[<span class="string">'country'</span>].apply(<span class="keyword">lambda</span> x: x[:<span class="number">3</span>])</span><br><span class="line">gapminder.iloc[<span class="number">1</span>:<span class="number">10</span>,]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+      <th>country_abb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1977</td>
+      <td>38.438</td>
+      <td>14880372</td>
+      <td>786.113360</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1982</td>
+      <td>39.854</td>
+      <td>12881816</td>
+      <td>978.011439</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1987</td>
+      <td>40.822</td>
+      <td>13867957</td>
+      <td>852.395945</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1992</td>
+      <td>41.674</td>
+      <td>16317921</td>
+      <td>649.341395</td>
+      <td>Afg</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1997</td>
+      <td>41.763</td>
+      <td>22227415</td>
+      <td>635.341351</td>
+      <td>Afg</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 呼叫DataFrame不同的聚合函数针对字段计算，实践summarise（）函数的功能，例如计算2007年全球人口总数：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>][[<span class="string">'pop'</span>]].sum()</span><br></pre></td></tr></table></figure>
+
+<pre><code>pop    6251013179
+dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者计算 2007 年全球的平均寿命、平均财富：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>][[<span class="string">'lifeExp'</span>, <span class="string">'gdpPercap'</span>]].mean()</span><br></pre></td></tr></table></figure>
+
+<pre><code>lifeExp         67.007423
+gdpPercap    11680.071820
+dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 最后用 DataFrame的 groupby 方法实践 group_by（）函数的功能，例如计算2007年各洲人口总数：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(by = <span class="string">'continent'</span>)[<span class="string">'pop'</span>].sum()</span><br></pre></td></tr></table></figure>
+
+<pre><code>continent
+Africa       929539692
+Americas     898871184
+Asia        3811953827
+Europe       586098529
+Oceania       24549947
+Name: pop, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者计算2007年各洲平均寿命、平均财富：</span></span><br><span class="line">gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(by = <span class="string">'continent'</span>)[<span class="string">'lifeExp'</span>, <span class="string">'gdpPercap'</span>].mean()</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lifeExp</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Africa</td>
+      <td>54.806038</td>
+      <td>3089.032605</td>
+    </tr>
+    <tr>
+      <td>Americas</td>
+      <td>73.608120</td>
+      <td>11003.031625</td>
+    </tr>
+    <tr>
+      <td>Asia</td>
+      <td>70.728485</td>
+      <td>12473.026870</td>
+    </tr>
+    <tr>
+      <td>Europe</td>
+      <td>77.648600</td>
+      <td>25054.481636</td>
+    </tr>
+    <tr>
+      <td>Oceania</td>
+      <td>80.719500</td>
+      <td>29810.188275</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>Python可视化的基石是Matplotlib套件的pyplot，她的绘图哲学是将图形的元素，例如坐标轴、线、点或者文字用不同的方法一一拼凑起来，优点是绘图的弹性非常高，缺点则是对于初学者的门坎略高。为了解决这个问题，pandas套件将matplotlib.pyplot的基础图形包装起来成为一个方法，让使用者只要呼叫df.plot（）就能够便利地绘图，可以选择的图形种类相当丰富，只要指定kind =参数即可：<br>line’：线图（预设）<br>‘bar’：垂直直方图<br>‘barh’：水平直方图<br>‘hist’：直方图<br>‘box’：盒须图<br>‘scatter’：散布图<br>‘hexbin’：hexbin plot<br>…etc.<br>在作图之前我们加载matplotlib.pyplot与seaborn，前者是绘图的基础套件，后者是让图形的样式美观：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可视化时间与数值：线图</span></span><br><span class="line"><span class="comment"># 将中国数据筛选出来并绘制从1952年至2007年的人口变化：</span></span><br><span class="line"></span><br><span class="line">gapminder_cn = gapminder[gapminder[<span class="string">'country'</span>] == <span class="string">'China'</span>]</span><br><span class="line">gapminder_cn[[<span class="string">'year'</span>, <span class="string">'pop'</span>]].plot(kind = <span class="string">'line'</span>, x = <span class="string">'year'</span>, y = <span class="string">'pop'</span>, title = <span class="string">'Pop vs. Year in China'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212022335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者将中国、日本、韩国数据筛选出来并绘制从1952年至2007年的平均寿命变化</span></span><br><span class="line"></span><br><span class="line">gapminder_northasia = gapminder.loc[gapminder[<span class="string">'country'</span>].isin([<span class="string">'China'</span>, <span class="string">'Japan'</span>, <span class="string">'Korea, Rep.'</span>])]</span><br><span class="line">gapminder_northasia_pivot = gapminder_northasia.pivot_table(values = <span class="string">'lifeExp'</span>, columns = <span class="string">'country'</span>, index = <span class="string">'year'</span>)</span><br><span class="line">gapminder_northasia_pivot.plot(title = <span class="string">'Life Expectancies in North Asia'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212035991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 可视化数值的分布：直方图、盒须图</span></span><br><span class="line"><span class="comment"># 将2007年数据筛选出来并以三个子图（subplots）绘制人口数、平均寿命与人均所得的直方图：</span></span><br><span class="line"></span><br><span class="line">gapminder_2007 = gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>]</span><br><span class="line">gapminder_2007[[<span class="string">'pop'</span>, <span class="string">'gdpPercap'</span>, <span class="string">'lifeExp'</span>]].hist(bins = <span class="number">15</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212057731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者绘制人均所得的直方图：</span></span><br><span class="line">gapminder_2007[[<span class="string">'gdpPercap'</span>]].plot(kind = <span class="string">'hist'</span>, title = <span class="string">'GDP Per Capita in 2007'</span>, legend = <span class="literal">False</span>, bins = <span class="number">15</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212111699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者将人均所得直方图依照不同洲别以不同颜色绘制：</span></span><br><span class="line">gapminder_continent_pivot = gapminder_2007.pivot_table(values = <span class="string">'gdpPercap'</span>, columns = <span class="string">'continent'</span>, index = <span class="string">'country'</span>)</span><br><span class="line">gapminder_continent_pivot.plot(kind = <span class="string">'hist'</span>, alpha=<span class="number">0.5</span>, bins = <span class="number">20</span>, title = <span class="string">'GDP Per Capita by Continent'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212122981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者依照不同洲别，将人均所得以盒须图绘制</span></span><br><span class="line">gapminder_continent_pivot.plot(kind = <span class="string">'box'</span>, title = <span class="string">'GDP Per Capita by Continent'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212137412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 可视化相关性：散点图、hexbin plot</span></span><br><span class="line">gapminder_2007.plot(kind = <span class="string">'scatter'</span>, x = <span class="string">'gdpPercap'</span>, y = <span class="string">'lifeExp'</span>, title = <span class="string">'Wealth vs. Health in 2007'</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment"># 改为hexbin plot</span></span><br><span class="line">gapminder_2007.plot(kind = <span class="string">'hexbin'</span>, x = <span class="string">'gdpPercap'</span>, y = <span class="string">'lifeExp'</span>, title = <span class="string">'Wealth vs. Health in 2007'</span>, gridsize = <span class="number">20</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401212149915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/2020040121221111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 可视化排名：直方图</span></span><br><span class="line"><span class="comment"># 绘制2007年各洲的人口总数：</span></span><br><span class="line">summarized_df = gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(by = <span class="string">'continent'</span>)[<span class="string">'pop'</span>].sum()</span><br><span class="line">summarized_df.plot(kind = <span class="string">'bar'</span>, rot = <span class="number">0</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2020040121222379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 或者绘制2007年各洲平均寿命、平均财富：</span></span><br><span class="line">mean_df = gapminder[gapminder[<span class="string">'year'</span>] == <span class="number">2007</span>].groupby(<span class="string">'continent'</span>)[<span class="string">'lifeExp'</span>,<span class="string">'gdpPercap'</span>].mean()</span><br><span class="line">mean_df = mean_df.reset_index()</span><br><span class="line"></span><br><span class="line">mean_df.head()</span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">ax.plot(mean_df[<span class="string">'continent'</span>], mean_df[<span class="string">'lifeExp'</span>], <span class="string">'-'</span>, label = <span class="string">'lifeExp'</span>)</span><br><span class="line">ax2 = ax.twinx()</span><br><span class="line">ax2.plot(mean_df[<span class="string">'continent'</span>], mean_df[<span class="string">'gdpPercap'</span>], <span class="string">'-r'</span>, label = <span class="string">'gdpPercap'</span>)</span><br><span class="line">ax.set_ylim(<span class="number">40</span>,<span class="number">100</span>)</span><br><span class="line">ax2.set_ylim(<span class="number">0</span>, <span class="number">50000</span>)</span><br><span class="line">ax.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">ax2.legend(loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200401223604799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>data science</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github 图床测试</title>
     <url>/article/</url>
     <content><![CDATA[<h2 id="this-is-test"><a href="#this-is-test" class="headerlink" title="this is test"></a>this is test</h2><p><img src="https://img-blog.csdnimg.cn/20200311110734967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="file"></p>
@@ -593,6 +1450,80 @@
       </categories>
       <tags>
         <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模型的评估：性能量度</title>
+    <url>/%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%84%E4%BC%B0%EF%BC%9A%E6%80%A7%E8%83%BD%E9%87%8F%E5%BA%A6/</url>
+    <content><![CDATA[<p>对学习器的泛化能力的评估需要一套标准，也就是性能量度（performance measure）。使用不同的性能量度往往会导致不同的评判结果，所以<strong>模型的好坏是相对的</strong>。所以什么样的模型是好的不仅取决于算法和数据，还取决于任务需求。不要以为的掉进更复杂更难的模型就一定更好的陷阱。</p>
+<p>回到模型评估</p>
+<h2 id="回归任务"><a href="#回归任务" class="headerlink" title="回归任务"></a>回归任务</h2><p>回归任务中，我们要预测一个连续的值，最常见的就是“均方误差”（MSE）<br><img src="https://img-blog.csdnimg.cn/20200318183918369.png" alt="在这里插入图片描述"></p>
+<h2 id="分类任务"><a href="#分类任务" class="headerlink" title="分类任务"></a>分类任务</h2><h3 id="1、正确率、错误率、-查准率、查全率"><a href="#1、正确率、错误率、-查准率、查全率" class="headerlink" title="1、正确率、错误率、 查准率、查全率"></a>1、正确率、错误率、 查准率、查全率</h3><p>分类任务中，我们需要预测的是离散值，主要用到的几种数据：</p>
+<p><strong>True Positives(TP)</strong>：实际为正例且被分类器分为正例的个数<br><strong>False Positives(FP)</strong>：实际为负例且被分类器分为正例的个数<br><strong>False Negatives(FN)</strong>：实际为正例且被分类器分为负例的个数<br><strong>True Negatives(TN)</strong>：实际为负例且被分类器分为负例的个数<br><strong>TP + FN = P</strong>：实际的正例个数<br><strong>FP + TN = N</strong>：实际的负例个数<br><img src="https://img-blog.csdnimg.cn/20200318195314102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>正确率（accuracy）</strong>:</p>
+<ul>
+<li><strong>accuracy = (TP + TN)/(P + N)</strong><br>看上去有点绕，其实非常简单就是：==分类正确的个数 / 总的样本数==</li>
+</ul>
+<p><strong>错误率（error rate）</strong>: </p>
+<ul>
+<li><strong>error_rate = (FP + FN)/(P + N) = ==1 - accuracy==</strong><br>分类错误的个数除以总的样本数</li>
+</ul>
+<p><strong>查准率/精度（precision）</strong>:</p>
+<ul>
+<li><strong>precision = TP/(TP + FP)</strong><br>正确分为正例的个数除以正确分为正例和错误分为正例的个数之和<br>==预测出正例的有多少正确的==</li>
+</ul>
+<p><strong>查全率/召回率（recall）</strong>: </p>
+<ul>
+<li><strong>recall = TP/(TP + FN) = TP/P</strong><br>正确分为正例的个数除以正例的总数，也称之为灵敏度(sensitive)<br>==预测正确的正例占总正例的比例==</li>
+</ul>
+<p><strong>一般情况下，在一定正确率前提下，要求分类器的召回率尽量高。</strong> </p>
+<p><img src="https://img-blog.csdnimg.cn/20200318190948445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="查准率和查全率"></p>
+<h3 id="2、P-R曲线"><a href="#2、P-R曲线" class="headerlink" title="2、P-R曲线"></a>2、P-R曲线</h3><p>P-R曲线就是：查准率（precision）/ 查全率（recall）的曲线</p>
+<p>根据模型的预测结果（一般可能会是概率）进行排序，将最可能的正样本排在前面，将最不可能的正样本排在后面，按此顺序逐个设定阈值，大于阈值的为正样本，每次计算出当前的P值和R值，如图 。<br><img src="https://img-blog.csdnimg.cn/20200318192033543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>多个模型的P-R曲线的评估遵循：若B包裹住了C，则B优于C。若两条线出现交叉，则根据平衡点（P=R）判断，越高，性能越好。</p>
+<h3 id="3、F1"><a href="#3、F1" class="headerlink" title="3、F1"></a>3、F1</h3><p>P-R值有时会出现矛盾的情况，这样就需要综合考虑他们两，最常见的就是F-Score<br>也就是P-R的调和平均。<br><img src="https://img-blog.csdnimg.cn/20200318193333616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200318193343526.png" alt="在这里插入图片描述"></p>
+<h3 id="4、ROC与AUC"><a href="#4、ROC与AUC" class="headerlink" title="4、ROC与AUC"></a>4、ROC与AUC</h3><p>对于模型的评估一般都是设定一个阈值，大于阈值的为正样本，小于的为负样本。通常在模型训练出来的值若是按概率进行排序的话（[0，1]之间），我们通常会选择0.5作为最初的阈值，其他的与之进行比较。</p>
+<p>分类过程就是在一个排序中找到一个“截断点”（cut point）将样本一分为二。</p>
+<p>根据不同的任务我们会采取不同的策略。像是如果我们的任务更重视“查准率”，那么我们的阈值（threshold）就需要选择较为靠前的位置。若是一个非常重视“查全率”的任务，像是对于传染疾病的筛查，我们就需要将阈值放在比较靠后一点的位置上。</p>
+<h4 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h4><p>所以ROC和P-R的原理之本是一样的，只不过用来比较的值有所不同。ROC用来比较的值是FPR,TPR。<br><img src="https://img-blog.csdnimg.cn/20200318195739703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后我们就会得到一个类似P-R的曲线。评估方式也和P-R曲线相同。<br><img src="https://img-blog.csdnimg.cn/20200318195801930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>ps.当阈值（threshold）取值越多，ROC曲线越平滑。</p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC（Area Under Curve）被定义为ROC曲线下的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。使用AUC值作为评价标准是因为很多时候ROC曲线并不能清晰的说明哪个分类器的效果更好，而作为一个数值，对应AUC更大的分类器效果更好。</p>
+<p>AUC到底是什么呢：首先AUC值是一个概率值，当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的Score值将这个正样本排在负样本前面的概率就是AUC值。当然，AUC值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。</p>
+<h4 id="为什么使用ROC曲线"><a href="#为什么使用ROC曲线" class="headerlink" title="为什么使用ROC曲线"></a>为什么使用ROC曲线</h4><p>ROC曲线有个很好的特性：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。因为在实际应用中的数据集很多情况下都是不平衡的，正样本会远远大于负样本，疑惑反之。二P-R曲线在面对不平衡的的数据集时的表现就不啊太好。<br><img src="https://img-blog.csdnimg.cn/20200318201437796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在上图中，(a)和( c)为ROC曲线，(b)和(d)为Precision-Recall曲线。(a)和(b)展示的是分类其在原始测试集（正负样本分布平衡）的结果，( c)和(d)是将测试集中负样本的数量增加到原来的10倍后，分类器的结果。可以明显的看出，ROC曲线基本保持原貌，而Precision-Recall曲线则变化较大。</p>
+<p>不用担心这些自己要怎么算，怎么找出最好的阈值。R/Python中都有套件，可以帮我们计算不同阈值的得分，然后标出最高分的阈值的值。</p>
+<hr>
+<p>引用连接：</p>
+<p>(Fawcett, 2006)，Fawcett, T. (2006). An introduction to ROC analysis. Pattern recognition letters, 27(8), 861-874.<br><a href="https://my.oschina.net/liangtee/blog/340317" target="_blank" rel="noopener">https://my.oschina.net/liangtee/blog/340317</a><br><a href="https://blog.csdn.net/fzp95/article/details/86491014" target="_blank" rel="noopener">https://blog.csdn.net/fzp95/article/details/86491014</a><br>周志华《机器学习》</p>
+]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>data science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>R｜数据的预处理：数据集的合并</title>
+    <url>/R%EF%BD%9C%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%90%88%E5%B9%B6/</url>
+    <content><![CDATA[<p>合并数据集<br>很多情况下，数据集都不会只有一个文件，但是为了方便后续的处理和分析，在预处理的阶段就会将各个数据集进行合并。<br><img src="https://img-blog.csdnimg.cn/20200227104344935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="1-Inner-Join内连接"><a href="#1-Inner-Join内连接" class="headerlink" title="1. Inner Join内连接"></a>1. Inner Join内连接</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 数据集A</span><br><span class="line">A = data.frame(id=c(1,3,5), A_val=c(&apos;a&apos;,&apos;x&apos;,&apos;c&apos;)) </span><br><span class="line">   id A_val </span><br><span class="line">1  1  a</span><br><span class="line">2  3 x</span><br><span class="line">3  5 c</span><br><span class="line"># 数据集B</span><br><span class="line">B = data.frame(id=c(3,5,6), B_val=c(&apos;x&apos;,&apos;y&apos;,&apos;z&apos;)) </span><br><span class="line">   id B_val </span><br><span class="line">1  3  x</span><br><span class="line">2  5  y</span><br><span class="line">3  6  z</span><br><span class="line"># 函数merge( )通过“id”取交集，所以只剩下 id为3 5的</span><br><span class="line">A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;) A_B</span><br><span class="line">   id A_val B_val </span><br><span class="line">1  3    x     x </span><br><span class="line">2  5    c     y</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Out-Join-外连接"><a href="#2-Out-Join-外连接" class="headerlink" title="2. Out Join 外连接"></a>2. Out Join 外连接</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 通过“id”将B外接导A上</span><br><span class="line">left_A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;, all.x=T)</span><br><span class="line">left_A_B # A left join B</span><br><span class="line">    id A_val B_val </span><br><span class="line">1   1    a    &lt;NA&gt;</span><br><span class="line">2   3    x     x </span><br><span class="line">3   5    c     y</span><br><span class="line"># 通过“id”将A外接导B上</span><br><span class="line">right_A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;, all.y=T) </span><br><span class="line">right_A_B # A right join B</span><br><span class="line">    id A_val B_val </span><br><span class="line">1   3    x     x </span><br><span class="line">2   5    c     y</span><br><span class="line">3   6   &lt;NA&gt;   z</span><br><span class="line"># 通过“id”将AB都保留</span><br><span class="line">full_A_B = merge(x=A, y=B, by.x=&apos;id&apos;, by.y=&apos;id&apos;, all=T) </span><br><span class="line">full_A_B # A full outer join B</span><br><span class="line">    id A_val B_val </span><br><span class="line">1   1    a    &lt;NA&gt; </span><br><span class="line">2   3    x     x </span><br><span class="line">3   5    c     y</span><br><span class="line">4   6   &lt;NA&gt;   z</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Concatenation"><a href="#3-Concatenation" class="headerlink" title="3. Concatenation"></a>3. Concatenation</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 将A B数据集columns的名字改成统一的</span><br><span class="line">colnames(A) = colnames(B) = c(&apos;id&apos;,&apos;val&apos;);</span><br><span class="line"># 然后用rbind()将A B两组数据集通过row合并，B接在A的下面(需要相同的column)</span><br><span class="line">rbind(A,B) # Concatenate vertically</span><br><span class="line">  id val</span><br><span class="line">1 1   a</span><br><span class="line">2 3   x</span><br><span class="line">3 5   c </span><br><span class="line">4 3   x </span><br><span class="line">5 5   y </span><br><span class="line">6 6   z</span><br><span class="line"></span><br><span class="line"># 将A B数据集通过column合并，B接在A的后面</span><br><span class="line">cbind(A,B) # Concatenate horizontally </span><br><span class="line">    id val  id val</span><br><span class="line">1   1   a   3   x </span><br><span class="line">2   3   x   5   y </span><br><span class="line">3   5   c   6   z</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Set-Operation交集"><a href="#4-Set-Operation交集" class="headerlink" title="4. Set Operation交集"></a>4. Set Operation交集</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># A intersect B</span><br><span class="line"> subset(A, (A$id %in% B$id &amp; A$val %in% B$val))</span><br><span class="line">    id val</span><br><span class="line">2   3   x</span><br><span class="line"># A except B</span><br><span class="line"> subset(A, ! (A$id %in% B$id &amp; A$val %in% B$val))</span><br><span class="line">    id val</span><br><span class="line">1   1   a</span><br><span class="line">3   5   c</span><br><span class="line"># B except A</span><br><span class="line"> subset(B, ! (B$id %in% A$id &amp; B$val %in% A$val))</span><br><span class="line">    id val </span><br><span class="line">2   5   y </span><br><span class="line">3   6   z</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-用dplyr包来查找交集"><a href="#5-用dplyr包来查找交集" class="headerlink" title="5. 用dplyr包来查找交集"></a>5. 用dplyr包来查找交集</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># More efficient row/column binding</span></span><br><span class="line">dplyr::bind_rows(A, B); dplyr::bind_cols(A, B)</span><br><span class="line"><span class="comment"># A intersect/union B</span></span><br><span class="line">dplyr::intersect(A, B); dplyr::union(A, B);</span><br><span class="line"><span class="comment"># A except B; B except A</span></span><br><span class="line">dplyr::setdiff(A, B); dplyr::setdiff(B, A)</span><br><span class="line"><span class="comment"># Observation-level set comparison</span></span><br><span class="line">dplyr::setequal(A, B)</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-用SQL语法来合并数据集（sqldf包）"><a href="#6-用SQL语法来合并数据集（sqldf包）" class="headerlink" title="6. 用SQL语法来合并数据集（sqldf包）"></a>6. 用SQL语法来合并数据集（sqldf包）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">library(sqldf)</span><br><span class="line"><span class="comment"># Inner join</span></span><br><span class="line">sqldf('<span class="keyword">select</span> A.id, A.val <span class="keyword">as</span> A_val, B.val <span class="keyword">as</span> B_val <span class="keyword">from</span> A <span class="keyword">inner</span> <span class="keyword">join</span> B <span class="keyword">on</span> A.id = B.id<span class="string">')</span></span><br><span class="line"><span class="string"># Left outer join</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> A.id, A.val <span class="keyword">as</span> A_val, B.val <span class="keyword">as</span> B_val <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B <span class="keyword">on</span> A.id = B.id<span class="string">')</span></span><br><span class="line"><span class="string"># Union</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">union</span> <span class="keyword">select</span> * <span class="keyword">from</span> B<span class="string">')</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">except</span> <span class="keyword">select</span> * <span class="keyword">from</span> B<span class="string">')</span></span><br><span class="line"><span class="string">#     id val </span></span><br><span class="line"><span class="string"># 1   1   a</span></span><br><span class="line"><span class="string"># 2   5   c</span></span><br><span class="line"><span class="string"> sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">intersect</span> <span class="keyword">select</span> * <span class="keyword">from</span> B<span class="string">')</span></span><br><span class="line"><span class="string">#     id val </span></span><br><span class="line"><span class="string"># 1   3   x</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> * <span class="keyword">from</span></span><br><span class="line">(<span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">union</span> <span class="keyword">all</span> <span class="keyword">select</span> * <span class="keyword">from</span> B) <span class="keyword">where</span> <span class="keyword">id</span> &gt; <span class="number">5</span><span class="string">')</span></span><br><span class="line"><span class="string">#     id val </span></span><br><span class="line"><span class="string"># 1   6   z</span></span><br><span class="line"><span class="string">mtcars = data.frame(mtcars);</span></span><br><span class="line"><span class="string">sqldf('</span><span class="keyword">select</span> row_names, mpg, cyl, wt <span class="keyword">from</span> mtcars</span><br><span class="line"><span class="keyword">where</span> row_names <span class="keyword">like</span> <span class="string">"%Toyota%"</span> <span class="string">', row.names=T)</span></span><br><span class="line"><span class="string">#                 mpg cyl wt </span></span><br><span class="line"><span class="string"># Toyota Corolla 33.9 4 1.835 </span></span><br><span class="line"><span class="string"># Toyota Corona 21.5 4 2.465</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Technological</category>
+      </categories>
+      <tags>
+        <tag>data science</tag>
+        <tag>details</tag>
       </tags>
   </entry>
   <entry>
@@ -631,12 +1562,13 @@
         <category>Technological</category>
       </categories>
       <tags>
+        <tag>data science</tag>
         <tag>details</tag>
         <tag>dplyr</tag>
       </tags>
   </entry>
   <entry>
-    <title>R｜数据中缺失值-NA-的处理</title>
+    <title>R｜数据中缺失值NA的处理</title>
     <url>/R%EF%BD%9C%E6%95%B8%E6%93%9A%E4%B8%AD%E7%BC%BA%E5%A4%B1%E5%80%BC-NA-%E7%9A%84%E8%99%95%E7%90%86/</url>
     <content><![CDATA[<p>训练一个机器学习模型，其实大量的时间是花在资料的预处理和探索性资料分析上。尤其是实际中遇到的data都不会太干净，所以花较长的时间来做数据的预处理是很有必要的。</p>
 <p>首先来建立一个简单的数据集</p>
@@ -681,6 +1613,7 @@
         <category>Technological</category>
       </categories>
       <tags>
+        <tag>data science</tag>
         <tag>details</tag>
       </tags>
   </entry>
@@ -769,6 +1702,7 @@
         <category>Technological</category>
       </categories>
       <tags>
+        <tag>data science</tag>
         <tag>regression</tag>
       </tags>
   </entry>

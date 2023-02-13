@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Skye">
+
+
+
+
+
+<title>模型的评估：性能量度 | Skye&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">SiQing&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">SiQing&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/categories">Categories</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                    <a class="menu-item" href="/projects">Projects</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">模型的评估：性能量度</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Skye</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 18, 2020&nbsp;&nbsp;23:02:05</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Technological/">Technological</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>对学习器的泛化能力的评估需要一套标准，也就是性能量度（performance measure）。使用不同的性能量度往往会导致不同的评判结果，所以<strong>模型的好坏是相对的</strong>。所以什么样的模型是好的不仅取决于算法和数据，还取决于任务需求。不要以为的掉进更复杂更难的模型就一定更好的陷阱。</p>
+<p>回到模型评估</p>
+<h2 id="回归任务"><a href="#回归任务" class="headerlink" title="回归任务"></a>回归任务</h2><p>回归任务中，我们要预测一个连续的值，最常见的就是“均方误差”（MSE）<br><img src="https://img-blog.csdnimg.cn/20200318183918369.png" alt="在这里插入图片描述"></p>
+<h2 id="分类任务"><a href="#分类任务" class="headerlink" title="分类任务"></a>分类任务</h2><h3 id="1、正确率、错误率、-查准率、查全率"><a href="#1、正确率、错误率、-查准率、查全率" class="headerlink" title="1、正确率、错误率、 查准率、查全率"></a>1、正确率、错误率、 查准率、查全率</h3><p>分类任务中，我们需要预测的是离散值，主要用到的几种数据：</p>
+<p><strong>True Positives(TP)</strong>：实际为正例且被分类器分为正例的个数<br><strong>False Positives(FP)</strong>：实际为负例且被分类器分为正例的个数<br><strong>False Negatives(FN)</strong>：实际为正例且被分类器分为负例的个数<br><strong>True Negatives(TN)</strong>：实际为负例且被分类器分为负例的个数<br><strong>TP + FN = P</strong>：实际的正例个数<br><strong>FP + TN = N</strong>：实际的负例个数<br><img src="https://img-blog.csdnimg.cn/20200318195314102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>正确率（accuracy）</strong>:</p>
+<ul>
+<li><strong>accuracy = (TP + TN)/(P + N)</strong><br>看上去有点绕，其实非常简单就是：==分类正确的个数 / 总的样本数==</li>
+</ul>
+<p><strong>错误率（error rate）</strong>: </p>
+<ul>
+<li><strong>error_rate = (FP + FN)/(P + N) = ==1 - accuracy==</strong><br>分类错误的个数除以总的样本数</li>
+</ul>
+<p><strong>查准率/精度（precision）</strong>:</p>
+<ul>
+<li><strong>precision = TP/(TP + FP)</strong><br>正确分为正例的个数除以正确分为正例和错误分为正例的个数之和<br>==预测出正例的有多少正确的==</li>
+</ul>
+<p><strong>查全率/召回率（recall）</strong>: </p>
+<ul>
+<li><strong>recall = TP/(TP + FN) = TP/P</strong><br>正确分为正例的个数除以正例的总数，也称之为灵敏度(sensitive)<br>==预测正确的正例占总正例的比例==</li>
+</ul>
+<p><strong>一般情况下，在一定正确率前提下，要求分类器的召回率尽量高。</strong> </p>
+<p><img src="https://img-blog.csdnimg.cn/20200318190948445.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="查准率和查全率"></p>
+<h3 id="2、P-R曲线"><a href="#2、P-R曲线" class="headerlink" title="2、P-R曲线"></a>2、P-R曲线</h3><p>P-R曲线就是：查准率（precision）/ 查全率（recall）的曲线</p>
+<p>根据模型的预测结果（一般可能会是概率）进行排序，将最可能的正样本排在前面，将最不可能的正样本排在后面，按此顺序逐个设定阈值，大于阈值的为正样本，每次计算出当前的P值和R值，如图 。<br><img src="https://img-blog.csdnimg.cn/20200318192033543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>多个模型的P-R曲线的评估遵循：若B包裹住了C，则B优于C。若两条线出现交叉，则根据平衡点（P=R）判断，越高，性能越好。</p>
+<h3 id="3、F1"><a href="#3、F1" class="headerlink" title="3、F1"></a>3、F1</h3><p>P-R值有时会出现矛盾的情况，这样就需要综合考虑他们两，最常见的就是F-Score<br>也就是P-R的调和平均。<br><img src="https://img-blog.csdnimg.cn/20200318193333616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200318193343526.png" alt="在这里插入图片描述"></p>
+<h3 id="4、ROC与AUC"><a href="#4、ROC与AUC" class="headerlink" title="4、ROC与AUC"></a>4、ROC与AUC</h3><p>对于模型的评估一般都是设定一个阈值，大于阈值的为正样本，小于的为负样本。通常在模型训练出来的值若是按概率进行排序的话（[0，1]之间），我们通常会选择0.5作为最初的阈值，其他的与之进行比较。</p>
+<p>分类过程就是在一个排序中找到一个“截断点”（cut point）将样本一分为二。</p>
+<p>根据不同的任务我们会采取不同的策略。像是如果我们的任务更重视“查准率”，那么我们的阈值（threshold）就需要选择较为靠前的位置。若是一个非常重视“查全率”的任务，像是对于传染疾病的筛查，我们就需要将阈值放在比较靠后一点的位置上。</p>
+<h4 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h4><p>所以ROC和P-R的原理之本是一样的，只不过用来比较的值有所不同。ROC用来比较的值是FPR,TPR。<br><img src="https://img-blog.csdnimg.cn/20200318195739703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后我们就会得到一个类似P-R的曲线。评估方式也和P-R曲线相同。<br><img src="https://img-blog.csdnimg.cn/20200318195801930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>ps.当阈值（threshold）取值越多，ROC曲线越平滑。</p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC（Area Under Curve）被定义为ROC曲线下的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于y=x这条直线的上方，所以AUC的取值范围在0.5和1之间。使用AUC值作为评价标准是因为很多时候ROC曲线并不能清晰的说明哪个分类器的效果更好，而作为一个数值，对应AUC更大的分类器效果更好。</p>
+<p>AUC到底是什么呢：首先AUC值是一个概率值，当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的Score值将这个正样本排在负样本前面的概率就是AUC值。当然，AUC值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。</p>
+<h4 id="为什么使用ROC曲线"><a href="#为什么使用ROC曲线" class="headerlink" title="为什么使用ROC曲线"></a>为什么使用ROC曲线</h4><p>ROC曲线有个很好的特性：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。因为在实际应用中的数据集很多情况下都是不平衡的，正样本会远远大于负样本，疑惑反之。二P-R曲线在面对不平衡的的数据集时的表现就不啊太好。<br><img src="https://img-blog.csdnimg.cn/20200318201437796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在上图中，(a)和( c)为ROC曲线，(b)和(d)为Precision-Recall曲线。(a)和(b)展示的是分类其在原始测试集（正负样本分布平衡）的结果，( c)和(d)是将测试集中负样本的数量增加到原来的10倍后，分类器的结果。可以明显的看出，ROC曲线基本保持原貌，而Precision-Recall曲线则变化较大。</p>
+<p>不用担心这些自己要怎么算，怎么找出最好的阈值。R/Python中都有套件，可以帮我们计算不同阈值的得分，然后标出最高分的阈值的值。</p>
+<hr>
+<p>引用连接：</p>
+<p>(Fawcett, 2006)，Fawcett, T. (2006). An introduction to ROC analysis. Pattern recognition letters, 27(8), 861-874.<br><a href="https://my.oschina.net/liangtee/blog/340317" target="_blank" rel="noopener">https://my.oschina.net/liangtee/blog/340317</a><br><a href="https://blog.csdn.net/fzp95/article/details/86491014" target="_blank" rel="noopener">https://blog.csdn.net/fzp95/article/details/86491014</a><br>周志华《机器学习》</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Skye</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/data-science/"># data science</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/article/">Github 图床测试</a>
+            
+            
+            <a class="next" rel="next" href="/R｜数据的预处理：数据集的合并/">R｜数据的预处理：数据集的合并</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Skye | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
