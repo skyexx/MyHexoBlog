@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于工作</title>
+    <url>/%E5%85%B3%E4%BA%8E%E5%B7%A5%E4%BD%9C/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Daily</category>
+      </categories>
+      <tags>
+        <tag>job</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自我剖析</title>
+    <url>/%E8%87%AA%E6%88%91%E5%89%96%E6%9E%90/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Daily</category>
+      </categories>
+      <tags>
+        <tag>job</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>面对焦虑</title>
     <url>/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E9%9D%A2%E5%B0%8D%E7%84%A6%E6%85%AE/</url>
     <content><![CDATA[<p>感觉周围最近抱怨「大环境」的言论甚嚣尘上，自己也难免受此影响，有些焦虑。焦虑的时候读书总不会错的，这里纪录一些最近看到的段落：</p>
@@ -401,8 +423,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>lxml</tag>
         <tag>spider</tag>
+        <tag>lxml</tag>
       </tags>
   </entry>
   <entry>
@@ -467,8 +489,8 @@
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>spider</tag>
         <tag>selenium</tag>
+        <tag>spider</tag>
       </tags>
   </entry>
   <entry>
