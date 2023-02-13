@@ -11,7 +11,7 @@
 
 
 
-<title>分類演算法實作 Titanic disaster dataset | Skye&#39;s Blog</title>
+<title>分类算法实作 Titanic disaster dataset | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">分類演算法實作 Titanic disaster dataset</h1>
+            <h1 class="post-title">分类算法实作 Titanic disaster dataset</h1>
             
                 <div class="post-meta">
                     
@@ -194,99 +194,100 @@
         </header>
 
         <div class="post-content">
-            <h2 id="資料處理流程"><a href="#資料處理流程" class="headerlink" title="資料處理流程"></a>資料處理流程</h2><ol>
-<li>資料前處理<ul>
-<li>簡單的Feature Engineering<ul>
-<li>只保留Cabin的艙位號（前面的字母）。</li>
-<li>把Name中的有一定含義的 title 元素提取出來，並將比較少用的title合併到比較常用的tittle中，建立一個新的類別“Title”</li>
-<li>把姓氏提取出來，創建新的類別“Surname”</li>
+            <p>完整链接：<a href="https://rpubs.com/SiQingYe/751255" target="_blank" rel="noopener">https://rpubs.com/SiQingYe/751255</a></p>
+<h2 id="资料处理流程"><a href="#资料处理流程" class="headerlink" title="资料处理流程"></a>资料处理流程</h2><ol>
+<li>资料前处理<ul>
+<li>简单的Feature Engineering<ul>
+<li>只保留Cabin的舱位号（前面的字母）。</li>
+<li>把Name中的有一定含义的 title 元素提取出来，并将比较少用的title合并到比较常用的tittle中，建立一个新的类别“Title”</li>
+<li>把姓氏提取出来，创建新的类别“Surname”</li>
 </ul>
 </li>
 <li>Missing Data<ul>
 <li>NA值 &amp; 空白值</li>
 </ul>
 </li>
-<li>減少資料量<ul>
-<li>屬性的篩選：刪掉不要的屬性</li>
+<li>减少资料量<ul>
+<li>属性的筛选：删掉不要的属性</li>
 </ul>
 </li>
-<li>正規化處理</li>
+<li>正规化处理</li>
 </ul>
 </li>
 <li>模型的建立<ul>
-<li>隨機森林（Random Forest）</li>
+<li>随机森林（Random Forest）</li>
 <li>SVM（Support Vector Machines）</li>
 <li>GBM（Gradient Boosting Machine）</li>
 </ul>
 </li>
-<li>模型的解釋</li>
-<li>預測及分析<ul>
-<li>混淆矩陣</li>
+<li>模型的解释</li>
+<li>预测及分析<ul>
+<li>混淆矩阵</li>
 <li>ROC</li>
 <li>AUC</li>
 </ul>
 </li>
 </ol>
-<h2 id="資料前處理"><a href="#資料前處理" class="headerlink" title="資料前處理"></a>資料前處理</h2><h3 id="簡單的Feature-Engineering："><a href="#簡單的Feature-Engineering：" class="headerlink" title="簡單的Feature Engineering："></a>簡單的Feature Engineering：</h3><ul>
-<li>只保留Cabin的艙位號（前面的字母）。</li>
-<li>把Name中的有一定含義的 title 元素提取出來，並將比較少用的title合併到比較常用的tittle中，建立一個新的類別“Title”</li>
-<li>把姓氏提取出來，創建新的類別“Surname”<br><img src="https://img-blog.csdnimg.cn/20210630161713992.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="Missing-data："><a href="#Missing-data：" class="headerlink" title="Missing data："></a>Missing data：</h3></li>
+<h2 id="资料前处理"><a href="#资料前处理" class="headerlink" title="资料前处理"></a>资料前处理</h2><h3 id="简单的Feature-Engineering："><a href="#简单的Feature-Engineering：" class="headerlink" title="简单的Feature Engineering："></a>简单的Feature Engineering：</h3><ul>
+<li>只保留Cabin的舱位号（前面的字母）。</li>
+<li>把Name中的有一定含义的 title 元素提取出来，并将比较少用的title合并到比较常用的tittle中，建立一个新的类别“Title”</li>
+<li>把姓氏提取出来，创建新的类别“Surname”<br><img src="https://img-blog.csdnimg.cn/20210630161713992.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="Missing-data："><a href="#Missing-data：" class="headerlink" title="Missing data："></a>Missing data：</h3></li>
 </ul>
-<p>NA值主要來自Age和Cabin（Survived的缺失值，是test中填補的NA）</p>
+<p>NA值主要来自Age和Cabin（Survived的缺失值，是test中填补的NA）</p>
 <p><img src="https://img-blog.csdnimg.cn/20210630162043986.png#pic_center" alt="在这里插入图片描述"></p>
-<pre><code>方法：這邊我們選擇用mice填補Age和Fare的缺失值
+<pre><code>方法：这边我们选择用mice填补Age和Fare的缺失值
 
-查看填補之後的結果：</code></pre><p><img src="https://img-blog.csdnimg.cn/20210630162117560.png" alt="在这里插入图片描述"></p>
-<p>空值：只來自Embarked</p>
+查看填补之后的结果：</code></pre><p><img src="https://img-blog.csdnimg.cn/20210630162117560.png" alt="在这里插入图片描述"></p>
+<p>空值：只来自Embarked</p>
 <p>  <img src="https://img-blog.csdnimg.cn/20210630162218181.png" alt="在这里插入图片描述"></p>
-<pre><code>查看Embarked的類別及各個類別的資料筆數，選擇資料筆數最的類別（“S”）填補填補到Embarked的空值中</code></pre><p><img src="https://img-blog.csdnimg.cn/20210630162440826.png" alt="在这里插入图片描述"></p>
-<h3 id="減少資料量："><a href="#減少資料量：" class="headerlink" title="減少資料量："></a>減少資料量：</h3><p>屬性的篩選：刪掉不要的屬性</p>
+<pre><code>查看Embarked的类别及各个类别的资料笔数，选择资料笔数最的类别（“S”）填补填补到Embarked的空值中</code></pre><p><img src="https://img-blog.csdnimg.cn/20210630162440826.png" alt="在这里插入图片描述"></p>
+<h3 id="减少资料量："><a href="#减少资料量：" class="headerlink" title="减少资料量："></a>减少资料量：</h3><p>属性的筛选：删掉不要的属性</p>
 <ul>
-<li>Name &amp; Surname：類別太多了，並且沒有什麼特別的用途。</li>
-<li>Ticket：裡面都是一些隨機的數字，沒有特多含義，並且是多值屬性不好處理。</li>
-<li>Cabin：有太多的NA值，並且為類別變數不好填充，如果給一個Ncabin的類別，會使得屬性非常unbalance。</li>
-<li>PassengerId：只是一個序列號，沒有太多的含義。<img src="https://img-blog.csdnimg.cn/2021063016251447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="Data-正規化："><a href="#Data-正規化：" class="headerlink" title="Data 正規化："></a>Data 正規化：</h3></li>
+<li>Name &amp; Surname：类别太多了，并且没有什么特别的用途。</li>
+<li>Ticket：里面都是一些随机的数字，没有特多含义，并且是多值属性不好处理。</li>
+<li>Cabin：有太多的NA值，并且为类别变数不好填充，如果给一个Ncabin的类别，会使得属性非常unbalance。</li>
+<li>PassengerId：只是一个序列号，没有太多的含义。 <img src="https://img-blog.csdnimg.cn/2021063016251447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h3 id="Data-正规化："><a href="#Data-正规化：" class="headerlink" title="Data 正规化："></a>Data 正规化：</h3></li>
 </ul>
-<p>數值變量的range沒有特別的大，所以沒有做特別的正規化處理</p>
-<h2 id="模型的建立"><a href="#模型的建立" class="headerlink" title="模型的建立"></a>模型的建立</h2><p>因為test 資料集中沒有“Survuved”欄位，所以我們從train資料集中分出30%作為驗證集。</p>
-<p>剩下的train中的70%資料用於訓練模型，訓練中也會做cross-validation。</p>
-<p>下面建立了三個模型：</p>
+<p>数值变量的range没有特别的大，所以没有做特别的正规化处理</p>
+<h2 id="模型的建立"><a href="#模型的建立" class="headerlink" title="模型的建立"></a>模型的建立</h2><p>因为test 资料集中没有“Survuved”栏位，所以我们从train资料集中分出30%作为验证集。</p>
+<p>剩下的train中的70%资料用于训练模型，训练中也会做cross-validation。</p>
+<p>下面建立了三个模型：</p>
 <ul>
-<li>隨機森林（Random Forest）</li>
+<li>随机森林（Random Forest）</li>
 <li>SVM（Support Vector Machines）</li>
 <li>GBM（Gradient Boosting Machine）</li>
-<li>⚠️ KNN一般可以作為分類的baseline</li>
+<li>⚠️ KNN一般可以作为分类的baseline</li>
 </ul>
-<h3 id="隨機森林："><a href="#隨機森林：" class="headerlink" title="隨機森林："></a>隨機森林：</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 隨機森林</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">titanic_rf &lt;- train(factor(Survived) ~ ., data=train_data, method=<span class="string">'rf'</span>, </span><br><span class="line">										trControl=trainControl(method=<span class="string">"cv"</span>, number=<span class="number">5</span>))</span><br><span class="line">titanic_rf</span><br><span class="line">plot(titanic_rf)</span><br></pre></td></tr></table></figure>
+<h3 id="随机森林："><a href="#随机森林：" class="headerlink" title="随机森林："></a>随机森林：</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 随机森林</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">titanic_rf &lt;- train(factor(Survived) ~ ., data=train_data, method=<span class="string">'rf'</span>, </span><br><span class="line">										trControl=trainControl(method=<span class="string">"cv"</span>, number=<span class="number">5</span>))</span><br><span class="line">titanic_rf</span><br><span class="line">plot(titanic_rf)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/20210630162556173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我們可以看出選擇出的最好的模型是mtry = 3的時候。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210630162556173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以看出选择出的最好的模型是mtry = 3的时候。</p>
 <h3 id="SVM："><a href="#SVM：" class="headerlink" title="SVM："></a>SVM：</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SVM</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">titanic_svm &lt;- train(factor(Survived) ~., data=SVMtrain_data, method=<span class="string">'svmRadial'</span>, preProcess= c(<span class="string">'center'</span>, <span class="string">'scale'</span>), </span><br><span class="line">                     trControl= trainControl(method=<span class="string">"cv"</span>, number=<span class="number">5</span>, classProbs = <span class="literal">T</span>))</span><br><span class="line">titanic_svm</span><br><span class="line">plot(titanic_svm</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/20210630162643796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我們可以看出最好的模型是 sigma=0.2828，C=0.25的時候。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210630162643796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以看出最好的模型是 sigma=0.2828，C=0.25的时候。</p>
 <h3 id="GBM："><a href="#GBM：" class="headerlink" title="GBM："></a>GBM：</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># (GBM) model</span></span><br><span class="line">set.seed(<span class="number">100</span>)</span><br><span class="line">titanic_gbm &lt;- train(factor(Survived) ~., data=train_data, method=<span class="string">'gbm'</span>, preProcess= c(<span class="string">'center'</span>, <span class="string">'scale'</span>), </span><br><span class="line">                     trControl=trainControl(method=<span class="string">"cv"</span>, number=<span class="number">7</span>), verbose=<span class="literal">FALSE</span>)</span><br><span class="line">print(titanic_gbm)</span><br><span class="line">plot(titanic_gbm)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/20210630162715791.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我們可以看出GBM選出的最好的模型是n.trees=200，且深度為3 interaction.depth = 3的模型。</p>
-<h2 id="模型的解釋"><a href="#模型的解釋" class="headerlink" title="模型的解釋"></a>模型的解釋</h2><p>這裡直接利用<code>library(&quot;DALEX&quot;)</code>包的解釋函數對三個模型進行解釋性分析</p>
-<h3 id="累積殘差分佈："><a href="#累積殘差分佈：" class="headerlink" title="累積殘差分佈："></a>累積殘差分佈：</h3><p><img src="https://img-blog.csdnimg.cn/20210630162745616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>由上圖我們可以看，綠色的線在最上方，也就是SVM中大部分的樣本殘差都比較大。而紅色的線是RF模型，它的大部分的樣本殘差都比較小。可以看出樹的模型的殘差線對於SVM這類的模型都要來的比較小一些。</p>
-<h3 id="變數重要性分析："><a href="#變數重要性分析：" class="headerlink" title="變數重要性分析："></a>變數重要性分析：</h3><p><img src="https://img-blog.csdnimg.cn/20210630162825232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看出三個模型中的變數重要性的排序基本上是一樣的。</p>
-<h2 id="測試訓練好的模型並分析結果"><a href="#測試訓練好的模型並分析結果" class="headerlink" title="測試訓練好的模型並分析結果"></a>測試訓練好的模型並分析結果</h2><p>我們用之前從train的資料集中分出的valid資料來做各個模型的測試</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用不同的已經訓練好的模型分類預測：</span></span><br><span class="line">rf_probs = predict(titanic_rf,valid_feature,type = <span class="string">"prob"</span>) <span class="comment"># 訓練集中的預測情形</span></span><br><span class="line">svm_probs = predict(titanic_svm,valid_feature,type = <span class="string">"prob"</span>)</span><br><span class="line">gbm_probs = predict(titanic_gbm,valid_feature,type = <span class="string">"prob"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210630162715791.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我们可以看出GBM选出的最好的模型是n.trees=200，且深度为3 interaction.depth = 3的模型。</p>
+<h2 id="模型的解释"><a href="#模型的解释" class="headerlink" title="模型的解释"></a>模型的解释</h2><p>这里直接利用<code>library(&quot;DALEX&quot;)</code>包的解释函数对三个模型进行解释性分析</p>
+<h3 id="累积残差分布："><a href="#累积残差分布：" class="headerlink" title="累积残差分布："></a>累积残差分布：</h3><p><img src="https://img-blog.csdnimg.cn/20210630162745616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>由上图我们可以看，绿色的线在最上方，也就是SVM中大部分的样本残差都比较大。而红色的线是RF模型，它的大部分的样本残差都比较小。可以看出树的模型的残差线对于SVM这类的模型都要来的比较小一些。</p>
+<h3 id="变数重要性分析："><a href="#变数重要性分析：" class="headerlink" title="变数重要性分析："></a>变数重要性分析：</h3><p><img src="https://img-blog.csdnimg.cn/20210630162825232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看出三个模型中的变数重要性的排序基本上是一样的。</p>
+<h2 id="测试训练好的模型并分析结果"><a href="#测试训练好的模型并分析结果" class="headerlink" title="测试训练好的模型并分析结果"></a>测试训练好的模型并分析结果</h2><p>我们用之前从train的资料集中分出的valid资料来做各个模型的测试</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用不同的已经训练好的模型分类预测：</span></span><br><span class="line">rf_probs = predict(titanic_rf,valid_feature,type = <span class="string">"prob"</span>) <span class="comment"># 训练集中的预测情形</span></span><br><span class="line">svm_probs = predict(titanic_svm,valid_feature,type = <span class="string">"prob"</span>)</span><br><span class="line">gbm_probs = predict(titanic_gbm,valid_feature,type = <span class="string">"prob"</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="預測出來的結果（這邊僅以Random-Forrest的處理過程為例）："><a href="#預測出來的結果（這邊僅以Random-Forrest的處理過程為例）：" class="headerlink" title="預測出來的結果（這邊僅以Random Forrest的處理過程為例）："></a>預測出來的結果（這邊僅以Random Forrest的處理過程為例）：</h3><p>如圖：<br><img src="https://img-blog.csdnimg.cn/20210630162927787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看訓練集的預測情形</span></span><br><span class="line">rf_summaryvalid &lt;- rf_validDataPred %&gt;% </span><br><span class="line">  filter(yes &gt; <span class="number">0.5</span>) %&gt;%                           <span class="comment"># yes 為預測存活下來的機率</span></span><br><span class="line">  summarise(count = n(), </span><br><span class="line">            accuracy_rate = mean(Survived))              <span class="comment">#  統計預測存活下來的人數與實際比較的準確率</span></span><br><span class="line"></span><br><span class="line">rf_summaryvalid</span><br><span class="line"><span class="comment"># count  accuracy_rate</span></span><br><span class="line"><span class="comment"># 106	 0.6981132</span></span><br></pre></td></tr></table></figure>
+<h3 id="预测出来的结果（这边仅以Random-Forrest的处理过程为例）："><a href="#预测出来的结果（这边仅以Random-Forrest的处理过程为例）：" class="headerlink" title="预测出来的结果（这边仅以Random Forrest的处理过程为例）："></a>预测出来的结果（这边仅以Random Forrest的处理过程为例）：</h3><p>如图：<br><img src="https://img-blog.csdnimg.cn/20210630162927787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看训练集的预测情形</span></span><br><span class="line">rf_summaryvalid &lt;- rf_validDataPred %&gt;% </span><br><span class="line">  filter(yes &gt; <span class="number">0.5</span>) %&gt;%                           <span class="comment"># yes 为预测存活下来的机率</span></span><br><span class="line">  summarise(count = n(), </span><br><span class="line">            accuracy_rate = mean(Survived))              <span class="comment">#  统计预测存活下来的人数与实际比较的准确率</span></span><br><span class="line"></span><br><span class="line">rf_summaryvalid</span><br><span class="line"><span class="comment"># count  accuracy_rate</span></span><br><span class="line"><span class="comment"># 106	 0.6981132</span></span><br></pre></td></tr></table></figure>
 
-<p>我們將是否存活的機率的門檻設置為0.5，我們可以看到計算出來的準確率為：0.6981132</p>
-<p>我們想了解不同門檻值的預測情況，所以就先粗略切了[0,0.5,0.55,0.6,0.65,0.7,0.8,1]這些區間來看看，是否有更好的門檻值設定。</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看測試集分類機率在不同門檻值下的預測情況</span></span><br><span class="line">rf_summaryvalidCut &lt;- rf_validDataPred %&gt;% </span><br><span class="line">  <span class="comment"># 看不同的分類機率做區間查看其準確率</span></span><br><span class="line">  mutate(interval = cut(yes,breaks = c(<span class="number">0</span>,<span class="number">0.5</span>,<span class="number">0.55</span>,<span class="number">0.6</span>,<span class="number">0.65</span>,<span class="number">0.7</span>,<span class="number">0.8</span>,<span class="number">1</span>),include.lowest = <span class="literal">T</span>)) %&gt;%  </span><br><span class="line">  group_by(interval) %&gt;%</span><br><span class="line">  summarise(count = n(), </span><br><span class="line">            accuracy_rate = mean(Survived))</span><br><span class="line"></span><br><span class="line">rf_summaryvalidCut</span><br></pre></td></tr></table></figure>
+<p>我们将是否存活的机率的门槛设置为0.5，我们可以看到计算出来的准确率为：0.6981132</p>
+<p>我们想了解不同门槛值的预测情况，所以就先粗略切了[0,0.5,0.55,0.6,0.65,0.7,0.8,1]这些区间来看看，是否有更好的门槛值设定。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看测试集分类机率在不同门槛值下的预测情况</span></span><br><span class="line">rf_summaryvalidCut &lt;- rf_validDataPred %&gt;% </span><br><span class="line">  <span class="comment"># 看不同的分类机率做区间查看其准确率</span></span><br><span class="line">  mutate(interval = cut(yes,breaks = c(<span class="number">0</span>,<span class="number">0.5</span>,<span class="number">0.55</span>,<span class="number">0.6</span>,<span class="number">0.65</span>,<span class="number">0.7</span>,<span class="number">0.8</span>,<span class="number">1</span>),include.lowest = <span class="literal">T</span>)) %&gt;%  </span><br><span class="line">  group_by(interval) %&gt;%</span><br><span class="line">  summarise(count = n(), </span><br><span class="line">            accuracy_rate = mean(Survived))</span><br><span class="line"></span><br><span class="line">rf_summaryvalidCut</span><br></pre></td></tr></table></figure>
 
-<p>根據下表的分佈情況似乎切在0.8左右會更好<br><img src="https://img-blog.csdnimg.cn/20210630163015754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="混淆矩陣-："><a href="#混淆矩陣-：" class="headerlink" title="混淆矩陣 ："></a><strong>混淆矩陣 ：</strong></h3><p>那麼我將預測結果依照分類機率大於0.8當成1來建立混淆矩陣，並對三個模型都建立了混淆矩陣來進行對比：<img src="https://img-blog.csdnimg.cn/20210630163057830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看出三個模型：</p>
+<p>根据下表的分布情况似乎切在0.8左右会更好<br><img src="https://img-blog.csdnimg.cn/20210630163015754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="混淆矩阵-："><a href="#混淆矩阵-：" class="headerlink" title="混淆矩阵 ："></a><strong>混淆矩阵 ：</strong></h3><p>那么我将预测结果依照分类机率大于0.8当成1来建立混淆矩阵，并对三个模型都建立了混淆矩阵来进行对比：<img src="https://img-blog.csdnimg.cn/20210630163057830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看出三个模型：</p>
 <ul>
-<li><p>預測的準確率（Accuracy）以及F1 Score 最高的都是 Random Forrest</p>
+<li><p>预测的准确率（Accuracy）以及F1 Score 最高的都是 Random Forrest</p>
 </li>
-<li><p>三個模型主要犯的都是FN（false negative）的錯誤，既將實際存活的人判斷為了死亡。</p>
+<li><p>三个模型主要犯的都是FN（false negative）的错误，既将实际存活的人判断为了死亡。</p>
 </li>
-<li><p>同時我們可以看到SVM在準確率（Accuracy）上和其他兩個模型相差的並不多，但是 F1 Score 的分數就要比其他兩個模型低很多。</p>
+<li><p>同时我们可以看到SVM在准确率（Accuracy）上和其他两个模型相差的并不多，但是 F1 Score 的分数就要比其他两个模型低很多。</p>
 <ul>
 <li><p>Accuracy = (TP+TN)/(TP+FP+FN+TN)</p>
 </li>
@@ -295,28 +296,28 @@
 <li><p>Precision = TP/(TP+FP)</p>
 </li>
 <li><p>F1-score = 2 * Precision * Recall / (Precision + Recall)</p>
-<p>那麼我們可以根據F1-score 的公式看出他是Precision和Recall两者調和平均，而Precision和Recall两者可以比較好的度量分類錯誤的情況。所以我們可以推測出SVM的模型對於FP和FN的判斷不是很好，但對於TP和TN的預測效果還是可以的。</p>
+<p>那么我们可以根据F1-score 的公式看出他是Precision和Recall两者调和平均，而Precision和Recall两者可以比较好的度量分类错误的情况。所以我们可以推测出SVM的模型对于FP和FN的判断不是很好，但对于TP和TN的预测效果还是可以的。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="ROC："><a href="#ROC：" class="headerlink" title="ROC："></a>ROC：</h3><p>上面的混淆矩陣我是透過比較粗糙的方式切出的 0.8 作為門檻來進行三個模型的比較的。</p>
-<p>但是想進一步比較三個模型效果還是應該來看一個更為細緻的ROC曲線和AUC的值。</p>
-<p>紅線為：Random Forest</p>
+<h3 id="ROC："><a href="#ROC：" class="headerlink" title="ROC："></a>ROC：</h3><p>上面的混淆矩阵我是透过比较粗糙的方式切出的 0.8 作为门槛来进行三个模型的比较的。</p>
+<p>但是想进一步比较三个模型效果还是应该来看一个更为细致的ROC曲线和AUC的值。</p>
+<p>红线为：Random Forest</p>
 <ul>
 <li>最佳的切分值：0.835 or 0.737</li>
 </ul>
-<p>綠線為：SVM</p>
+<p>绿线为：SVM</p>
 <ul>
 <li>最佳的切分值：0.808 or 0.798</li>
 </ul>
-<p>藍線為：GBM</p>
+<p>蓝线为：GBM</p>
 <ul>
 <li>最佳的切分值：0.885 or 0.717</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20210630163241918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在ROC的圖中越是靠近左上角的部分他的TPR越大而FPR越小，也就是模型的效果就越好。可以看出藍線和紅線都完全包裹在綠線的外面，所以我們可以認為Random Forest和GBM做為這個資料集的分類器效果都比SVM更好。而Random Forest和GBM的比較我們我們只從ROC不能看出哪一個模型比較好，所以我們需要進一步分析兩個模型的AUC值。</p>
-<h3 id="AUC："><a href="#AUC：" class="headerlink" title="AUC："></a>AUC：</h3><p>AUC也就是ROC曲線下方的面積，AUC值越大的分類器，正確率越高。</p>
-<p>根據 AUC 比較模型的效果也就是：Random Forest(0.844) &gt; GBM(0.836) &gt; SVM(0.795)</p>
+<p><img src="https://img-blog.csdnimg.cn/20210630163241918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NreWV4eA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在ROC的图中越是靠近左上角的部分他的TPR越大而FPR越小，也就是模型的效果就越好。可以看出蓝线和红线都完全包裹在绿线的外面，所以我们可以认为Random Forest和GBM做为这个资料集的分类器效果都比SVM更好。而Random Forest和GBM的比较我们我们只从ROC不能看出哪一个模型比较好，所以我们需要进一步分析两个模型的AUC值。</p>
+<h3 id="AUC："><a href="#AUC：" class="headerlink" title="AUC："></a>AUC：</h3><p>AUC也就是ROC曲线下方的面积，AUC值越大的分类器，正确率越高。</p>
+<p>根据 AUC 比较模型的效果也就是：Random Forest(0.844) &gt; GBM(0.836) &gt; SVM(0.795)</p>
 
         </div>
 
@@ -354,10 +355,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/有寫就好｜重新開始寫作/">有寫就好｜重新開始寫作</a>
+                <a class="prev" rel="prev" href="/有寫就好｜重新開始寫作/">重新开始写作</a>
             
             
-            <a class="next" rel="next" href="/文字探勘-2｜斷詞以及tidy形式的轉換/">文字探勘-2｜斷詞以及tidy形式的轉換</a>
+            <a class="next" rel="next" href="/文字探勘-2｜斷詞以及tidy形式的轉換/">文字探勘-2｜断词以及tidy形式的转换</a>
             
         </section>
 

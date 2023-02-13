@@ -11,7 +11,7 @@
 
 
 
-<title>豆瓣爬蟲-1｜selenium 的介紹 | Skye&#39;s Blog</title>
+<title>豆瓣爬虫-1｜selenium 的介紹 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">豆瓣爬蟲-1｜selenium 的介紹</h1>
+            <h1 class="post-title">豆瓣爬虫-1｜selenium 的介紹</h1>
             
                 <div class="post-meta">
                     
@@ -201,59 +201,59 @@
         </header>
 
         <div class="post-content">
-            <p>紀錄一下寫豆瓣爬蟲的過程和一些心得</p>
-<h2 id="selenium-的介紹"><a href="#selenium-的介紹" class="headerlink" title="selenium 的介紹"></a>selenium 的介紹</h2><p>selenium 是一款自動化測試利器，可以自動化模擬人的瀏覽器操作行為，所以也可以用於網絡爬蟲。<br>不過這裡主要講一講怎樣用selenium來模擬登錄，並持久化cookie，然後用requests爬取頁面。</p>
-<h2 id="selenium-的安装及配置"><a href="#selenium-的安装及配置" class="headerlink" title="selenium 的安装及配置"></a>selenium 的安装及配置</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>直接安裝 selenium </p>
+            <p>纪录一下写豆瓣爬虫的过程和一些心得</p>
+<h2 id="selenium-的介绍"><a href="#selenium-的介绍" class="headerlink" title="selenium 的介绍"></a>selenium 的介绍</h2><p>selenium 是一款自动化测试利器，可以自动化模拟人的浏览器操作行为，所以也可以用于网络爬虫。<br>不过这里主要讲一讲怎样用selenium来模拟登录，并持久化cookie，然后用requests爬取页面。</p>
+<h2 id="selenium-的安装及配置"><a href="#selenium-的安装及配置" class="headerlink" title="selenium 的安装及配置"></a>selenium 的安装及配置</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>直接安装 selenium </p>
 <p><code>pip install selenium</code></p>
-<h3 id="配置-webdriver"><a href="#配置-webdriver" class="headerlink" title="配置 webdriver"></a>配置 webdriver</h3><p>使用 selenium 前我們首先要配置浏览器的 webdriver 這邊主要提供3種常用瀏覽器的配置頁面：</p>
+<h3 id="配置-webdriver"><a href="#配置-webdriver" class="headerlink" title="配置 webdriver"></a>配置 webdriver</h3><p>使用 selenium 前我们首先要配置浏览器的 webdriver 这边主要提供3种常用浏览器的配置页面：</p>
 <ul>
 <li><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="noopener">chrome</a></li>
 <li><a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="noopener">Firefox</a></li>
 <li><a href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/" target="_blank" rel="noopener">Safari</a></li>
 </ul>
-<p>⚠️ 下載前一定要查看一下自己瀏覽器的版本，下載適配版本的 webdriver</p>
-<h3 id="配置-chromedriver（Mac版本）"><a href="#配置-chromedriver（Mac版本）" class="headerlink" title="配置 chromedriver（Mac版本）"></a>配置 chromedriver（Mac版本）</h3><p>以chromedriver為例，在下載好後，我們將 chromedriver 檔案放入到：/usr/local/bin/ 這個路徑下面。</p>
-<p>具體的步驟：打開一個 Finder -&gt; shift+command+G -&gt; 輸入路徑 /usr/local/bin/ 按下return -&gt; 將 chromedriver 放入</p>
-<p>⚠️ 可能會遇到的error：</p>
+<p>⚠️ 下载前一定要查看一下自己浏览器的版本，下载适配版本的 webdriver</p>
+<h3 id="配置-chromedriver（Mac版本）"><a href="#配置-chromedriver（Mac版本）" class="headerlink" title="配置 chromedriver（Mac版本）"></a>配置 chromedriver（Mac版本）</h3><p>以chromedriver为例，在下载好后，我们将 chromedriver 档案放入到：/usr/local/bin/ 这个路径下面。</p>
+<p>具体的步骤：打开一个 Finder -&gt; shift+command+G -&gt; 输入路径 /usr/local/bin/ 按下return -&gt; 将 chromedriver 放入</p>
+<p>⚠️ 可能会遇到的error：</p>
 <p>“chromedriver” cannot be opened because the developer cannot be verified. Unable to launch the chrome browser on Mac OS</p>
-<p>解決辦法可以看這個<a href="https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/" target="_blank" rel="noopener">Blog</a>按照上面的步驟輸入就可以正常運行了。</p>
-<h2 id="selenium-的一些基本用法"><a href="#selenium-的一些基本用法" class="headerlink" title="selenium 的一些基本用法"></a>selenium 的一些基本用法</h2><p>控制瀏覽器</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome() <span class="comment"># 需要調用對應的chromedriver.exe</span></span><br></pre></td></tr></table></figure>
+<p>解决办法可以看这个<a href="https://timonweb.com/misc/fixing-error-chromedriver-cannot-be-opened-because-the-developer-cannot-be-verified-unable-to-launch-the-chrome-browser-on-mac-os/" target="_blank" rel="noopener">Blog</a>按照上面的步骤输入就可以正常运行了。</p>
+<h2 id="selenium-的一些基本用法"><a href="#selenium-的一些基本用法" class="headerlink" title="selenium 的一些基本用法"></a>selenium 的一些基本用法</h2><p>控制浏览器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.Chrome() <span class="comment"># 需要调用对应的chromedriver.exe</span></span><br></pre></td></tr></table></figure>
 
 <p>使用IP代理，通常不需要都行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chrome_option = webdriver.ChromeOptions()</span><br><span class="line">chrome_option.add_argument(<span class="string">'--proxy--server=112.84.55.122:9999'</span>)<span class="comment">#使用代理IP</span></span><br></pre></td></tr></table></figure>
 
-<p>等待網頁加載</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.implicitly_wait(<span class="number">5</span>) <span class="comment">#最長等待5秒，記載完成後自動跳過</span></span><br></pre></td></tr></table></figure>
+<p>等待网页加载</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.implicitly_wait(<span class="number">5</span>) <span class="comment">#最长等待5秒，记载完成后自动跳过</span></span><br></pre></td></tr></table></figure>
 
-<p>打開網頁</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.get(url) <span class="comment"># 需要打開的網頁</span></span><br></pre></td></tr></table></figure>
+<p>打开网页</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.get(url) <span class="comment"># 需要打开的网页</span></span><br></pre></td></tr></table></figure>
 
-<p>點擊網頁節點</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'這裡放網頁xpath路徑'</span>).click()</span><br></pre></td></tr></table></figure>
+<p>点击网页节点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'这里放网页xpath路径'</span>).click()</span><br></pre></td></tr></table></figure>
 
-<p>輸入內容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'這裡放網頁輸入框的xpath路徑'</span>).send_keys(<span class="string">'輸入詞'</span>)</span><br></pre></td></tr></table></figure>
+<p>输入内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'这里放网页输入框的xpath路径'</span>).send_keys(<span class="string">'输入词'</span>)</span><br></pre></td></tr></table></figure>
 
-<p>獲取文本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'網頁中文本xpath路徑'</span>).text <span class="comment">#直接獲取某個具體文本</span></span><br></pre></td></tr></table></figure>
+<p>获取文本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.find_element_by_xpath(<span class="string">'网页中文本xpath路径'</span>).text <span class="comment">#直接获取某个具体文本</span></span><br></pre></td></tr></table></figure>
 
-<p>網頁下拉</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">js=<span class="string">"var q=document.documentElement.scrollTop=10000000"</span> <span class="comment">#滾動條，數值為每次下拉的長度，不疊加，以瀏覽器底部為最大值</span></span><br><span class="line">driver.execute_script(js)<span class="comment">#調用js</span></span><br></pre></td></tr></table></figure>
+<p>网页下拉</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">js=<span class="string">"var q=document.documentElement.scrollTop=10000000"</span> <span class="comment">#滚动条，数值为每次下拉的长度，不叠加，以浏览器底部为最大值</span></span><br><span class="line">driver.execute_script(js)<span class="comment">#调用js</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="使用-selenium-模擬豆瓣登錄的-demo"><a href="#使用-selenium-模擬豆瓣登錄的-demo" class="headerlink" title="使用 selenium 模擬豆瓣登錄的 demo"></a>使用 selenium 模擬豆瓣登錄的 demo</h2><p>因為selenium是模擬人的一個登錄的行為，所以首先要釐清一下我們在做登錄時的一個邏輯：</p>
+<h2 id="使用-selenium-模拟豆瓣登录的-demo"><a href="#使用-selenium-模拟豆瓣登录的-demo" class="headerlink" title="使用 selenium 模拟豆瓣登录的 demo"></a>使用 selenium 模拟豆瓣登录的 demo</h2><p>因为selenium是模拟人的一个登录的行为，所以首先要厘清一下我们在做登录时的一个逻辑：</p>
 <ol>
-<li>打開瀏覽器</li>
-<li>打開url</li>
-<li>在“短信登錄”和“密碼登錄”中選擇“密碼登錄”（因為短信登錄會有經常報錯的問題）</li>
-<li>定位到“帳號”和“密碼”（查看wed的html文檔）</li>
-<li>輸入“帳號”和“密碼”</li>
-<li>點擊“登錄豆瓣”</li>
+<li>打开浏览器</li>
+<li>打开url</li>
+<li>在“短信登录”和“密码登录”中选择“密码登录”（因为短信登录会有经常报错的问题）</li>
+<li>定位到“帐号”和“密码”（查看wed的html文档）</li>
+<li>输入“帐号”和“密码”</li>
+<li>点击“登录豆瓣”</li>
 </ol>
-<p>需要import的模塊主要就是兩個：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下來就是定義登錄的函數</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        登錄，並持久化cookie</span></span><br><span class="line"><span class="string">        :return: None</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="comment"># 豆瓣登錄頁面 URL</span></span><br><span class="line">        login_url = <span class="string">'https://www.douban.com/accounts/login'</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 獲取chrome的配置</span></span><br><span class="line">        opt = webdriver.ChromeOptions()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 在運行的時候不彈出瀏覽器窗口</span></span><br><span class="line">        <span class="keyword">if</span> self.headless:</span><br><span class="line">            opt.set_headless()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 獲取driver對象</span></span><br><span class="line">        self.driver = webdriver.Chrome(chrome_options = opt)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 打開登錄頁面</span></span><br><span class="line">        self.driver.get(login_url)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'[login] opened login page...'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 向瀏覽器發送用戶名、密碼，並點擊登錄按鈕</span></span><br><span class="line">        <span class="comment"># 首先點擊“密碼登錄”，從手機號登陸轉到密碼登錄（因為手機號會區域登陸異常的問題）</span></span><br><span class="line">        self.driver.find_element_by_class_name(<span class="string">'account-tab-account'</span>).click()</span><br><span class="line">        <span class="comment"># 用 clear()清空一下之前的用戶名和密碼，然後用 send_keys()發送一下用戶名和密碼</span></span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'username'</span>).clear()</span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'username'</span>).send_keys(self.user_name)</span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'password'</span>).clear()</span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'password'</span>).send_keys(self.password)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 多次登錄需要輸入驗證碼，這裡給一個手工輸入驗證碼的時間</span></span><br><span class="line">        <span class="comment"># 等待 3 秒鐘</span></span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 定位到“登錄按鈕”超鏈接信息上面的文本元素</span></span><br><span class="line">        self.driver.find_element_by_link_text(<span class="string">'登錄豆瓣'</span>).click()</span><br><span class="line">        print(<span class="string">'[login] submited...'</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 等待 3 秒鐘</span></span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 推出 自動關閉</span></span><br><span class="line">        driver.quit()</span><br></pre></td></tr></table></figure>
+<p>需要import的模块主要就是两个：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来就是定义登录的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        登录，并持久化cookie</span></span><br><span class="line"><span class="string">        :return: None</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="comment"># 豆瓣登录页面 URL</span></span><br><span class="line">        login_url = <span class="string">'https://www.douban.com/accounts/login'</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取chrome的配置</span></span><br><span class="line">        opt = webdriver.ChromeOptions()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 在运行的时候不弹出浏览器窗口</span></span><br><span class="line">        <span class="keyword">if</span> self.headless:</span><br><span class="line">            opt.set_headless()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取driver对象</span></span><br><span class="line">        self.driver = webdriver.Chrome(chrome_options = opt)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 打开登录页面</span></span><br><span class="line">        self.driver.get(login_url)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'[login] opened login page...'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 向浏览器发送用户名、密码，并点击登录按钮</span></span><br><span class="line">        <span class="comment"># 首先点击“密码登录”，从手机号登陆转到密码登录（因为手机号会区域登陆异常的问题）</span></span><br><span class="line">        self.driver.find_element_by_class_name(<span class="string">'account-tab-account'</span>).click()</span><br><span class="line">        <span class="comment"># 用 clear()清空一下之前的用户名和密码，然后用 send_keys()发送一下用户名和密码</span></span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'username'</span>).clear()</span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'username'</span>).send_keys(self.user_name)</span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'password'</span>).clear()</span><br><span class="line">        self.driver.find_element_by_name(<span class="string">'password'</span>).send_keys(self.password)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 多次登录需要输入验证码，这里给一个手工输入验证码的时间</span></span><br><span class="line">        <span class="comment"># 等待 3 秒钟</span></span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 定位到“登录按钮”超链接信息上面的文本元素</span></span><br><span class="line">        self.driver.find_element_by_link_text(<span class="string">'登录豆瓣'</span>).click()</span><br><span class="line">        print(<span class="string">'[login] submited...'</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 等待 3 秒钟</span></span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 推出 自动关闭</span></span><br><span class="line">        driver.quit()</span><br></pre></td></tr></table></figure>
 
-<p>👆就完成了一個簡單的用戶登入的行為</p>
+<p>👆就完成了一个简单的用户登入的行为</p>
 
         </div>
 
@@ -284,9 +284,9 @@
                     
                         <a href="/tags/python/"># python</a>
                     
-                        <a href="/tags/spider/"># spider</a>
-                    
                         <a href="/tags/selenium/"># selenium</a>
+                    
+                        <a href="/tags/spider/"># spider</a>
                     
                         
                 </span>
@@ -299,10 +299,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/豆瓣爬蟲-2｜lxml 的介紹/">豆瓣爬蟲-2｜lxml 的介紹</a>
+                <a class="prev" rel="prev" href="/豆瓣爬蟲-2｜lxml 的介紹/">豆瓣爬虫-2｜lxml 的介绍</a>
             
             
-            <a class="next" rel="next" href="/文字探勘-1｜資料倫理與分析陷阱/">文字探勘-1｜資料倫理與分析陷阱</a>
+            <a class="next" rel="next" href="/文字探勘-1｜資料倫理與分析陷阱/">文字探勘-1｜资料伦理与分析陷阱</a>
             
         </section>
 

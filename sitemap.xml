@@ -2,65 +2,135 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://skyexx.github.io/about/index.html</loc>
-    
-    <lastmod>2023-02-12T08:34:05.401Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E8%AA%AA%E4%BA%BA%E8%A9%B1/</loc>
-    
-    <lastmod>2023-01-02T15:38:13.888Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E9%87%8D%E6%96%B0%E9%96%8B%E5%A7%8B%E5%AF%AB%E4%BD%9C/</loc>
-    
-    <lastmod>2023-01-02T15:38:07.478Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://skyexx.github.io/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E9%9D%A2%E5%B0%8D%E7%84%A6%E6%85%AE/</loc>
     
-    <lastmod>2022-11-12T07:10:43.885Z</lastmod>
+    <lastmod>2023-02-13T05:26:33.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/Titanicdataset/</loc>
+    
+    <lastmod>2023-02-13T05:25:04.031Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://skyexx.github.io/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E8%AA%AA%E6%B8%85%E6%A5%9A%EF%BC%8C%E8%AC%9B%E6%98%8E%E7%99%BD/</loc>
     
-    <lastmod>2022-10-16T13:58:32.606Z</lastmod>
+    <lastmod>2023-02-13T05:22:08.922Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/%E6%9C%89%E9%97%9C%20Data%20mining%20%E7%9A%84%E4%B8%80%E9%BB%9E%E5%8F%8D%E6%80%9D/</loc>
+    
+    <lastmod>2023-02-13T05:21:32.228Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-2%EF%BD%9C%E6%96%B7%E8%A9%9E%E4%BB%A5%E5%8F%8Atidy%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BD%89%E6%8F%9B/</loc>
+    
+    <lastmod>2023-02-13T05:20:56.109Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2-2%EF%BD%9Clxml%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</loc>
+    
+    <lastmod>2023-02-13T05:19:44.278Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://skyexx.github.io/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2-1%EF%BD%9Cselenium%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</loc>
     
-    <lastmod>2022-09-22T23:07:49.766Z</lastmod>
+    <lastmod>2023-02-13T05:19:11.138Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://skyexx.github.io/Books%EF%BD%9C%E3%80%8A%E6%95%B8%E6%93%9A%E6%8C%96%E6%8E%98%E8%88%87%E6%95%B8%E6%93%9A%E5%8C%96%E9%81%8B%E7%87%9F%E5%AF%A6%E6%88%B0%E3%80%8B/</loc>
+    <loc>https://skyexx.github.io/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E8%AA%AA%E4%BA%BA%E8%A9%B1/</loc>
     
-    <lastmod>2022-07-09T07:47:57.318Z</lastmod>
+    <lastmod>2023-02-13T05:18:43.069Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://skyexx.github.io/Pwc%E6%80%A7%E6%A0%BC%E6%B8%AC%E8%A9%A6/</loc>
+    <loc>https://skyexx.github.io/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-1%EF%BD%9C%E8%B3%87%E6%96%99%E5%80%AB%E7%90%86%E8%88%87%E5%88%86%E6%9E%90%E9%99%B7%E9%98%B1/</loc>
     
-    <lastmod>2022-07-09T07:45:33.238Z</lastmod>
+    <lastmod>2023-02-13T05:18:11.453Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/MongoDB%20%E7%9A%84%E8%BC%89%E5%85%A5/</loc>
+    
+    <lastmod>2023-02-13T05:17:40.664Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://skyexx.github.io/article/</loc>
     
-    <lastmod>2022-07-09T05:20:48.125Z</lastmod>
+    <lastmod>2023-02-13T05:16:53.025Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/R%EF%BD%9C%E8%B3%87%E6%96%99%E7%9A%84%E9%A0%90%E8%99%95%E7%90%86%EF%BC%9A%E5%88%AA%E6%B8%9B%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E8%B3%87%E6%96%99/</loc>
+    
+    <lastmod>2023-02-13T05:16:31.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/R%EF%BD%9C%E6%95%B8%E6%93%9A%E4%B8%AD%E7%BC%BA%E5%A4%B1%E5%80%BC-NA-%E7%9A%84%E8%99%95%E7%90%86/</loc>
+    
+    <lastmod>2023-02-13T05:15:50.497Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E9%87%8D%E6%96%B0%E9%96%8B%E5%A7%8B%E5%AF%AB%E4%BD%9C/</loc>
+    
+    <lastmod>2023-02-13T05:15:06.100Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/R%EF%BD%9C%E5%BB%BA%E6%A8%A1%E7%AF%84%E4%BE%8B%E5%88%86%E6%9E%90/</loc>
+    
+    <lastmod>2023-02-13T05:14:25.813Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/Pwc%E6%80%A7%E6%A0%BC%E6%B8%AC%E8%A9%A6/</loc>
+    
+    <lastmod>2023-02-13T05:13:17.098Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/Books%EF%BD%9C%E3%80%8A%E6%95%B8%E6%93%9A%E6%8C%96%E6%8E%98%E8%88%87%E6%95%B8%E6%93%9A%E5%8C%96%E9%81%8B%E7%87%9F%E5%AF%A6%E6%88%B0%E3%80%8B/</loc>
+    
+    <lastmod>2023-02-13T05:12:36.935Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/%E9%80%89%E4%B8%93%E4%B8%9A/</loc>
+    
+    <lastmod>2023-02-13T05:11:17.194Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://skyexx.github.io/about/index.html</loc>
+    
+    <lastmod>2023-02-13T03:00:02.712Z</lastmod>
     
   </url>
   
@@ -68,69 +138,6 @@
     <loc>https://skyexx.github.io/Markdown%E5%85%A5%E9%96%80/</loc>
     
     <lastmod>2022-07-09T05:10:21.647Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/R%EF%BD%9C%E5%BB%BA%E6%A8%A1%E7%AF%84%E4%BE%8B%E5%88%86%E6%9E%90/</loc>
-    
-    <lastmod>2022-07-09T05:09:34.704Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/R%EF%BD%9C%E6%95%B8%E6%93%9A%E4%B8%AD%E7%BC%BA%E5%A4%B1%E5%80%BC-NA-%E7%9A%84%E8%99%95%E7%90%86/</loc>
-    
-    <lastmod>2022-07-09T05:09:21.378Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/R%EF%BD%9C%E8%B3%87%E6%96%99%E7%9A%84%E9%A0%90%E8%99%95%E7%90%86%EF%BC%9A%E5%88%AA%E6%B8%9B%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E8%B3%87%E6%96%99/</loc>
-    
-    <lastmod>2022-07-09T05:09:09.412Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-1%EF%BD%9C%E8%B3%87%E6%96%99%E5%80%AB%E7%90%86%E8%88%87%E5%88%86%E6%9E%90%E9%99%B7%E9%98%B1/</loc>
-    
-    <lastmod>2022-07-09T05:08:59.969Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/%E8%B1%86%E7%93%A3%E7%88%AC%E8%9F%B2-2%EF%BD%9Clxml%20%E7%9A%84%E4%BB%8B%E7%B4%B9/</loc>
-    
-    <lastmod>2022-07-09T05:08:31.943Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-2%EF%BD%9C%E6%96%B7%E8%A9%9E%E4%BB%A5%E5%8F%8Atidy%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BD%89%E6%8F%9B/</loc>
-    
-    <lastmod>2022-07-09T05:08:20.970Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/Titanicdataset/</loc>
-    
-    <lastmod>2021-06-30T08:36:38.775Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/%E6%9C%89%E9%97%9C%20Data%20mining%20%E7%9A%84%E4%B8%80%E9%BB%9E%E5%8F%8D%E6%80%9D/</loc>
-    
-    <lastmod>2021-05-12T17:17:49.792Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://skyexx.github.io/MongoDB%20%E7%9A%84%E8%BC%89%E5%85%A5/</loc>
-    
-    <lastmod>2021-01-15T14:39:19.781Z</lastmod>
     
   </url>
   

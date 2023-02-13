@@ -11,7 +11,7 @@
 
 
 
-<title>豆瓣爬蟲-2｜lxml 的介紹 | Skye&#39;s Blog</title>
+<title>豆瓣爬虫-2｜lxml 的介绍 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">豆瓣爬蟲-2｜lxml 的介紹</h1>
+            <h1 class="post-title">豆瓣爬虫-2｜lxml 的介绍</h1>
             
                 <div class="post-meta">
                     
@@ -201,52 +201,52 @@
         </header>
 
         <div class="post-content">
-            <h2 id="lxml介紹"><a href="#lxml介紹" class="headerlink" title="lxml介紹"></a>lxml介紹</h2><p>Python的lxml 模組是一個非常好用且效能高的HTML、XML解析工具，通過它解析網頁，爬蟲就可以輕鬆的從網頁中提取想要的資料。lxml對XML和HTML都有很好的支援，分別使用 lxml.etree 和 lxml.html 兩個模組。</p>
-<h2 id="使用lxml提取網頁資料的流程"><a href="#使用lxml提取網頁資料的流程" class="headerlink" title="使用lxml提取網頁資料的流程"></a>使用lxml提取網頁資料的流程</h2><p>要從網頁裡面提取資料，使用lxml需要兩步：</p>
+            <h2 id="lxml介绍"><a href="#lxml介绍" class="headerlink" title="lxml介绍"></a>lxml介绍</h2><p>Python的lxml 模组是一个非常好用且效能高的HTML、XML解析工具，通过它解析网页，爬虫就可以轻松的从网页中提取想要的资料。 lxml对XML和HTML都有很好的支援，分别使用 lxml.etree 和 lxml.html 两个模组。</p>
+<h2 id="使用lxml提取网页资料的流程"><a href="#使用lxml提取网页资料的流程" class="headerlink" title="使用lxml提取网页资料的流程"></a>使用lxml提取网页资料的流程</h2><p>要从网页里面提取资料，使用lxml需要两步：</p>
 <ul>
-<li>第一步，用lxml把網頁（或xml）解析成一個DOM樹。這個過程，我們可以選擇<code>etree</code>、<code>etree.HTML</code>和 <code>lxml.html</code>這三種來實現，它們基本類似但又有些許差別。</li>
-<li>第二步，使用<code>xpath</code>遍歷這棵DOM 樹，找到你想要的資料所在的節點並提取。這一步要求我們對xpath規則比較熟練，xpath規則很多，但別怕，我來總結一些常用的套路。</li>
+<li>第一步，用lxml把网页（或xml）解析成一个DOM树。这个过程，我们可以选择<code>etree</code>、<code>etree.HTML</code>和 <code>lxml.html</code>这三种来实现，它们基本类似但又有些许差别。</li>
+<li>第二步，使用<code>xpath</code>遍历这棵DOM 树，找到你想要的资料所在的节点并提取。这一步要求我们对xpath规则比较熟练，xpath规则很多，但别怕，我来总结一些常用的套路。</li>
 </ul>
-<h3 id="生成DOM樹"><a href="#生成DOM樹" class="headerlink" title="生成DOM樹"></a>生成DOM樹</h3><p>上面我們說了，可以有三種方法來把網頁解析成DOM樹，那麼我們選擇哪一種呢？</p>
-<p>一般HTML網頁用這個比較多：<code>etree.HTML(html)</code>和<code>lxml.html(html)</code></p>
-<h4 id="🌟etree-HTML-html"><a href="#🌟etree-HTML-html" class="headerlink" title="🌟etree.HTML(html)"></a>🌟etree.HTML(html)</h4><p>我們可以用這個：<code>print(etree.tostring(etree.HTML(html)).decode())</code>來將dom樹還原成之前的html，我們可以發現<code>etree.HTML()</code>函式會補全html程式碼片段，給它們加上<code>&lt;html&gt;</code>和<code>&lt;body&gt;</code>標籤。</p>
-<h4 id="🌟lxml-html-html"><a href="#🌟lxml-html-html" class="headerlink" title="🌟lxml.html(html)"></a>🌟lxml.html(html)</h4><p>lxml.html是lxml的子模組，它是對etree的封裝，更適合解析html網頁。生成DOM樹的方法有多個：</p>
+<h3 id="生成DOM树"><a href="#生成DOM树" class="headerlink" title="生成DOM树"></a>生成DOM树</h3><p>上面我们说了，可以有三种方法来把网页解析成DOM树，那么我们选择哪一种呢？</p>
+<p>一般HTML网页用这个比较多：<code>etree.HTML(html)</code>和<code>lxml.html(html)</code></p>
+<h4 id="🌟etree-HTML-html"><a href="#🌟etree-HTML-html" class="headerlink" title="🌟etree.HTML(html)"></a>🌟etree.HTML(html)</h4><p>我们可以用这个：<code>print(etree.tostring(etree.HTML(html)).decode())</code>来将dom树还原成之前的html，我们可以发现<code>etree.HTML()</code>函式会补全html程式码片段，给它们加上<code>&lt;html&gt;</code>和<code>&lt;body&gt;</code>标签。</p>
+<h4 id="🌟lxml-html-html"><a href="#🌟lxml-html-html" class="headerlink" title="🌟lxml.html(html)"></a>🌟lxml.html(html)</h4><p>lxml.html是lxml的子模组，它是对etree的封装，更适合解析html网页。生成DOM树的方法有多个：</p>
 <ul>
 <li>lxml.html.document_fromstring()</li>
 <li>lxml.html.fragment_fromstring()</li>
 <li>lxml.html.fragments_fromstring()</li>
 <li>lxml.html.fromstring()</li>
 </ul>
-<p>我們解析網頁用最後一個fromstring()即可。</p>
-<h3 id="使用xpath提取資料"><a href="#使用xpath提取資料" class="headerlink" title="使用xpath提取資料"></a>使用xpath提取資料</h3><p>以下面一段簡單的html為例，來介紹一下xpath對資料的提取：</p>
+<p>我们解析网页用最后一个fromstring()即可。</p>
+<h3 id="使用xpath提取资料"><a href="#使用xpath提取资料" class="headerlink" title="使用xpath提取资料"></a>使用xpath提取资料</h3><p>以下面一段简单的html为例，来介绍一下xpath对资料的提取：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"p_1 item"</span>&gt;</span>item_1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"p_2 item"</span>&gt;</span>item_2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"p3"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/go-p3"</span>&gt;</span>item_3<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>首先生成DOM樹：</li>
+<li>首先生成DOM树：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree </span><br><span class="line">doc = etree.HTML(html)</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>通過標籤屬性定位節點:比如我們要獲取<code>&lt;div class=&quot;2&quot;&gt;</code>這節點：</li>
+<li>通过标签属性定位节点:比如我们要获取<code>&lt;div class=&quot;2&quot;&gt;</code>这节点：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doc.xpath(<span class="string">'//div[@class="2"]'</span>)</span><br><span class="line">print(etree.tostring(doc.xpath(<span class="string">'//div[@class="2"]'</span>)[<span class="number">0</span>]).decode())</span><br><span class="line"><span class="comment"># &lt;div class="2"&gt;</span></span><br><span class="line"><span class="comment">#     &lt;p id="p3"&gt;&lt;a href="/go-p3"&gt;item_3&lt;/a&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="comment"># &lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ol start="3">
-<li>contains語法</li>
+<li>contains语法</li>
 </ol>
-<p>html中有兩個<code>&lt;p&gt;</code>標籤的class含有<code>item</code>，如果我們要提取這兩個<code>&lt;p&gt;</code>標籤，則：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 獲取&lt;p&gt;的文字：</span></span><br><span class="line">doc.xpath(<span class="string">'//p[contains(@class, "item")]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; ['item_1', 'item_2']</span></span><br></pre></td></tr></table></figure>
+<p>html中有两个<code>&lt;p&gt;</code>标签的class含有<code>item</code>，如果我们要提取这两个<code>&lt;p&gt;</code>标签，则：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 获取&lt;p&gt;的文字：</span></span><br><span class="line">doc.xpath(<span class="string">'//p[contains(@class, "item")]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; ['item_1', 'item_2']</span></span><br></pre></td></tr></table></figure>
 
 <ol start="4">
-<li>starts-with語法</li>
+<li>starts-with语法</li>
 </ol>
-<p>一樣的提取需求，兩個<code>&lt;p&gt;</code>標籤的class都是以p_開頭的，所以:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 獲取&lt;p&gt;的文字：</span></span><br><span class="line">doc.xpath(<span class="string">'//p[starts-with(@class, "p_")]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; ['item_1', 'item_2']</span></span><br></pre></td></tr></table></figure>
+<p>一样的提取需求，两个<code>&lt;p&gt;</code>标签的class都是以p_开头的，所以:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 获取&lt;p&gt;的文字：</span></span><br><span class="line">doc.xpath(<span class="string">'//p[starts-with(@class, "p_")]/text()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt; ['item_1', 'item_2']</span></span><br></pre></td></tr></table></figure>
 
 <ol start="5">
-<li>獲取某一屬性的值</li>
+<li>获取某一属性的值</li>
 </ol>
-<p>比如，我們想提取網頁中所有的連結：</p>
+<p>比如，我们想提取网页中所有的连结：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">doc.xpath(<span class="string">'//@href'</span>)</span><br></pre></td></tr></table></figure>
         </div>
 
@@ -277,9 +277,9 @@
                     
                         <a href="/tags/python/"># python</a>
                     
-                        <a href="/tags/lxml/"># lxml</a>
-                    
                         <a href="/tags/spider/"># spider</a>
+                    
+                        <a href="/tags/lxml/"># lxml</a>
                     
                         
                 </span>
@@ -292,10 +292,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/有關 Data mining 的一點反思/">有關 Data mining 的一點反思</a>
+                <a class="prev" rel="prev" href="/有關 Data mining 的一點反思/">有关数据挖掘（Data mining）的一点反思</a>
             
             
-            <a class="next" rel="next" href="/豆瓣爬蟲-1｜selenium 的介紹/">豆瓣爬蟲-1｜selenium 的介紹</a>
+            <a class="next" rel="next" href="/豆瓣爬蟲-1｜selenium 的介紹/">豆瓣爬虫-1｜selenium 的介紹</a>
             
         </section>
 

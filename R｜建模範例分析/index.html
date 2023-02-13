@@ -11,7 +11,7 @@
 
 
 
-<title>R｜建模範例分析 | Skye&#39;s Blog</title>
+<title>R｜建模范例分析 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">R｜建模範例分析</h1>
+            <h1 class="post-title">R｜建模范例分析</h1>
             
                 <div class="post-meta">
                     
@@ -201,83 +201,83 @@
         </header>
 
         <div class="post-content">
-            <h1 id="R建模範例分析"><a href="#R建模範例分析" class="headerlink" title="R建模範例分析"></a>R建模範例分析</h1><p>Regression analysis is widely used in statisitic, always  analysis the correlation among  different variables. </p>
+            <h1 id="R建模范例分析"><a href="#R建模范例分析" class="headerlink" title="R建模范例分析"></a>R建模范例分析</h1><p>Regression analysis is widely used in statisitic, always  analysis the correlation among  different variables. </p>
 <blockquote>
-<p>這是一個非常簡單資料處理和建模的例子，主要是為了熟悉整個資料分析和建模的流程。其中有很多細節可以繼續展開。</p>
+<p>这是一个非常简单资料处理和建模的例子，主要是为了熟悉整个资料分析和建模的流程。其中有很多细节可以继续展开。</p>
 </blockquote>
-<h2 id="讀取資料"><a href="#讀取資料" class="headerlink" title="讀取資料"></a>讀取資料</h2><p>大部分讀取資料，讀取excel檔一本需要轉成CSV檔來讀取。<br>這裡我們以 iris.csv 這個 CSV 檔案作為範例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 讀取 iris.csv</span><br><span class="line">my.iris.df &lt;- read.csv(&quot;iris.csv&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="读取资料"><a href="#读取资料" class="headerlink" title="读取资料"></a>读取资料</h2><p>大部分读取资料，读取excel档一本需要转成CSV档来读取。<br>这里我们以 iris.csv 这个 CSV 档案作为范例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 读取 iris.csv</span><br><span class="line">my.iris.df &lt;- read.csv(&quot;iris.csv&quot;)</span><br></pre></td></tr></table></figure>
 
-<p>如果自己的csv檔沒有放在目前的目錄中，可以使用絕對路徑來指定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 使用絕對路徑</span><br><span class="line">my.iris.df &lt;- read.csv(&quot;D:\\iris.csv&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果自己的csv档没有放在目前的目录中，可以使用绝对路径来指定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 使用绝对路径</span><br><span class="line">my.iris.df &lt;- read.csv(&quot;D:\\iris.csv&quot;)</span><br></pre></td></tr></table></figure>
 
-<p><strong>雙反斜線（\）</strong>在R中屬於特殊的跳脫字元，所以在撰寫絕對路徑的時候，凡是要輸入反斜線的地方，都要改為雙反斜線。</p>
-<p>讀取資料完成後，為了方便查看大體量的資料可以用head（）來查看前面幾行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看 my.iris.df 的資料的前面20rows</span><br><span class="line">head(my.iris.df, 20)</span><br></pre></td></tr></table></figure>
+<p><strong>双反斜线（\）</strong>在R中属于特殊的跳脱字元，所以在撰写绝对路径的时候，凡是要输入反斜线的地方，都要改为双反斜线。</p>
+<p>读取资料完成后，为了方便查看大体量的资料可以用head（）来查看前面几行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看 my.iris.df 的资料的前面20rows</span><br><span class="line">head(my.iris.df, 20)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>將csv表格讀進R之後個欄位若有空白或是特殊字元，會被自動替代為（.），它不會影響到資料，只是在變數指定的時候要使用新的名字</p>
+<p>将csv表格读进R之后个栏位若有空白或是特殊字元，会被自动替代为（.），它不会影响到资料，只是在变数指定的时候要使用新的名字</p>
 </blockquote>
-<h2 id="資料的預處理"><a href="#資料的預處理" class="headerlink" title="資料的預處理"></a>資料的預處理</h2><p>讀進去之後我們就需要更詳細的了解資料的內部結構：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看 my.iris.df 內部結構</span><br><span class="line">str(my.iris.df)</span><br></pre></td></tr></table></figure>
+<h2 id="资料的预处理"><a href="#资料的预处理" class="headerlink" title="资料的预处理"></a>资料的预处理</h2><p>读进去之后我们就需要更详细的了解资料的内部结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看 my.iris.df 内部结构</span><br><span class="line">str(my.iris.df)</span><br></pre></td></tr></table></figure>
 
-<p>str輸出的一個row就是一個變數的欄位，標示了變數名稱與類型，後面接的是實際的資料筆數。</p>
-<p>檢查完資料的類型沒有什麼問題之後，我們需要處理資料中殘留的一些不乾淨的數據以及缺失值NA。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 檢查是否有 NA 的資料</span><br><span class="line">my.iris.df[!complete.cases(my.iris.df),]</span><br></pre></td></tr></table></figure>
+<p>str输出的一个row就是一个变数的栏位，标示了变数名称与类型，后面接的是实际的资料笔数。</p>
+<p>检查完资料的类型没有什么问题之后，我们需要处理资料中残留的一些不干净的数据以及缺失值NA。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 检查是否有 NA 的资料</span><br><span class="line">my.iris.df[!complete.cases(my.iris.df),]</span><br></pre></td></tr></table></figure>
 
-<p>如果資料是完整的就會返回一個空的dataframe</p>
-<h2 id="分析資料與繪圖"><a href="#分析資料與繪圖" class="headerlink" title="分析資料與繪圖"></a>分析資料與繪圖</h2><p>通常在開始分析資料之前，會先用 <strong>summary</strong> 看一下各個變數的基本統計量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看基本統計量</span><br><span class="line">summary(my.iris.df)</span><br></pre></td></tr></table></figure>
+<p>如果资料是完整的就会返回一个空的dataframe</p>
+<h2 id="分析资料与绘图"><a href="#分析资料与绘图" class="headerlink" title="分析资料与绘图"></a>分析资料与绘图</h2><p>通常在开始分析资料之前，会先用 <strong>summary</strong> 看一下各个变数的基本统计量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看基本统计量</span><br><span class="line">summary(my.iris.df)</span><br></pre></td></tr></table></figure>
 
-<p>當然光看數字肯定是非常不直觀的，繪圖會是一個查看各組數據相關性的好方法。這裡我們示範使用** ggplot2 與 GGally** 套件來畫圖的方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 載入 ggplot2 與 GGally 套件</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(GGally)</span><br></pre></td></tr></table></figure>
+<p>当然光看数字肯定是非常不直观的，绘图会是一个查看各组数据相关性的好方法。这里我们示范使用** ggplot2 与 GGally** 套件来画图的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 载入 ggplot2 与 GGally 套件</span><br><span class="line">library(ggplot2)</span><br><span class="line">library(GGally)</span><br></pre></td></tr></table></figure>
 
-<p>使用 ggpairs 可畫出很漂亮的資料<strong>分佈矩陣圖</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 繪製資料分佈矩陣圖</span><br><span class="line">ggpairs(my.iris.df)</span><br></pre></td></tr></table></figure>
+<p>使用 ggpairs 可画出很漂亮的资料<strong>分布矩阵图</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 绘制资料分布矩阵图</span><br><span class="line">ggpairs(my.iris.df)</span><br></pre></td></tr></table></figure>
 
-<p>如果只想畫出簡單的 <strong>XY 散佈圖</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 畫出 XY 散佈圖</span><br><span class="line">require(ggplot2)</span><br><span class="line">qplot(x = Petal.Length,</span><br><span class="line">      y = Petal.Width,</span><br><span class="line">      data = my.iris.df)</span><br></pre></td></tr></table></figure>
+<p>如果只想画出简单的 <strong>XY 散布图</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 画出 XY 散布图</span><br><span class="line">require(ggplot2)</span><br><span class="line">qplot(x = Petal.Length,</span><br><span class="line">      y = Petal.Width,</span><br><span class="line">      data = my.iris.df)</span><br></pre></td></tr></table></figure>
 
-<p>如果想要比較不同的 Species 類別的 XY 散佈圖，可以用<strong>color</strong>區分出不同的species：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 畫出 XY 散佈圖，依據 Species 上色</span><br><span class="line">require(ggplot2)</span><br><span class="line">qplot(x = Petal.Length,</span><br><span class="line">      y = Petal.Width,</span><br><span class="line">      data = my.iris.df,</span><br><span class="line">      color = Species)</span><br></pre></td></tr></table></figure>
+<p>如果想要比较不同的 Species 类别的 XY 散布图，可以用<strong>color</strong>区分出不同的species：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 画出 XY 散布图，依据 Species 上色</span><br><span class="line">require(ggplot2)</span><br><span class="line">qplot(x = Petal.Length,</span><br><span class="line">      y = Petal.Width,</span><br><span class="line">      data = my.iris.df,</span><br><span class="line">      color = Species)</span><br></pre></td></tr></table></figure>
 
-<h2 id="建立回歸模型"><a href="#建立回歸模型" class="headerlink" title="建立回歸模型"></a>建立回歸模型</h2><p>建立迴歸模型可以使用 <strong>lm</strong> 這個函數（lm 代表 linear models），假設我們想要拿 Sepal.Length 作為反應變數（也就是 Y），而 Sepal.Width、Petal.Length 與 Petal.Width 作為解釋變數（也就是 X），則可以執行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 建立迴歸模型</span><br><span class="line">iris.lm &lt;- lm(Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width,</span><br><span class="line">              data = my.iris.df)</span><br></pre></td></tr></table></figure>
+<h2 id="建立回归模型"><a href="#建立回归模型" class="headerlink" title="建立回归模型"></a>建立回归模型</h2><p>建立回归模型可以使用 <strong>lm</strong> 这个函数（lm 代表 linear models），假设我们想要拿 Sepal.Length 作为反应变数（也就是 Y），而 Sepal.Width、Petal.Length 与 Petal.Width 作为解释变数（也就是 X），则可以执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 建立回归模型</span><br><span class="line">iris.lm &lt;- lm(Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width,</span><br><span class="line">              data = my.iris.df)</span><br></pre></td></tr></table></figure>
 
-<p>其中第一個參數放的就是所謂的公式（formula），它用來表示迴歸模型的一種表示法，中間的** ~ <strong>相當於迴歸公式的</strong>等號**，左邊的 Sepal.Length 就是 Y，而右邊放的三個變數則是 X。第二個參數 data 則是用來指定資料來源的 data frame。</p>
-<p>建立好迴歸模型之後，可以使用 summary 查看模型配適的結果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看模型配適結果</span><br><span class="line">summary(iris.lm)</span><br></pre></td></tr></table></figure>
+<p>其中第一个参数放的就是所谓的公式（formula），它用来表示回归模型的一种表示法，中间的** ~ <strong>相当于回归公式的</strong>等号**，左边的 Sepal.Length 就是 Y，而右边放的三个变数则是 X。第二个参数 data 则是用来指定资料来源的 data frame。</p>
+<p>建立好回归模型之后，可以使用 summary 查看模型配适的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看模型配适结果</span><br><span class="line">summary(iris.lm)</span><br></pre></td></tr></table></figure>
 
-<p>結果為：</p>
+<p>结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Call:</span><br><span class="line">lm(formula = Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width,</span><br><span class="line">    data = my.iris.df)</span><br><span class="line">Residuals:</span><br><span class="line">     Min       1Q   Median       3Q      Max</span><br><span class="line">-0.82816 -0.21989  0.01875  0.19709  0.84570</span><br><span class="line">Coefficients:</span><br><span class="line">             Estimate Std. Error t value Pr(&gt;|t|)</span><br><span class="line">(Intercept)   1.85600    0.25078   7.401 9.85e-12 ***</span><br><span class="line">Sepal.Width   0.65084    0.06665   9.765  &lt; 2e-16 ***</span><br><span class="line">Petal.Length  0.70913    0.05672  12.502  &lt; 2e-16 ***</span><br><span class="line">Petal.Width  -0.55648    0.12755  -4.363 2.41e-05 ***</span><br><span class="line">---</span><br><span class="line">Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span><br><span class="line">Residual standard error: 0.3145 on 146 degrees of freedom</span><br><span class="line">Multiple R-squared:  0.8586,    Adjusted R-squared:  0.8557</span><br><span class="line">F-statistic: 295.5 on 3 and 146 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
 
-<p>從這份輸出的結果中，我們可以看出各個解釋變數的係數，若將整個模型寫出來就會像這樣：</p>
+<p>从这份输出的结果中，我们可以看出各个解释变数的系数，若将整个模型写出来就会像这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sepal.Length = 0.65084 * Sepal.Width</span><br><span class="line">             + 0.70913 * Petal.Length</span><br><span class="line">             - 0.55648 * Petal.Width</span><br><span class="line">             + 1.856</span><br></pre></td></tr></table></figure>
 
-<p>報表中的 Pr(&gt;|t|) 就是統計上的 p-value，以這裡的值來說，每一個係數都非常顯著。<br>R-squared 的值為 0.8586，Adjusted R-squared 的值為 0.8557，表示模型的配適情況不錯</p>
-<h2 id="模型診斷"><a href="#模型診斷" class="headerlink" title="模型診斷"></a>模型診斷</h2><p>在配適完迴歸模型之後，接著要進行模型診斷，通常會先畫出幾張常用來診斷模型的圖，這裡我們用 ggfortify 這個套件來畫圖。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggfortify)</span><br><span class="line"># 畫出模型診斷用的圖</span><br><span class="line">autoplot(iris.lm)</span><br></pre></td></tr></table></figure>
+<p>报表中的 Pr(&gt;|t|) 就是统计上的 p-value，以这里的值来说，每一个系数都非常显著。<br>R-squared 的值为 0.8586，Adjusted R-squared 的值为 0.8557，表示模型的配适情况不错</p>
+<h2 id="模型诊断"><a href="#模型诊断" class="headerlink" title="模型诊断"></a>模型诊断</h2><p>在配适完回归模型之后，接着要进行模型诊断，通常会先画出几张常用来诊断模型的图，这里我们用 ggfortify 这个套件来画图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library(ggfortify)</span><br><span class="line"># 画出模型诊断用的图</span><br><span class="line">autoplot(iris.lm)</span><br></pre></td></tr></table></figure>
 
-<p>在理論上迴歸模型配適完成後，其<strong>殘差值（residual）</strong>必須符合<strong>常態性（normality）</strong>、<strong>獨立性（independence）</strong>以及<strong>變異數同質性（homogeneity of variance）</strong>三種假設，所以接下來要用三種檢定檢查這三個條件是否符合。</p>
-<h3 id="殘差獨立性檢定"><a href="#殘差獨立性檢定" class="headerlink" title="殘差獨立性檢定"></a>殘差獨立性檢定</h3><p>獨立性檢定要使用到 car 這個套件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 殘差獨立性檢定</span><br><span class="line">require(car)</span><br><span class="line">durbinWatsonTest(iris.lm)</span><br></pre></td></tr></table></figure>
+<p>在理论上回归模型配适完成后，其<strong>残差值（residual）</strong>必须符合<strong>常态性（normality）</strong>、<strong>独立性（independence）</strong>以及<strong>变异数同质性（homogeneity of variance）</strong>三种假设，所以接下来要用三种检定检查这三个条件是否符合。</p>
+<h3 id="残差独立性检定"><a href="#残差独立性检定" class="headerlink" title="残差独立性检定"></a>残差独立性检定</h3><p>独立性检定要使用到 car 这个套件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 残差独立性检定</span><br><span class="line">require(car)</span><br><span class="line">durbinWatsonTest(iris.lm)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lag Autocorrelation D-W Statistic p-value</span><br><span class="line">  1     -0.03992126      2.060382   0.822</span><br><span class="line">Alternative hypothesis: rho != 0</span><br></pre></td></tr></table></figure>
 
-<p>殘差獨立性檢定的 p-value 也非常高，所以也不拒絕虛無假設，亦即殘差值的獨立性假設是合理的。</p>
-<h3 id="殘差變異數同質性檢定"><a href="#殘差變異數同質性檢定" class="headerlink" title="殘差變異數同質性檢定"></a>殘差變異數同質性檢定</h3><p>殘差的變異數同質性檢定可以使用 car 套件所提供的 ncvTest（）函數：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 殘差變異數同質性檢定</span><br><span class="line">require(car)</span><br><span class="line">ncvTest(iris.lm)</span><br></pre></td></tr></table></figure>
+<p>残差独立性检定的 p-value 也非常高，所以也不拒绝虚无假设，亦即残差值的独立性假设是合理的。</p>
+<h3 id="残差变异数同质性检定"><a href="#残差变异数同质性检定" class="headerlink" title="残差变异数同质性检定"></a>残差变异数同质性检定</h3><p>残差的变异数同质性检定可以使用 car 套件所提供的 ncvTest（）函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 残差变异数同质性检定</span><br><span class="line">require(car)</span><br><span class="line">ncvTest(iris.lm)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Non-constant Variance Score Test </span><br><span class="line">Variance formula: ~ fitted.values </span><br><span class="line">Chisquare = 4.448612    Df = 1     p = 0.03492962</span><br></pre></td></tr></table></figure>
 
-<p>殘差變異數同質性檢定的 p-value 稍微偏小，以一般 95% 的信賴水準來說，是拒絕虛無假設的，也就是說殘差的變異數沒有符合同質性的假設，但是因為這個 p-value 並沒有非常小，所以證據並不是非常明確。</p>
-<h2 id="預測"><a href="#預測" class="headerlink" title="預測"></a>預測</h2><p>在迴歸模型建立好之後，就可以利用這個模型來預測新的資料，假設我們收到一些新的觀測值（解釋變數 X）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 新觀測值</span><br><span class="line">new.iris &lt;- data.frame(Sepal.Width=3.1, Petal.Length=1.6, Petal.Width=0.3)</span><br><span class="line">new.iris</span><br></pre></td></tr></table></figure>
+<p>残差变异数同质性检定的 p-value 稍微偏小，以一般 95% 的信赖水准来说，是拒绝虚无假设的，也就是说残差的变异数没有符合同质性的假设，但是因为这个 p-value 并没有非常小，所以证据并不是非常明确。</p>
+<h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>在回归模型建立好之后，就可以利用这个模型来预测新的资料，假设我们收到一些新的观测值（解释变数 X）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 新观测值</span><br><span class="line">new.iris &lt;- data.frame(Sepal.Width=3.1, Petal.Length=1.6, Petal.Width=0.3)</span><br><span class="line">new.iris</span><br></pre></td></tr></table></figure>
 
-<p>若要使用迴歸模型預測新的反應變數，可以使用 predict 函數</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 預測資料</span><br><span class="line">predict(iris.lm, new.iris)</span><br></pre></td></tr></table></figure>
+<p>若要使用回归模型预测新的反应变数，可以使用 predict 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 预测资料</span><br><span class="line">predict(iris.lm, new.iris)</span><br></pre></td></tr></table></figure>
 
-<pre><code>1 </code></pre><p>4.841259<br>預測出來的 Sepal.Length 值就是 4.841259。</p>
+<pre><code>1 </code></pre><p>4.841259<br>预测出来的 Sepal.Length 值就是 4.841259。</p>
 
         </div>
 
@@ -319,10 +319,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/R｜數據中缺失值-NA-的處理/">R｜數據中缺失值-NA-的處理</a>
+                <a class="prev" rel="prev" href="/R｜數據中缺失值-NA-的處理/">R｜数据中缺失值-NA-的处理</a>
             
             
-            <a class="next" rel="next" href="/Pwc性格測試/">Pwc性格測試</a>
+            <a class="next" rel="next" href="/Pwc性格測試/">Pwc性格测试</a>
             
         </section>
 

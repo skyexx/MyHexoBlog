@@ -11,7 +11,7 @@
 
 
 
-<title>R｜數據中缺失值-NA-的處理 | Skye&#39;s Blog</title>
+<title>R｜数据中缺失值-NA-的处理 | Skye&#39;s Blog</title>
 
 
 
@@ -176,7 +176,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">R｜數據中缺失值-NA-的處理</h1>
+            <h1 class="post-title">R｜数据中缺失值-NA-的处理</h1>
             
                 <div class="post-meta">
                     
@@ -201,45 +201,43 @@
         </header>
 
         <div class="post-content">
-            <p>訓練一個機器學習模型，其實大量的時間是花在資料的預處理和探索性資料分析上。尤其是實際中遇到的data都不會太乾淨，所以花較長的時間來做數據的預處理是很有必要的。</p>
-<p>首先來建立一個簡單的數據集</p>
+            <p>训练一个机器学习模型，其实大量的时间是花在资料的预处理和探索性资料分析上。尤其是实际中遇到的data都不会太干净，所以花较长的时间来做数据的预处理是很有必要的。</p>
+<p>首先来建立一个简单的数据集</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">library(mice)</span><br><span class="line">name = c(&quot;Andy&quot;,&quot;Helly&quot;,&quot;Ann&quot;,&quot;Ketay&quot;,&quot;Wang&quot;,&quot;Liu&quot;)</span><br><span class="line">country = c(&quot;UK&quot;,&quot;US&quot;,&quot;US&quot;,&quot;US&quot;,&quot;CH&quot;,&quot;CH&quot;)</span><br><span class="line">gender = c(&quot;male&quot;,&quot;female&quot;,NA,&quot;female&quot;,&quot;male&quot;,NA)</span><br><span class="line">age = c(22,19,26,31,45,32)</span><br><span class="line">income = c(12,NA,55,77,32,NA)</span><br><span class="line"></span><br><span class="line">data = data.frame(name,country,gender,age,income)</span><br><span class="line">data</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 2 Helly      US female  19     NA</span><br><span class="line"># 3   Ann      US   &lt;NA&gt;  26     55</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br><span class="line"># 6   Liu      CH   &lt;NA&gt;  32     NA</span><br></pre></td></tr></table></figure>
 
 <h2 id="查找NA"><a href="#查找NA" class="headerlink" title="查找NA"></a>查找NA</h2><ul>
 <li><p>存在NA的rows</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">complete.cases(data) # 當一筆資料是完整的，回傳TRUE；當一筆資料有遺漏值，回傳FALSE</span><br><span class="line">#[1]  TRUE FALSE FALSE  TRUE  TRUE FALSE</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">complete.cases(data) # 当一笔资料是完整的，回传TRUE；当一笔资料有遗漏值，回传FALSE</span><br><span class="line">#[1]  TRUE FALSE FALSE  TRUE  TRUE FALSE</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查找缺失值的位置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which(is.na(data))  #返回缺失值的位置</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>計算數據集中有缺失的資料筆數所佔比例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss = sum(is.na(data)) #計算資料集中的缺失值總數</span><br><span class="line">have = sum(complete.cases(data)) #統計資料集中完整樣本的個數</span><br><span class="line">ratio = loss/(loss+have) #計算缺失值資料的比重</span><br></pre></td></tr></table></figure>
+<li><p>计算数据集中有缺失的资料笔数所占比例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss = sum(is.na(data)) #计算资料集中的缺失值总数</span><br><span class="line">have = sum(complete.cases(data)) #统计资料集中完整样本的个数</span><br><span class="line">ratio = loss/(loss+have) #计算缺失值资料的比重</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h2 id="填補NA"><a href="#填補NA" class="headerlink" title="填補NA"></a>填補NA</h2><ol>
-<li><p>na.omit() 可以刪除所有含有缺失資料的row</p>
+<h2 id="填补NA"><a href="#填补NA" class="headerlink" title="填补NA"></a>填补NA</h2><ol>
+<li><p>na.omit() 可以删除所有含有缺失资料的row</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data1 = na.omit(data)</span><br><span class="line">data1</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>最高頻率來填補缺失值.嘗試找到這些缺失值最可能的值。</p>
+<li><p>最高频率来填补缺失值.尝试找到这些缺失值最可能的值。</p>
 <blockquote>
-<p>對於變數分佈近似正態分佈時可以選用平均值；偏態分佈一般採用中位數代表資料中心趨勢的指標。</p>
+<p>对于变数分布近似正态分布时可以选用平均值；偏态分布一般采用中位数代表资料中心趋势的指标。</p>
 </blockquote>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># mean_income = mean(data$income)</span><br><span class="line">data2 = data</span><br><span class="line">#一些函式計算時擁有na.rm=TRUE，可以在計算以前移除缺失值並使用剩餘值進行計算</span><br><span class="line">data2[is.na(data2$income),&quot;income&quot;] = mean(data2$income,na.rm = T) #用平均數補充income的缺失值</span><br><span class="line">data2</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 2 Helly      US female  19     44</span><br><span class="line"># 3   Ann      US   &lt;NA&gt;  26     55</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br><span class="line"># 6   Liu      CH   &lt;NA&gt;  32     44</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># mean_income = mean(data$income)</span><br><span class="line">data2 = data</span><br><span class="line">#一些函式计算时拥有na.rm=TRUE，可以在计算以前移除缺失值并使用剩余值进行计算</span><br><span class="line">data2[is.na(data2$income),&quot;income&quot;] = mean(data2$income,na.rm = T) #用平均数补充income的缺失值</span><br><span class="line">data2</span><br><span class="line"># name country gender age income</span><br><span class="line"># 1  Andy      UK   male  22     12</span><br><span class="line"># 2 Helly      US female  19     44</span><br><span class="line"># 3   Ann      US   &lt;NA&gt;  26     55</span><br><span class="line"># 4 Ketay      US female  31     77</span><br><span class="line"># 5  Wang      CH   male  45     32</span><br><span class="line"># 6   Liu      CH   &lt;NA&gt;  32     44</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
-<li><p>函式centralImputation()可以用資料的中心趨勢值來填補資料集的所有缺失值</p>
+<li><p>函式centralImputation()可以用资料的中心趋势值来填补资料集的所有缺失值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data3 = data</span><br><span class="line">data3$income &lt;- centralImputation(data3$income)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>通過變數的相關關係填補缺失值 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#函式cor()的功能是產生變數之間的相關值矩陣,引數use = &quot;complete.obs&quot;可以忽略含有NA的記錄</span><br><span class="line">cor(data[,c(&quot;age&quot;,&quot;income&quot;)],use = &quot;complete.obs&quot;) # =cor(data[,4:5],use = &quot;complete.obs&quot;)</span><br><span class="line"># age     income</span><br><span class="line"># age    1.00000000 0.07670152</span><br><span class="line"># income 0.07670152 1.00000000</span><br><span class="line">lm(age~income,data = data) </span><br><span class="line">#函式lm()可以用來獲取線性模型</span><br><span class="line">#可以使用上述線性關係計算變數的缺失值</span><br></pre></td></tr></table></figure>
+<li><p>通过变数的相关关系填补缺失值 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#函式cor()的功能是产生变数之间的相关值矩阵,引数use = &quot;complete.obs&quot;可以忽略含有NA的记录</span><br><span class="line">cor(data[,c(&quot;age&quot;,&quot;income&quot;)],use = &quot;complete.obs&quot;) # =cor(data[,4:5],use = &quot;complete.obs&quot;)</span><br><span class="line"># age     income</span><br><span class="line"># age    1.00000000 0.07670152</span><br><span class="line"># income 0.07670152 1.00000000</span><br><span class="line">lm(age~income,data = data) </span><br><span class="line">#函式lm()可以用来获取线性模型</span><br><span class="line">#可以使用上述线性关系计算变数的缺失值</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>用K-Nearest Neighbours填補遺漏值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(DMwR)</span><br><span class="line">imputeData &lt;- knnImputation(data)</span><br></pre></td></tr></table></figure>
-
-</li>
+<li><p>用K-Nearest Neighbours填补遗漏值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(DMwR)</span><br><span class="line">imputeData &lt;- knnImputation(data)</span><br></pre></td></tr></table></figure></li>
 </ol>
 
         </div>
@@ -282,10 +280,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/R｜資料的預處理：刪減不需要的資料/">R｜資料的預處理：刪減不需要的資料</a>
+                <a class="prev" rel="prev" href="/R｜資料的預處理：刪減不需要的資料/">R｜资料的预处理：删减不需要的资料</a>
             
             
-            <a class="next" rel="next" href="/R｜建模範例分析/">R｜建模範例分析</a>
+            <a class="next" rel="next" href="/R｜建模範例分析/">R｜建模范例分析</a>
             
         </section>
 
