@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>关于工作</title>
-    <url>/%E5%85%B3%E4%BA%8E%E5%B7%A5%E4%BD%9C/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Daily</category>
-      </categories>
-      <tags>
-        <tag>job</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自我剖析</title>
-    <url>/%E8%87%AA%E6%88%91%E5%89%96%E6%9E%90/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Daily</category>
-      </categories>
-      <tags>
-        <tag>job</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>面对焦虑</title>
     <url>/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E9%9D%A2%E5%B0%8D%E7%84%A6%E6%85%AE/</url>
     <content><![CDATA[<p>感觉周围最近抱怨「大环境」的言论甚嚣尘上，自己也难免受此影响，有些焦虑。焦虑的时候读书总不会错的，这里纪录一些最近看到的段落：</p>
@@ -33,11 +11,11 @@
 <p><strong>美国最高法院首席大法官约翰·罗伯茨(John Roberts)，参加儿子的初中毕业典礼时的演讲：</strong></p>
 <p>From time to time in the years to come, I hope you will be treated unfairly, so that you will come to know the value of justice.<br>我希望在未来岁月中，你能时不时地遭遇不公，唯有如此，你才能懂得公正的价值。</p>
 <p>I hope that you will suffer betrayal because that will teach you the importance of loyalty.<br>我希望你尝到背叛的滋味，这样你才能领悟到忠诚之重要。</p>
-<p>Sorry to say, butI hope you will be lonely from time to time so that you don’t take friends for granted.<br>抱歉，我还希望你们时常感到孤独，唯有如此，你才 不会视朋友为理所当然。</p>
-<p>I wish you bad luck,again, from time to time so that you will be conscious of the role of chance in life and understand that your success is not completely deserved and that the failure of others is not completely deserved either.<br>我祝你们偶尔运气不佳，这样你才会意识到机遇在人 生中扮演的⻆色，从而明白你的成功并非天经地义， 而他人的失败也不是命中注定。</p>
+<p>Sorry to say, butI hope you will be lonely from time to time so that you don’t take friends for granted.<br>抱歉，我还希望你们时常感到孤独，唯有如此，你才不会视朋友为理所当然。</p>
+<p>I wish you bad luck, again, from time to time so that you will be conscious of the role of chance in life and understand that your success is not completely deserved and that the failure of others is not completely deserved either.<br>我祝你们偶尔运气不佳，这样你才会意识到机遇在人 生中扮演的⻆色，从而明白你的成功并非天经地义， 而他人的失败也不是命中注定。</p>
 <p>And when you lose, as you will from time to time, I hope every now and then, your opponent will gloat over your failure. It is a way for you to understand the importance of sportsmanship.<br>当你偶尔失败时，我愿你的对手时不时地会幸灾乐 祸。这样你才能懂得互相尊重的竞技精神的重要。</p>
-<p>I hope you’ll be ignoredso you know the importance of listening to others.<br>我希望你被人无视，唯有如此，你才懂得倾听他人有多重要。</p>
-<p>And I hope you will have just enough painto learn compassion.<br>我祝你感受足够的痛楚来学会同情。</p>
+<p>I hope you’ll be ignored so you know the importance of listening to others.<br>我希望你被人无视，唯有如此，你才懂得倾听他人有多重要。</p>
+<p>And I hope you will have just enough pain to learn compassion.<br>我祝你感受足够的痛楚来学会同情。</p>
 <p>Unless you are perfect, it does not mean don’t make any changes.<br>除非你完美无瑕，那么这句话绝不意味着不去改变自己。</p>
 <p>“The unexamined life is not worth living.”<br>未经自省的人生没有意义。</p>
 ]]></content>
@@ -50,7 +28,7 @@
   </entry>
   <entry>
     <title>说清楚，讲明白</title>
-    <url>/%E6%9C%89%E5%AF%AB%E5%B0%B1%E5%A5%BD%EF%BD%9C%E8%AA%AA%E6%B8%85%E6%A5%9A%EF%BC%8C%E8%AC%9B%E6%98%8E%E7%99%BD/</url>
+    <url>/%E8%AF%B4%E6%B8%85%E6%A5%9A.%E8%AE%B2%E6%98%8E%E7%99%BD/</url>
     <content><![CDATA[<p>最近发生了几件小事，正好应和题目，就此记录一下。</p>
 <p>「把话说清楚」是表达最基本的要求，但想做好，其实并不简单。上周「系统分析与设计」课堂报告，要求不多，就是前三周的上课内容。但大多数组别的报告，都没有让老师满意，问题出在「这节课不需要你们把系统设计的很复杂，重点是要说清楚、讲明白」。</p>
 <p>什么叫「说清楚、讲明白」？用这节课来举例就是：从「需求分析」到「需求塑模」，每一步骤都需要按部就班，先说清楚每个步骤需要怎样的方法和规则，需要用到哪些工具来呈现（活动图、使用个案图等），我们又是怎么依照这些规则，用这些工具来完成我们的设计。要逻辑清楚，重点明确。</p>
@@ -672,9 +650,7 @@
   <entry>
     <title>研究生申请自传</title>
     <url>/%E9%80%89%E4%B8%93%E4%B8%9A/</url>
-    <content><![CDATA[<blockquote>
-<p>研究生的申请自传，对自己过去学习经历的复盘和反思<br>大一大二时，因为专业的原因，我们需要学习数学、物理、化学、生物以及地科相关的知识。学习这些庞杂科目的过程，帮助我逐渐建立起了基本的科学素养。透过不断的练习「看懂」，然后「分析」与「归纳」知识点，培养了我对于科研的基本鉴赏力。不过这个阶段的我还是停留在被动的吸收和获取的老师所讲的知识。而真正改变我，并使我萌生了转换专业想法的是在大三大四修的三门课程。<br>一门是古海洋学，这节课的上课形式是，自行阅读相关主题文献，上课时间全部以同学发问，老师来回答的方式进行。所以为了能提出逻辑自洽，有科学意涵的问题，我开始认真研究每篇论文的研究逻辑，试着从作者的角度出发多去思考。这种提问的学习方式真的让我受益匪浅，不但在后续的学习中帮助我迅速的进入一些较为陌生的领域，还也让我从最初只会被动吸收老师所讲的知识，转变为自己主动思考，主动探索自己未知领域，主动获取知识。<br>另一门课则是程式设计。这节课是海下科技研究所开设的，主要是用matlab 和python 来编写程式。期中的作业是编写一个特定领域的小型搜索引擎。而期末则是编写一个可以控制十字滑轨写字画画的程序。在编写程式、设计程式架构，甚至是设计一些小彩蛋时，都让我充分体会了创造的乐趣。这也让我发现相比较与海科系注重发现和解释现象的能力，我更喜欢创造新鲜事物带来的乐趣。<br>最后一门就是资讯管理系的巨量资料分析，在这门课中我第一次接触到了机器学习，R语言以及各种算法，所以对我来说是一个不小的挑战。从最开始需要学习大量新知识时的手足无措，到后面慢慢了解数据处理的每一步逻辑，再到为了能更好的理解模型建立过程，我参加的台新银行的金融大数据分析比赛，虽然没有取得很好的名次，但是在过程中确实让我迅速学习到了各种模型以及调参的知识，也我看到机器学习在各领域的潜力，同时激起了我深入学习的热情。这门课的学习也使我坚定了转换跑道的想法。<br>海科系和资管系看似相去甚远，但其实，很多能力是想通的。四年的海科训练，教会了我如何提问，如何思考和严谨的解释一件事情。学会提问，能够帮助我在进入一个新领域时，迅速厘清这一领域的整体框架，并捕捉到自己的盲点。而严谨的思考和解释，帮助我在考虑问题的时候从多个角度出发，更好的顾及到方方面面。</p>
-</blockquote>
+    <content><![CDATA[<p>研究生的申请自传，对自己过去学习经历的复盘和反思<br>大一大二时，因为专业的原因，我们需要学习数学、物理、化学、生物以及地科相关的知识。学习这些庞杂科目的过程，帮助我逐渐建立起了基本的科学素养。透过不断的练习「看懂」，然后「分析」与「归纳」知识点，培养了我对于科研的基本鉴赏力。不过这个阶段的我还是停留在被动的吸收和获取的老师所讲的知识。而真正改变我，并使我萌生了转换专业想法的是在大三大四修的三门课程。<br>一门是古海洋学，这节课的上课形式是，自行阅读相关主题文献，上课时间全部以同学发问，老师来回答的方式进行。所以为了能提出逻辑自洽，有科学意涵的问题，我开始认真研究每篇论文的研究逻辑，试着从作者的角度出发多去思考。这种提问的学习方式真的让我受益匪浅，不但在后续的学习中帮助我迅速的进入一些较为陌生的领域，还也让我从最初只会被动吸收老师所讲的知识，转变为自己主动思考，主动探索自己未知领域，主动获取知识。<br>另一门课则是程式设计。这节课是海下科技研究所开设的，主要是用matlab 和python 来编写程式。期中的作业是编写一个特定领域的小型搜索引擎。而期末则是编写一个可以控制十字滑轨写字画画的程序。在编写程式、设计程式架构，甚至是设计一些小彩蛋时，都让我充分体会了创造的乐趣。这也让我发现相比较与海科系注重发现和解释现象的能力，我更喜欢创造新鲜事物带来的乐趣。<br>最后一门就是资讯管理系的巨量资料分析，在这门课中我第一次接触到了机器学习，R语言以及各种算法，所以对我来说是一个不小的挑战。从最开始需要学习大量新知识时的手足无措，到后面慢慢了解数据处理的每一步逻辑，再到为了能更好的理解模型建立过程，我参加的台新银行的金融大数据分析比赛，虽然没有取得很好的名次，但是在过程中确实让我迅速学习到了各种模型以及调参的知识，也我看到机器学习在各领域的潜力，同时激起了我深入学习的热情。这门课的学习也使我坚定了转换跑道的想法。<br>海科系和资管系看似相去甚远，但其实，很多能力是想通的。四年的海科训练，教会了我如何提问，如何思考和严谨的解释一件事情。学会提问，能够帮助我在进入一个新领域时，迅速厘清这一领域的整体框架，并捕捉到自己的盲点。而严谨的思考和解释，帮助我在考虑问题的时候从多个角度出发，更好的顾及到方方面面。</p>
 ]]></content>
   </entry>
   <entry>
@@ -1876,23 +1852,5 @@ Name: pop, dtype: int64</code></pre><figure class="highlight python"><table><tr>
       <tags>
         <tag>Hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
   </entry>
 </search>
